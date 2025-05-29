@@ -1,0 +1,19 @@
+# DeleteTransformationRequest
+
+## Example Usage
+
+```typescript
+import { DeleteTransformationRequest } from "@cloudinary/config/models/operations";
+
+let value: DeleteTransformationRequest = {
+  transformation: "<value>",
+  invalidate: true,
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                  | Type                                                                                                                                                                   | Required                                                                                                                                                               | Description                                                                                                                                                            | Example                                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `transformation`                                                                                                                                                       | *string*                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                     | The transformation identifier. Can be either a named transformation (e.g., 'small_profile_thumbnail') or a transformation string (e.g., 'w_100,h_150,c_fill,g_auto').<br/> |                                                                                                                                                                        |
+| `invalidate`                                                                                                                                                           | *boolean*                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                     | Invalidate derived resources generated using the deleted transformation from CDN.                                                                                      | true                                                                                                                                                                   |

@@ -1,0 +1,19 @@
+# CreateRequest
+
+## Example Usage
+
+```typescript
+import { CreateRequest } from "@cloudinary/config/models/components";
+
+let value: CreateRequest = {
+  transformation: "w_100,h_150,c_fill,g_auto",
+  allowedForStrict: true,
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                               | Type                                                                                                                                                                                | Required                                                                                                                                                                            | Description                                                                                                                                                                         | Example                                                                                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `transformation`                                                                                                                                                                    | *string*                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                  | A valid transformation string.                                                                                                                                                      | w_100,h_150,c_fill,g_auto                                                                                                                                                           |
+| `allowedForStrict`                                                                                                                                                                  | *boolean*                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                  | Whether to allow this named transformation when strict transformations are enabled. Strict transformations prevent transformations from being dynamically applied to media assets.<br/> | true                                                                                                                                                                                |

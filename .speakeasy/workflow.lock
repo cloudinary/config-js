@@ -1,0 +1,43 @@
+speakeasyVersion: 1.552.0
+sources:
+    Config API:
+        sourceNamespace: config-api
+        sourceRevisionDigest: sha256:d46813d4f4f8e1c0b6841dd67aa6f6f77a760c76a3c097701eab50556dc8d600
+        sourceBlobDigest: sha256:8cc422442185832f4c49750574814976e54b486029de0fbe364c7eabfaedd1a9
+        tags:
+            - latest
+            - speakeasy-sdk-regen-1748478901
+            - 0.1.0
+targets:
+    config-js:
+        source: Config API
+        sourceNamespace: config-api
+        sourceRevisionDigest: sha256:d46813d4f4f8e1c0b6841dd67aa6f6f77a760c76a3c097701eab50556dc8d600
+        sourceBlobDigest: sha256:8cc422442185832f4c49750574814976e54b486029de0fbe364c7eabfaedd1a9
+        codeSamplesNamespace: config-api-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:51ffab71f4bbc0917b0c26a289bb8174130a30307c4acf07c03bf09d101bde27
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        Config API:
+            inputs:
+                - location: https://cloudinary.github.io/api-schemas/config/schema.yml
+            overlays:
+                - location: https://cloudinary.github.io/api-schemas/overlays/security-scheme-cloud-overlay.yaml
+                - location: https://cloudinary.github.io/api-schemas/overlays/cloud-name-overlay.yml
+            registry:
+                location: registry.speakeasyapi.dev/cloudinary/cloudinary/config-api
+    targets:
+        config-js:
+            target: typescript
+            source: Config API
+            publish:
+                npm:
+                    token: $npm_token
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/cloudinary/cloudinary/config-api-typescript-code-samples
+                labelOverride:
+                    fixedValue: Typescript (SDK)
+                blocking: false
