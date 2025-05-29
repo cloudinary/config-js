@@ -1,0 +1,20 @@
+# StreamingProfileUpdate
+
+## Example Usage
+
+```typescript
+import { StreamingProfileUpdate } from "@cloudinary/config/models/components";
+
+let value: StreamingProfileUpdate = {
+  displayName: "HD 1080p Updated",
+  representations:
+    "[{\"transformation\":\"w_1920,h_1080,c_scale/vc_h264,br_3000k/ac_aac,abr_192k/fps_30\"},{\"transformation\":\"w_1280,h_720,c_scale/vc_h264,br_2000k/ac_aac,abr_192k/fps_30\"}]",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                  | Type                                                                                                                                                                   | Required                                                                                                                                                               | Description                                                                                                                                                            | Example                                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `displayName`                                                                                                                                                          | *string*                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                     | The display name of the streaming profile                                                                                                                              | HD 1080p Updated                                                                                                                                                       |
+| `representations`                                                                                                                                                      | *string*                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                     | A JSON string containing the list of representations with transformation parameters as strings                                                                         | [{"transformation":"w_1920,h_1080,c_scale/vc_h264,br_3000k/ac_aac,abr_192k/fps_30"},{"transformation":"w_1280,h_720,c_scale/vc_h264,br_2000k/ac_aac,abr_192k/fps_30"}] |
