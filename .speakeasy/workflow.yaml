@@ -1,0 +1,24 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Config API:
+        inputs:
+            - location: https://cloudinary.github.io/api-schemas/config/schema.yml
+        overlays:
+            - location: https://cloudinary.github.io/api-schemas/overlays/security-scheme-cloud-overlay.yaml
+            - location: https://cloudinary.github.io/api-schemas/overlays/cloud-name-overlay.yml
+        registry:
+            location: registry.speakeasyapi.dev/cloudinary/cloudinary/config-api
+targets:
+    config-js:
+        target: typescript
+        source: Config API
+        publish:
+            npm:
+                token: $npm_token
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/cloudinary/cloudinary/config-api-typescript-code-samples
+            labelOverride:
+                fixedValue: Typescript (SDK)
+            blocking: false
