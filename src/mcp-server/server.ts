@@ -18,11 +18,6 @@ import { tool$metadataFieldsDeleteMetadataField } from "./tools/metadataFieldsDe
 import { tool$metadataFieldsDeleteMetadataFieldDatasource } from "./tools/metadataFieldsDeleteMetadataFieldDatasource.js";
 import { tool$metadataFieldsGetMetadataField } from "./tools/metadataFieldsGetMetadataField.js";
 import { tool$metadataFieldsListMetadataFields } from "./tools/metadataFieldsListMetadataFields.js";
-import { tool$metadataFieldsReorderMetadataField } from "./tools/metadataFieldsReorderMetadataField.js";
-import { tool$metadataFieldsReorderMetadataFields } from "./tools/metadataFieldsReorderMetadataFields.js";
-import { tool$metadataFieldsRestoreMetadataFieldDatasource } from "./tools/metadataFieldsRestoreMetadataFieldDatasource.js";
-import { tool$metadataFieldsSearchDatasourceInMDField } from "./tools/metadataFieldsSearchDatasourceInMDField.js";
-import { tool$metadataFieldsSearchMetadataFieldDatasource } from "./tools/metadataFieldsSearchMetadataFieldDatasource.js";
 import { tool$metadataFieldsUpdateMetadataField } from "./tools/metadataFieldsUpdateMetadataField.js";
 import { tool$metadataFieldsUpdateMetadataFieldDatasource } from "./tools/metadataFieldsUpdateMetadataFieldDatasource.js";
 import { tool$metadataRulesCreateMetadataRule } from "./tools/metadataRulesCreateMetadataRule.js";
@@ -46,7 +41,6 @@ import { tool$triggersUpdateTrigger } from "./tools/triggersUpdateTrigger.js";
 import { tool$uploadMappingsCreateUploadMapping } from "./tools/uploadMappingsCreateUploadMapping.js";
 import { tool$uploadMappingsDeleteUploadMapping } from "./tools/uploadMappingsDeleteUploadMapping.js";
 import { tool$uploadMappingsListUploadMappings } from "./tools/uploadMappingsListUploadMappings.js";
-import { tool$uploadMappingsReplaceUploadMappings } from "./tools/uploadMappingsReplaceUploadMappings.js";
 import { tool$uploadMappingsUpdateUploadMapping } from "./tools/uploadMappingsUpdateUploadMapping.js";
 import { tool$uploadPresetsCreateUploadPreset } from "./tools/uploadPresetsCreateUploadPreset.js";
 import { tool$uploadPresetsDeleteUploadPreset } from "./tools/uploadPresetsDeleteUploadPreset.js";
@@ -66,7 +60,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CloudinaryConfig",
-    version: "0.1.0",
+    version: "0.2.0",
   });
 
   const client = new CloudinaryConfigCore({
@@ -113,13 +107,8 @@ export function createMCPServer(deps: {
   tool(tool$metadataFieldsGetMetadataField);
   tool(tool$metadataFieldsUpdateMetadataField);
   tool(tool$metadataFieldsDeleteMetadataField);
-  tool(tool$metadataFieldsSearchMetadataFieldDatasource);
-  tool(tool$metadataFieldsReorderMetadataFields);
-  tool(tool$metadataFieldsReorderMetadataField);
   tool(tool$metadataFieldsUpdateMetadataFieldDatasource);
   tool(tool$metadataFieldsDeleteMetadataFieldDatasource);
-  tool(tool$metadataFieldsSearchDatasourceInMDField);
-  tool(tool$metadataFieldsRestoreMetadataFieldDatasource);
   tool(tool$metadataRulesCreateMetadataRule);
   tool(tool$metadataRulesListMetadataRules);
   tool(tool$metadataRulesUpdateMetadataRule);
@@ -128,7 +117,6 @@ export function createMCPServer(deps: {
   tool(tool$uploadMappingsCreateUploadMapping);
   tool(tool$uploadMappingsUpdateUploadMapping);
   tool(tool$uploadMappingsDeleteUploadMapping);
-  tool(tool$uploadMappingsReplaceUploadMappings);
   tool(tool$triggersListTrigger);
   tool(tool$triggersCreateTrigger);
   tool(tool$triggersUpdateTrigger);

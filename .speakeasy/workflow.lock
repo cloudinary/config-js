@@ -1,21 +1,21 @@
-speakeasyVersion: 1.552.0
+speakeasyVersion: 1.554.1
 sources:
     Config API:
         sourceNamespace: config-api
-        sourceRevisionDigest: sha256:d46813d4f4f8e1c0b6841dd67aa6f6f77a760c76a3c097701eab50556dc8d600
-        sourceBlobDigest: sha256:8cc422442185832f4c49750574814976e54b486029de0fbe364c7eabfaedd1a9
+        sourceRevisionDigest: sha256:164ad3a0141f79d1e292f4950e6562cfa679bd0f2093d759e1bcb6e4da20211c
+        sourceBlobDigest: sha256:f25ef6854214b7c6b106c2f80af7409c18e7207e26c9ce6a4699ee01419bf48b
         tags:
             - latest
-            - speakeasy-sdk-regen-1748478901
+            - speakeasy-sdk-regen-1748812119
             - 0.1.0
 targets:
     config-js:
         source: Config API
         sourceNamespace: config-api
-        sourceRevisionDigest: sha256:d46813d4f4f8e1c0b6841dd67aa6f6f77a760c76a3c097701eab50556dc8d600
-        sourceBlobDigest: sha256:8cc422442185832f4c49750574814976e54b486029de0fbe364c7eabfaedd1a9
+        sourceRevisionDigest: sha256:164ad3a0141f79d1e292f4950e6562cfa679bd0f2093d759e1bcb6e4da20211c
+        sourceBlobDigest: sha256:f25ef6854214b7c6b106c2f80af7409c18e7207e26c9ce6a4699ee01419bf48b
         codeSamplesNamespace: config-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:51ffab71f4bbc0917b0c26a289bb8174130a30307c4acf07c03bf09d101bde27
+        codeSamplesRevisionDigest: sha256:19bfa8ee56d86f1e049288de577322e41dec8883a11957571ddf6659b9fc0b12
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -26,6 +26,7 @@ workflow:
             overlays:
                 - location: https://cloudinary.github.io/api-schemas/overlays/security-scheme-cloud-overlay.yaml
                 - location: https://cloudinary.github.io/api-schemas/overlays/cloud-name-overlay.yml
+                - location: https://cloudinary.github.io/api-schemas/overlays/mcp-disabled.yml
             registry:
                 location: registry.speakeasyapi.dev/cloudinary/cloudinary/config-api
     targets:
