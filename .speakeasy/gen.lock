@@ -3,10 +3,10 @@ id: b863a9b5-6231-49a5-af17-282115e1a208
 management:
   docChecksum: f40830cf038164bef1a62d0e1622302e
   docVersion: 0.1.0
-  speakeasyVersion: 1.554.1
-  generationVersion: 2.616.1
-  releaseVersion: 0.2.0
-  configChecksum: 12aa29bb53f19013bc24843e33c59904
+  speakeasyVersion: 1.555.0
+  generationVersion: 2.618.0
+  releaseVersion: 0.2.1
+  configChecksum: 002de1e06ad51c3d8bd43f021182eec9
   repoURL: https://github.com/cloudinary/config-js.git
   installationURL: https://github.com/cloudinary/config-js
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.9
+    core: 3.21.10
     customSecuritySchemes: 0.1.1
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
