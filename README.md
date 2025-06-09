@@ -144,6 +144,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -151,11 +152,11 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations({
-    nextCursor: "8edbc61040178db60b0973ca9494bf3a",
-  });
+  const result = await cloudinaryConfig.transformations.listTransformations(
+    20,
+    "8edbc61040178db60b0973ca9494bf3a",
+  );
 
-  // Handle the result
   console.log(result);
 }
 
@@ -187,6 +188,7 @@ Global parameters can also be set via environment variable.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -194,11 +196,11 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations({
-    nextCursor: "8edbc61040178db60b0973ca9494bf3a",
-  });
+  const result = await cloudinaryConfig.transformations.listTransformations(
+    20,
+    "8edbc61040178db60b0973ca9494bf3a",
+  );
 
-  // Handle the result
   console.log(result);
 }
 
@@ -227,14 +229,15 @@ const cloudinaryConfig = new CloudinaryConfig({
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
   },
+  cloudName: "<value>",
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations({
-    nextCursor: "8edbc61040178db60b0973ca9494bf3a",
-  });
+  const result = await cloudinaryConfig.transformations.listTransformations(
+    20,
+    "8edbc61040178db60b0973ca9494bf3a",
+  );
 
-  // Handle the result
   console.log(result);
 }
 
@@ -252,64 +255,64 @@ run();
 
 ### [metadataFields](docs/sdks/metadatafields/README.md)
 
-* [createMetadataField](docs/sdks/metadatafields/README.md#createmetadatafield) - Create a metadata field
-* [listMetadataFields](docs/sdks/metadatafields/README.md#listmetadatafields) - Get metadata fields
-* [getMetadataField](docs/sdks/metadatafields/README.md#getmetadatafield) - Get metadata field
-* [updateMetadataField](docs/sdks/metadatafields/README.md#updatemetadatafield) - Update metadata field
-* [deleteMetadataField](docs/sdks/metadatafields/README.md#deletemetadatafield) - Delete metadata field
+* [createMetadataField](docs/sdks/metadatafields/README.md#createmetadatafield) - Creates a new structured metadata field in your account
+* [listMetadataFields](docs/sdks/metadatafields/README.md#listmetadatafields) - Lists all structured metadata fields defined in your Cloudinary product environment
+* [getMetadataField](docs/sdks/metadatafields/README.md#getmetadatafield) - Retrieves the definition of a specific structured metadata field by its identifier (external_id)
+* [updateMetadataField](docs/sdks/metadatafields/README.md#updatemetadatafield) - Updates the configuration of an existing metadata field
+* [deleteMetadataField](docs/sdks/metadatafields/README.md#deletemetadatafield) - Deletes a structured metadata field definition from your account
 * [searchMetadataFieldDatasource](docs/sdks/metadatafields/README.md#searchmetadatafielddatasource) - Search across all metadata field datasources
 * [reorderMetadataFields](docs/sdks/metadatafields/README.md#reordermetadatafields) - Reorder all metadata fields
 * [reorderMetadataField](docs/sdks/metadatafields/README.md#reordermetadatafield) - Change position of metadata field
-* [updateMetadataFieldDatasource](docs/sdks/metadatafields/README.md#updatemetadatafielddatasource) - Update datasource values
-* [deleteMetadataFieldDatasource](docs/sdks/metadatafields/README.md#deletemetadatafielddatasource) - Delete datasource values
+* [updateMetadataFieldDatasource](docs/sdks/metadatafields/README.md#updatemetadatafielddatasource) - Updates the allowed values (the datasource) for a specified metadata field
+* [deleteMetadataFieldDatasource](docs/sdks/metadatafields/README.md#deletemetadatafielddatasource) - Removes one or more allowed values from a metadata field's datasource
 * [searchDatasourceInMDField](docs/sdks/metadatafields/README.md#searchdatasourceinmdfield) - Search datasource values in a metadata field
 * [restoreMetadataFieldDatasource](docs/sdks/metadatafields/README.md#restoremetadatafielddatasource) - Restore datasource values
 
 ### [metadataRules](docs/sdks/metadatarules/README.md)
 
-* [createMetadataRule](docs/sdks/metadatarules/README.md#createmetadatarule) - Create a metadata rule
-* [listMetadataRules](docs/sdks/metadatarules/README.md#listmetadatarules) - Get metadata rules
-* [updateMetadataRule](docs/sdks/metadatarules/README.md#updatemetadatarule) - Update metadata rule
-* [deleteMetadataRule](docs/sdks/metadatarules/README.md#deletemetadatarule) - Delete metadata rule
+* [createMetadataRule](docs/sdks/metadatarules/README.md#createmetadatarule) - Creates a new conditional metadata rule
+* [listMetadataRules](docs/sdks/metadatarules/README.md#listmetadatarules) - Retrieves a list of all conditional metadata rules defined in your accountcloudinary
+* [updateMetadataRule](docs/sdks/metadatarules/README.md#updatemetadatarule) - Updates an existing conditional metadata rule's definition
+* [deleteMetadataRule](docs/sdks/metadatarules/README.md#deletemetadatarule) - Deletes a conditional metadata rule by its ID
 
 ### [streamingProfiles](docs/sdks/streamingprofiles/README.md)
 
-* [createStreamingProfile](docs/sdks/streamingprofiles/README.md#createstreamingprofile) - Create streaming profile
-* [getStreamingProfiles](docs/sdks/streamingprofiles/README.md#getstreamingprofiles) - Get streaming profiles
-* [getStreamingProfile](docs/sdks/streamingprofiles/README.md#getstreamingprofile) - Get streaming profile
-* [updateStreamingProfile](docs/sdks/streamingprofiles/README.md#updatestreamingprofile) - Update streaming profile
+* [createStreamingProfile](docs/sdks/streamingprofiles/README.md#createstreamingprofile) - Creates a new adaptive streaming profile in your Cloudinary account
+* [getStreamingProfiles](docs/sdks/streamingprofiles/README.md#getstreamingprofiles) - Lists all adaptive streaming profiles (both built-in and custom) defined in your Cloudinary account
+* [getStreamingProfile](docs/sdks/streamingprofiles/README.md#getstreamingprofile) - Retrieves the details of a single adaptive streaming profile by its name
+* [updateStreamingProfile](docs/sdks/streamingprofiles/README.md#updatestreamingprofile) - Modifies an existing adaptive streaming profile's configuration
 * [deleteStreamingProfile](docs/sdks/streamingprofiles/README.md#deletestreamingprofile) - Delete custom streaming profile or revert built-in profile to the original settings
 
 ### [transformations](docs/sdks/transformations/README.md)
 
-* [listTransformations](docs/sdks/transformations/README.md#listtransformations) - Get transformations
-* [getTransformation](docs/sdks/transformations/README.md#gettransformation) - Get a transformation
-* [createTransformation](docs/sdks/transformations/README.md#createtransformation) - Create a named transformation
-* [updateTransformation](docs/sdks/transformations/README.md#updatetransformation) - Update a transformation
-* [deleteTransformation](docs/sdks/transformations/README.md#deletetransformation) - Delete a transformation
+* [listTransformations](docs/sdks/transformations/README.md#listtransformations) - Lists all transformation definitions in your account (including named transformations
+* [getTransformation](docs/sdks/transformations/README.md#gettransformation) - Retrieves details of a specific transformation
+* [createTransformation](docs/sdks/transformations/README.md#createtransformation) - Creates a new named transformation (assigning a custom name to a set of transformation
+* [updateTransformation](docs/sdks/transformations/README.md#updatetransformation) - Updates the definition of an existing named transformation
+* [deleteTransformation](docs/sdks/transformations/README.md#deletetransformation) - Deletes a named transformation from your account
 
 ### [triggers](docs/sdks/triggers/README.md)
 
-* [listTrigger](docs/sdks/triggers/README.md#listtrigger) - Get event triggers
-* [createTrigger](docs/sdks/triggers/README.md#createtrigger) - Create a trigger
-* [updateTrigger](docs/sdks/triggers/README.md#updatetrigger) - Update trigger URL
-* [deleteTrigger](docs/sdks/triggers/README.md#deletetrigger) - Delete a trigger
+* [listTrigger](docs/sdks/triggers/README.md#listtrigger) - Lists all webhook notification triggers configured for your product environmentcloudinary
+* [createTrigger](docs/sdks/triggers/README.md#createtrigger) - Creates a new notification trigger (webhook) by specifying an event type and a destination
+* [updateTrigger](docs/sdks/triggers/README.md#updatetrigger) - Updates the callback URL of an existing webhook trigger in your Cloudinary account
+* [deleteTrigger](docs/sdks/triggers/README.md#deletetrigger) - Deletes a notification trigger
 
 ### [uploadMappings](docs/sdks/uploadmappings/README.md)
 
-* [listUploadMappings](docs/sdks/uploadmappings/README.md#listuploadmappings) - Lists upload mappings
-* [createUploadMapping](docs/sdks/uploadmappings/README.md#createuploadmapping) - Creates an upload mapping
-* [updateUploadMapping](docs/sdks/uploadmappings/README.md#updateuploadmapping) - Updates an upload mapping
-* [deleteUploadMapping](docs/sdks/uploadmappings/README.md#deleteuploadmapping) - Deletes an upload mapping
+* [listUploadMappings](docs/sdks/uploadmappings/README.md#listuploadmappings) - Retrieves a list of all upload mapping rules configured in your Cloudinary product environment
+* [createUploadMapping](docs/sdks/uploadmappings/README.md#createuploadmapping) - Creates a new upload mapping
+* [updateUploadMapping](docs/sdks/uploadmappings/README.md#updateuploadmapping) - Updates an existing upload mapping by changing its remote URL template for a given
+* [deleteUploadMapping](docs/sdks/uploadmappings/README.md#deleteuploadmapping) - Deletes a folder upload mapping
 * [replaceUploadMappings](docs/sdks/uploadmappings/README.md#replaceuploadmappings) - Replaces all upload mappings
 
 ### [uploadPresets](docs/sdks/uploadpresets/README.md)
 
-* [createUploadPreset](docs/sdks/uploadpresets/README.md#createuploadpreset) - Creates an upload preset
-* [listUploadPresets](docs/sdks/uploadpresets/README.md#listuploadpresets) - lists upload presets
+* [createUploadPreset](docs/sdks/uploadpresets/README.md#createuploadpreset) - Creates a new upload preset with specified configuration settings
+* [listUploadPresets](docs/sdks/uploadpresets/README.md#listuploadpresets) - Lists all upload presets configured in the account
 * [getUploadPreset](docs/sdks/uploadpresets/README.md#getuploadpreset) - Retrieves details of a single upload preset
-* [updateUploadPreset](docs/sdks/uploadpresets/README.md#updateuploadpreset) - Updates an upload preset
-* [deleteUploadPreset](docs/sdks/uploadpresets/README.md#deleteuploadpreset) - Deletes an upload preset
+* [updateUploadPreset](docs/sdks/uploadpresets/README.md#updateuploadpreset) - Updates an existing upload preset's configuration settings
+* [deleteUploadPreset](docs/sdks/uploadpresets/README.md#deleteuploadpreset) - Deletes an upload preset from the account
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -329,46 +332,46 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`metadataFieldsCreateMetadataField`](docs/sdks/metadatafields/README.md#createmetadatafield) - Create a metadata field
-- [`metadataFieldsDeleteMetadataField`](docs/sdks/metadatafields/README.md#deletemetadatafield) - Delete metadata field
-- [`metadataFieldsDeleteMetadataFieldDatasource`](docs/sdks/metadatafields/README.md#deletemetadatafielddatasource) - Delete datasource values
-- [`metadataFieldsGetMetadataField`](docs/sdks/metadatafields/README.md#getmetadatafield) - Get metadata field
-- [`metadataFieldsListMetadataFields`](docs/sdks/metadatafields/README.md#listmetadatafields) - Get metadata fields
+- [`metadataFieldsCreateMetadataField`](docs/sdks/metadatafields/README.md#createmetadatafield) - Creates a new structured metadata field in your account
+- [`metadataFieldsDeleteMetadataField`](docs/sdks/metadatafields/README.md#deletemetadatafield) - Deletes a structured metadata field definition from your account
+- [`metadataFieldsDeleteMetadataFieldDatasource`](docs/sdks/metadatafields/README.md#deletemetadatafielddatasource) - Removes one or more allowed values from a metadata field's datasource
+- [`metadataFieldsGetMetadataField`](docs/sdks/metadatafields/README.md#getmetadatafield) - Retrieves the definition of a specific structured metadata field by its identifier (external_id)
+- [`metadataFieldsListMetadataFields`](docs/sdks/metadatafields/README.md#listmetadatafields) - Lists all structured metadata fields defined in your Cloudinary product environment
 - [`metadataFieldsReorderMetadataField`](docs/sdks/metadatafields/README.md#reordermetadatafield) - Change position of metadata field
 - [`metadataFieldsReorderMetadataFields`](docs/sdks/metadatafields/README.md#reordermetadatafields) - Reorder all metadata fields
 - [`metadataFieldsRestoreMetadataFieldDatasource`](docs/sdks/metadatafields/README.md#restoremetadatafielddatasource) - Restore datasource values
 - [`metadataFieldsSearchDatasourceInMDField`](docs/sdks/metadatafields/README.md#searchdatasourceinmdfield) - Search datasource values in a metadata field
 - [`metadataFieldsSearchMetadataFieldDatasource`](docs/sdks/metadatafields/README.md#searchmetadatafielddatasource) - Search across all metadata field datasources
-- [`metadataFieldsUpdateMetadataField`](docs/sdks/metadatafields/README.md#updatemetadatafield) - Update metadata field
-- [`metadataFieldsUpdateMetadataFieldDatasource`](docs/sdks/metadatafields/README.md#updatemetadatafielddatasource) - Update datasource values
-- [`metadataRulesCreateMetadataRule`](docs/sdks/metadatarules/README.md#createmetadatarule) - Create a metadata rule
-- [`metadataRulesDeleteMetadataRule`](docs/sdks/metadatarules/README.md#deletemetadatarule) - Delete metadata rule
-- [`metadataRulesListMetadataRules`](docs/sdks/metadatarules/README.md#listmetadatarules) - Get metadata rules
-- [`metadataRulesUpdateMetadataRule`](docs/sdks/metadatarules/README.md#updatemetadatarule) - Update metadata rule
-- [`streamingProfilesCreateStreamingProfile`](docs/sdks/streamingprofiles/README.md#createstreamingprofile) - Create streaming profile
+- [`metadataFieldsUpdateMetadataField`](docs/sdks/metadatafields/README.md#updatemetadatafield) - Updates the configuration of an existing metadata field
+- [`metadataFieldsUpdateMetadataFieldDatasource`](docs/sdks/metadatafields/README.md#updatemetadatafielddatasource) - Updates the allowed values (the datasource) for a specified metadata field
+- [`metadataRulesCreateMetadataRule`](docs/sdks/metadatarules/README.md#createmetadatarule) - Creates a new conditional metadata rule
+- [`metadataRulesDeleteMetadataRule`](docs/sdks/metadatarules/README.md#deletemetadatarule) - Deletes a conditional metadata rule by its ID
+- [`metadataRulesListMetadataRules`](docs/sdks/metadatarules/README.md#listmetadatarules) - Retrieves a list of all conditional metadata rules defined in your accountcloudinary
+- [`metadataRulesUpdateMetadataRule`](docs/sdks/metadatarules/README.md#updatemetadatarule) - Updates an existing conditional metadata rule's definition
+- [`streamingProfilesCreateStreamingProfile`](docs/sdks/streamingprofiles/README.md#createstreamingprofile) - Creates a new adaptive streaming profile in your Cloudinary account
 - [`streamingProfilesDeleteStreamingProfile`](docs/sdks/streamingprofiles/README.md#deletestreamingprofile) - Delete custom streaming profile or revert built-in profile to the original settings
-- [`streamingProfilesGetStreamingProfile`](docs/sdks/streamingprofiles/README.md#getstreamingprofile) - Get streaming profile
-- [`streamingProfilesGetStreamingProfiles`](docs/sdks/streamingprofiles/README.md#getstreamingprofiles) - Get streaming profiles
-- [`streamingProfilesUpdateStreamingProfile`](docs/sdks/streamingprofiles/README.md#updatestreamingprofile) - Update streaming profile
-- [`transformationsCreateTransformation`](docs/sdks/transformations/README.md#createtransformation) - Create a named transformation
-- [`transformationsDeleteTransformation`](docs/sdks/transformations/README.md#deletetransformation) - Delete a transformation
-- [`transformationsGetTransformation`](docs/sdks/transformations/README.md#gettransformation) - Get a transformation
-- [`transformationsListTransformations`](docs/sdks/transformations/README.md#listtransformations) - Get transformations
-- [`transformationsUpdateTransformation`](docs/sdks/transformations/README.md#updatetransformation) - Update a transformation
-- [`triggersCreateTrigger`](docs/sdks/triggers/README.md#createtrigger) - Create a trigger
-- [`triggersDeleteTrigger`](docs/sdks/triggers/README.md#deletetrigger) - Delete a trigger
-- [`triggersListTrigger`](docs/sdks/triggers/README.md#listtrigger) - Get event triggers
-- [`triggersUpdateTrigger`](docs/sdks/triggers/README.md#updatetrigger) - Update trigger URL
-- [`uploadMappingsCreateUploadMapping`](docs/sdks/uploadmappings/README.md#createuploadmapping) - Creates an upload mapping
-- [`uploadMappingsDeleteUploadMapping`](docs/sdks/uploadmappings/README.md#deleteuploadmapping) - Deletes an upload mapping
-- [`uploadMappingsListUploadMappings`](docs/sdks/uploadmappings/README.md#listuploadmappings) - Lists upload mappings
+- [`streamingProfilesGetStreamingProfile`](docs/sdks/streamingprofiles/README.md#getstreamingprofile) - Retrieves the details of a single adaptive streaming profile by its name
+- [`streamingProfilesGetStreamingProfiles`](docs/sdks/streamingprofiles/README.md#getstreamingprofiles) - Lists all adaptive streaming profiles (both built-in and custom) defined in your Cloudinary account
+- [`streamingProfilesUpdateStreamingProfile`](docs/sdks/streamingprofiles/README.md#updatestreamingprofile) - Modifies an existing adaptive streaming profile's configuration
+- [`transformationsCreateTransformation`](docs/sdks/transformations/README.md#createtransformation) - Creates a new named transformation (assigning a custom name to a set of transformation
+- [`transformationsDeleteTransformation`](docs/sdks/transformations/README.md#deletetransformation) - Deletes a named transformation from your account
+- [`transformationsGetTransformation`](docs/sdks/transformations/README.md#gettransformation) - Retrieves details of a specific transformation
+- [`transformationsListTransformations`](docs/sdks/transformations/README.md#listtransformations) - Lists all transformation definitions in your account (including named transformations
+- [`transformationsUpdateTransformation`](docs/sdks/transformations/README.md#updatetransformation) - Updates the definition of an existing named transformation
+- [`triggersCreateTrigger`](docs/sdks/triggers/README.md#createtrigger) - Creates a new notification trigger (webhook) by specifying an event type and a destination
+- [`triggersDeleteTrigger`](docs/sdks/triggers/README.md#deletetrigger) - Deletes a notification trigger
+- [`triggersListTrigger`](docs/sdks/triggers/README.md#listtrigger) - Lists all webhook notification triggers configured for your product environmentcloudinary
+- [`triggersUpdateTrigger`](docs/sdks/triggers/README.md#updatetrigger) - Updates the callback URL of an existing webhook trigger in your Cloudinary account
+- [`uploadMappingsCreateUploadMapping`](docs/sdks/uploadmappings/README.md#createuploadmapping) - Creates a new upload mapping
+- [`uploadMappingsDeleteUploadMapping`](docs/sdks/uploadmappings/README.md#deleteuploadmapping) - Deletes a folder upload mapping
+- [`uploadMappingsListUploadMappings`](docs/sdks/uploadmappings/README.md#listuploadmappings) - Retrieves a list of all upload mapping rules configured in your Cloudinary product environment
 - [`uploadMappingsReplaceUploadMappings`](docs/sdks/uploadmappings/README.md#replaceuploadmappings) - Replaces all upload mappings
-- [`uploadMappingsUpdateUploadMapping`](docs/sdks/uploadmappings/README.md#updateuploadmapping) - Updates an upload mapping
-- [`uploadPresetsCreateUploadPreset`](docs/sdks/uploadpresets/README.md#createuploadpreset) - Creates an upload preset
-- [`uploadPresetsDeleteUploadPreset`](docs/sdks/uploadpresets/README.md#deleteuploadpreset) - Deletes an upload preset
+- [`uploadMappingsUpdateUploadMapping`](docs/sdks/uploadmappings/README.md#updateuploadmapping) - Updates an existing upload mapping by changing its remote URL template for a given
+- [`uploadPresetsCreateUploadPreset`](docs/sdks/uploadpresets/README.md#createuploadpreset) - Creates a new upload preset with specified configuration settings
+- [`uploadPresetsDeleteUploadPreset`](docs/sdks/uploadpresets/README.md#deleteuploadpreset) - Deletes an upload preset from the account
 - [`uploadPresetsGetUploadPreset`](docs/sdks/uploadpresets/README.md#getuploadpreset) - Retrieves details of a single upload preset
-- [`uploadPresetsListUploadPresets`](docs/sdks/uploadpresets/README.md#listuploadpresets) - lists upload presets
-- [`uploadPresetsUpdateUploadPreset`](docs/sdks/uploadpresets/README.md#updateuploadpreset) - Updates an upload preset
+- [`uploadPresetsListUploadPresets`](docs/sdks/uploadpresets/README.md#listuploadpresets) - Lists all upload presets configured in the account
+- [`uploadPresetsUpdateUploadPreset`](docs/sdks/uploadpresets/README.md#updateuploadpreset) - Updates an existing upload preset's configuration settings
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -383,6 +386,7 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -390,22 +394,23 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations({
-    nextCursor: "8edbc61040178db60b0973ca9494bf3a",
-  }, {
-    retries: {
-      strategy: "backoff",
-      backoff: {
-        initialInterval: 1,
-        maxInterval: 50,
-        exponent: 1.1,
-        maxElapsedTime: 100,
+  const result = await cloudinaryConfig.transformations.listTransformations(
+    20,
+    "8edbc61040178db60b0973ca9494bf3a",
+    {
+      retries: {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1,
+          maxInterval: 50,
+          exponent: 1.1,
+          maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
       },
-      retryConnectionErrors: false,
     },
-  });
+  );
 
-  // Handle the result
   console.log(result);
 }
 
@@ -428,6 +433,7 @@ const cloudinaryConfig = new CloudinaryConfig({
     },
     retryConnectionErrors: false,
   },
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -435,11 +441,11 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations({
-    nextCursor: "8edbc61040178db60b0973ca9494bf3a",
-  });
+  const result = await cloudinaryConfig.transformations.listTransformations(
+    20,
+    "8edbc61040178db60b0973ca9494bf3a",
+  );
 
-  // Handle the result
   console.log(result);
 }
 
@@ -451,20 +457,24 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `listTransformations` method may throw the following errors:
+[`CloudinaryConfigError`](./src/models/errors/cloudinaryconfigerror.ts) is the base class for all HTTP error responses. It has the following properties:
 
-| Error Type      | Status Code   | Content Type     |
-| --------------- | ------------- | ---------------- |
-| errors.ApiError | 400, 401, 403 | application/json |
-| errors.SDKError | 4XX, 5XX      | \*/\*            |
+| Property            | Type       | Description                                                                             |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------- |
+| `error.message`     | `string`   | Error message                                                                           |
+| `error.statusCode`  | `number`   | HTTP response status code eg `404`                                                      |
+| `error.headers`     | `Headers`  | HTTP response headers                                                                   |
+| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
+| `error.rawResponse` | `Response` | Raw HTTP response                                                                       |
+| `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
-If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
-
+### Example
 ```typescript
 import { CloudinaryConfig } from "@cloudinary/config";
-import { ApiError, SDKValidationError } from "@cloudinary/config/models/errors";
+import * as errors from "@cloudinary/config/models/errors";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -472,32 +482,24 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  let result;
   try {
-    result = await cloudinaryConfig.transformations.listTransformations({
-      nextCursor: "8edbc61040178db60b0973ca9494bf3a",
-    });
+    const result = await cloudinaryConfig.transformations.listTransformations(
+      20,
+      "8edbc61040178db60b0973ca9494bf3a",
+    );
 
-    // Handle the result
     console.log(result);
-  } catch (err) {
-    switch (true) {
-      // The server response does not match the expected SDK schema
-      case (err instanceof SDKValidationError): {
-        // Pretty-print will provide a human-readable multi-line error message
-        console.error(err.pretty());
-        // Raw value may also be inspected
-        console.error(err.rawValue);
-        return;
-      }
-      case (err instanceof ApiError): {
-        // Handle err.data$: ApiErrorData
-        console.error(err);
-        return;
-      }
-      default: {
-        // Other errors such as network errors, see HTTPClientErrors for more details
-        throw err;
+  } catch (error) {
+    // The base class for HTTP error responses
+    if (error instanceof errors.CloudinaryConfigError) {
+      console.log(error.message);
+      console.log(error.statusCode);
+      console.log(error.body);
+      console.log(error.headers);
+
+      // Depending on the method different errors may be thrown
+      if (error instanceof errors.ApiError) {
+        console.log(error.data$.error); // components.ErrorT
       }
     }
   }
@@ -507,29 +509,47 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+### Error Classes
+**Primary errors:**
+* [`CloudinaryConfigError`](./src/models/errors/cloudinaryconfigerror.ts): The base class for HTTP error responses.
+  * [`ApiError`](docs/models/errors/apierror.md): Generic error.
 
-In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `models/errors/httpclienterrors.ts` module:
+<details><summary>Less common errors (6)</summary>
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+<br />
+
+**Network errors:**
+* [`ConnectionError`](./src/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
+* [`RequestTimeoutError`](./src/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
+* [`RequestAbortedError`](./src/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
+* [`InvalidRequestError`](./src/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
+* [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
+
+
+**Inherit from [`CloudinaryConfigError`](./src/models/errors/cloudinaryconfigerror.ts)**:
+* [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+
+</details>
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Server Variables
+### Select Server by Index
 
-The default server `https://{defaultHost}` contains variables and is set to `https://api.cloudinary.com` by default. To override default values, the following parameters are available when initializing the SDK client instance:
+You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| Variable      | Parameter             | Default                | Description                         |
-| ------------- | --------------------- | ---------------------- | ----------------------------------- |
-| `defaultHost` | `defaultHost: string` | `"api.cloudinary.com"` | The host name for the API endpoint. |
+| #   | Server                            | Variables | Description                                     |
+| --- | --------------------------------- | --------- | ----------------------------------------------- |
+| 0   | `https://{region}.cloudinary.com` | `region`  | Regional API endpoints for optimal performance. |
+| 1   | `https://{host}`                  | `host`    | Custom domains for enterprise deployments.      |
+
+If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
+
+| Variable | Parameter                     | Supported Values                            | Default                | Description                 |
+| -------- | ----------------------------- | ------------------------------------------- | ---------------------- | --------------------------- |
+| `region` | `region: models.ServerRegion` | - `"api"`<br/>- `"api-eu"`<br/>- `"api-ap"` | `"api"`                | Regional endpoint selection |
+| `host`   | `host: string`                | string                                      | `"api.cloudinary.com"` | API host domain.            |
 
 #### Example
 
@@ -537,7 +557,9 @@ The default server `https://{defaultHost}` contains variables and is set to `htt
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
-  defaultHost: "<value>",
+  serverIdx: 1,
+  host: "unlined-aircraft.info",
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -545,11 +567,11 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations({
-    nextCursor: "8edbc61040178db60b0973ca9494bf3a",
-  });
+  const result = await cloudinaryConfig.transformations.listTransformations(
+    20,
+    "8edbc61040178db60b0973ca9494bf3a",
+  );
 
-  // Handle the result
   console.log(result);
 }
 
@@ -559,12 +581,13 @@ run();
 
 ### Override Server URL Per-Client
 
-The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
+The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
   serverURL: "https://api.cloudinary.com",
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -572,11 +595,11 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations({
-    nextCursor: "8edbc61040178db60b0973ca9494bf3a",
-  });
+  const result = await cloudinaryConfig.transformations.listTransformations(
+    20,
+    "8edbc61040178db60b0973ca9494bf3a",
+  );
 
-  // Handle the result
   console.log(result);
 }
 

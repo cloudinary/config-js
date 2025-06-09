@@ -10,6 +10,8 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
+import { CloudinaryConfigError } from "../models/errors/cloudinaryconfigerror.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -18,61 +20,71 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
-import { SDKError } from "../models/errors/sdkerror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Update streaming profile
+ * Modifies an existing adaptive streaming profile's configuration
  */
 export function streamingProfilesUpdateStreamingProfile(
   client: CloudinaryConfigCore,
-  request: operations.UpdateStreamingProfileRequest,
+  name: string,
+  streamingProfileUpdate: components.StreamingProfileUpdate,
   options?: RequestOptions,
 ): APIPromise<
   Result<
     operations.UpdateStreamingProfileResponse,
     | errors.ApiError
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | CloudinaryConfigError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
     client,
-    request,
+    name,
+    streamingProfileUpdate,
     options,
   ));
 }
 
 async function $do(
   client: CloudinaryConfigCore,
-  request: operations.UpdateStreamingProfileRequest,
+  name: string,
+  streamingProfileUpdate: components.StreamingProfileUpdate,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
       operations.UpdateStreamingProfileResponse,
       | errors.ApiError
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | CloudinaryConfigError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
 > {
+  const input: operations.UpdateStreamingProfileRequest = {
+    name: name,
+    streamingProfileUpdate: streamingProfileUpdate,
+  };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
       operations.UpdateStreamingProfileRequest$outboundSchema.parse(value),
     "Input validation failed",
@@ -156,19 +168,20 @@ async function $do(
   const [result] = await M.match<
     operations.UpdateStreamingProfileResponse,
     | errors.ApiError
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | CloudinaryConfigError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.json(200, operations.UpdateStreamingProfileResponse$inboundSchema),
     M.jsonErr([400, 401, 404], errors.ApiError$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

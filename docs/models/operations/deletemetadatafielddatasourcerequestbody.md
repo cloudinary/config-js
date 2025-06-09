@@ -7,7 +7,7 @@ import { DeleteMetadataFieldDatasourceRequestBody } from "@cloudinary/config/mod
 
 let value: DeleteMetadataFieldDatasourceRequestBody = {
   externalIds: [
-    "<value>",
+    "<value 1>",
   ],
 };
 ```

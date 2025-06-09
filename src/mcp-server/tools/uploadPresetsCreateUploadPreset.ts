@@ -13,7 +13,16 @@ const args = {
 export const tool$uploadPresetsCreateUploadPreset: ToolDefinition<typeof args> =
   {
     name: "create-upload-preset",
-    description: `Creates an upload preset`,
+    description:
+      `Purpose: Creates a new named upload preset that defines default upload parameters and transformations. Upload presets streamline the upload process by pre-configuring settings like folder destinations, tags, transformations, and access controls for consistent file handling.
+Usage: Use when you need to standardize upload configurations for different content types that require different processing rules (e.g., user profile photos need resizing and face detection, product catalog images need multiple size variants, temporary files need minimal processing). Essential for creating reusable upload workflows that ensure consistent processing and organization.
+Example request: {"name": "temp-new-upload-preset", "unsigned": true, "use_filename": true, "unique_filename": false, "folder": "temp", "tags": "temp,test"}
+Note: Cannot set overwrite=true for unsigned presets due to security restrictions.
+Parameters - examples of parameters that can be used: name(preset identifier), unsigned(allows uploads without authentication), use_filename(preserves original filename), unique_filename(generates unique names), folder(destination folder), tags(comma-separated labels), overwrite(replace existing files - not allowed for unsigned), access_mode(public/authenticated), type(upload type), transformation(image/video processing), allowed_formats(permitted file types), backup(create backup copy), auto_tagging(AI tagging threshold), faces(face detection), colors(color analysis), quality_analysis(image quality check), moderation(content moderation service), notification_url(webhook endpoint), async(background processing), eager(generate derivatives), display_name(human readable name)
+When Not to Use: Don't create upload presets for one-time uploads or when upload requirements frequently change. Avoid creating duplicates of existing presets - use update-upload-preset to modify existing configurations instead.
+Output: Returns creation confirmation with preset identification details: message(creation status - "created"), name(preset identifier as specified), external_id(unique system-generated identifier for internal tracking)
+Example output: {"message":"created","name":"temp-new-upload-preset","external_id":"26c944df-84f0-4bd3-afa6-1cb177fce5dc"}
+`,
     scopes: ["builder"],
     args,
     tool: async (client, args, ctx) => {

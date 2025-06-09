@@ -7,10 +7,10 @@ Enables you to manage upload mappings
 
 ### Available Operations
 
-* [listUploadMappings](#listuploadmappings) - Lists upload mappings
-* [createUploadMapping](#createuploadmapping) - Creates an upload mapping
-* [updateUploadMapping](#updateuploadmapping) - Updates an upload mapping
-* [deleteUploadMapping](#deleteuploadmapping) - Deletes an upload mapping
+* [listUploadMappings](#listuploadmappings) - Retrieves a list of all upload mapping rules configured in your Cloudinary product environment
+* [createUploadMapping](#createuploadmapping) - Creates a new upload mapping
+* [updateUploadMapping](#updateuploadmapping) - Updates an existing upload mapping by changing its remote URL template for a given
+* [deleteUploadMapping](#deleteuploadmapping) - Deletes a folder upload mapping
 * [replaceUploadMappings](#replaceuploadmappings) - Replaces all upload mappings
 
 ## listUploadMappings
@@ -25,6 +25,7 @@ Upload mappings allow you to map an upload preset to a specific folder and URL t
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -32,9 +33,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadMappings.listUploadMappings({});
+  const result = await cloudinaryConfig.uploadMappings.listUploadMappings();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -52,6 +52,7 @@ import { uploadMappingsListUploadMappings } from "@cloudinary/config/funcs/uploa
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -59,16 +60,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadMappingsListUploadMappings(cloudinaryConfig, {});
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await uploadMappingsListUploadMappings(cloudinaryConfig);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("uploadMappingsListUploadMappings failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -78,7 +76,9 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListUploadMappingsRequest](../../models/operations/listuploadmappingsrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `folder`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Get details of a specific mapping by folder name                                                                                                                               |
+| `nextCursor`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | For pagination - value from the previous response to get the next page of results                                                                                              |
+| `maxResults`                                                                                                                                                                   | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Maximum number of results to return per request (1-500)                                                                                                                        |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -104,6 +104,7 @@ Creates a new upload mapping for the specified folder
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -116,7 +117,6 @@ async function run() {
     template: "http://example.com/files",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -134,6 +134,7 @@ import { uploadMappingsCreateUploadMapping } from "@cloudinary/config/funcs/uplo
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -145,15 +146,12 @@ async function run() {
     folder: "my_folder",
     template: "http://example.com/files",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("uploadMappingsCreateUploadMapping failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -161,12 +159,13 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CreateUploadMappingRequest](../../models/operations/createuploadmappingrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `folder`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The folder name for the mapping                                                                                                                                                | [object Object]                                                                                                                                                                |
+| `template`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The template URL                                                                                                                                                               | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
@@ -189,6 +188,7 @@ Updates the URL template for an existing folder mapping
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -201,7 +201,6 @@ async function run() {
     template: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -219,6 +218,7 @@ import { uploadMappingsUpdateUploadMapping } from "@cloudinary/config/funcs/uplo
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -230,15 +230,12 @@ async function run() {
     folder: "<value>",
     template: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("uploadMappingsUpdateUploadMapping failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -248,7 +245,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.UpdateUploadMappingRequest](../../models/operations/updateuploadmappingrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `folder`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The folder name of the mapping to update                                                                                                                                       |
+| `template`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The new URL template                                                                                                                                                           |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -274,6 +272,7 @@ Permanently deletes the upload mapping for the specified folder
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -281,11 +280,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadMappings.deleteUploadMapping({
-    folder: "<value>",
-  });
+  const result = await cloudinaryConfig.uploadMappings.deleteUploadMapping("<value>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -303,6 +299,7 @@ import { uploadMappingsDeleteUploadMapping } from "@cloudinary/config/funcs/uplo
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -310,18 +307,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadMappingsDeleteUploadMapping(cloudinaryConfig, {
-    folder: "<value>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await uploadMappingsDeleteUploadMapping(cloudinaryConfig, "<value>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("uploadMappingsDeleteUploadMapping failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -331,7 +323,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DeleteUploadMappingRequest](../../models/operations/deleteuploadmappingrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `folder`                                                                                                                                                                       | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The folder name of the mapping to delete                                                                                                                                       |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -357,6 +349,7 @@ Replaces all upload mappings
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -373,7 +366,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -391,6 +383,7 @@ import { uploadMappingsReplaceUploadMappings } from "@cloudinary/config/funcs/up
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -406,15 +399,12 @@ async function run() {
       },
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("uploadMappingsReplaceUploadMappings failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -424,7 +414,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ReplaceUploadMappingsRequest](../../models/operations/replaceuploadmappingsrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `mappings`                                                                                                                                                                     | [operations.Mapping](../../models/operations/mapping.md)[]                                                                                                                     | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

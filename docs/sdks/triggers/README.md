@@ -7,10 +7,10 @@ Enables you to manage event triggers and notifications.
 
 ### Available Operations
 
-* [listTrigger](#listtrigger) - Get event triggers
-* [createTrigger](#createtrigger) - Create a trigger
-* [updateTrigger](#updatetrigger) - Update trigger URL
-* [deleteTrigger](#deletetrigger) - Delete a trigger
+* [listTrigger](#listtrigger) - Lists all webhook notification triggers configured for your product environmentcloudinary
+* [createTrigger](#createtrigger) - Creates a new notification trigger (webhook) by specifying an event type and a destination
+* [updateTrigger](#updatetrigger) - Updates the callback URL of an existing webhook trigger in your Cloudinary account
+* [deleteTrigger](#deletetrigger) - Deletes a notification trigger
 
 ## listTrigger
 
@@ -23,6 +23,7 @@ Retrieves a list of all event triggers and notifications within your product env
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -30,9 +31,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.triggers.listTrigger({});
+  const result = await cloudinaryConfig.triggers.listTrigger();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -50,6 +50,7 @@ import { triggersListTrigger } from "@cloudinary/config/funcs/triggersListTrigge
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -57,16 +58,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await triggersListTrigger(cloudinaryConfig, {});
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await triggersListTrigger(cloudinaryConfig);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("triggersListTrigger failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -76,7 +74,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListTriggerRequest](../../models/operations/listtriggerrequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `eventType`                                                                                                                                                                    | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The type of event that will trigger the notification response.                                                                                                                 |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -104,6 +102,7 @@ Your product environment supports triggers up to a maximum determined by multipl
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -116,7 +115,6 @@ async function run() {
     eventType: "upload",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -134,6 +132,7 @@ import { triggersCreateTrigger } from "@cloudinary/config/funcs/triggersCreateTr
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -145,15 +144,12 @@ async function run() {
     uri: "https://trigger.site/124",
     eventType: "upload",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("triggersCreateTrigger failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -161,12 +157,13 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CreateTriggerRequest](../../models/operations/createtriggerrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `uri`                                                                                                                                                                          | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The URL that will receive the notification response.                                                                                                                           | [object Object]                                                                                                                                                                |
+| `eventType`                                                                                                                                                                    | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The type of event that will trigger the notification response.                                                                                                                 | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
@@ -189,6 +186,7 @@ Updates a notification URL for a trigger.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -196,14 +194,10 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.triggers.updateTrigger({
-    id: "c2c822dd1aa41ba6d81299df8b5ae949",
-    requestBody: {
-      newUri: "http://example.com",
-    },
+  const result = await cloudinaryConfig.triggers.updateTrigger("c2c822dd1aa41ba6d81299df8b5ae949", {
+    newUri: "http://example.com",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -221,6 +215,7 @@ import { triggersUpdateTrigger } from "@cloudinary/config/funcs/triggersUpdateTr
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -228,21 +223,15 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await triggersUpdateTrigger(cloudinaryConfig, {
-    id: "c2c822dd1aa41ba6d81299df8b5ae949",
-    requestBody: {
-      newUri: "http://example.com",
-    },
+  const res = await triggersUpdateTrigger(cloudinaryConfig, "c2c822dd1aa41ba6d81299df8b5ae949", {
+    newUri: "http://example.com",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("triggersUpdateTrigger failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -250,12 +239,13 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.UpdateTriggerRequest](../../models/operations/updatetriggerrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`                                                                                                                                                                           | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            | [object Object]                                                                                                                                                                |
+| `requestBody`                                                                                                                                                                  | [operations.UpdateTriggerRequestBody](../../models/operations/updatetriggerrequestbody.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
@@ -278,6 +268,7 @@ Deletes a trigger.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -285,11 +276,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.triggers.deleteTrigger({
-    id: "c2c822dd1aa41ba6d81299df8b5ae949",
-  });
+  const result = await cloudinaryConfig.triggers.deleteTrigger("c2c822dd1aa41ba6d81299df8b5ae949");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -307,6 +295,7 @@ import { triggersDeleteTrigger } from "@cloudinary/config/funcs/triggersDeleteTr
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -314,18 +303,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await triggersDeleteTrigger(cloudinaryConfig, {
-    id: "c2c822dd1aa41ba6d81299df8b5ae949",
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await triggersDeleteTrigger(cloudinaryConfig, "c2c822dd1aa41ba6d81299df8b5ae949");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("triggersDeleteTrigger failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -333,12 +317,12 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DeleteTriggerRequest](../../models/operations/deletetriggerrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`                                                                                                                                                                           | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 

@@ -7,7 +7,6 @@ import { RestoreMetadataFieldDatasourceRequest } from "@cloudinary/config/models
 
 let value: RestoreMetadataFieldDatasourceRequest = {
   externalId: "<id>",
-  requestBody: {},
 };
 ```
 

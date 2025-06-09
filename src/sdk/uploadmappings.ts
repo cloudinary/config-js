@@ -13,25 +13,29 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class UploadMappings extends ClientSDK {
   /**
-   * Lists upload mappings
+   * Retrieves a list of all upload mapping rules configured in your Cloudinary product environment
    *
    * @remarks
    * Returns a list of all upload mappings defined for your account.
    * Upload mappings allow you to map an upload preset to a specific folder and URL template.
    */
   async listUploadMappings(
-    request: operations.ListUploadMappingsRequest,
+    folder?: string | undefined,
+    nextCursor?: string | undefined,
+    maxResults?: number | undefined,
     options?: RequestOptions,
   ): Promise<operations.ListUploadMappingsResponse> {
     return unwrapAsync(uploadMappingsListUploadMappings(
       this,
-      request,
+      folder,
+      nextCursor,
+      maxResults,
       options,
     ));
   }
 
   /**
-   * Creates an upload mapping
+   * Creates a new upload mapping
    *
    * @remarks
    * Creates a new upload mapping for the specified folder
@@ -48,7 +52,7 @@ export class UploadMappings extends ClientSDK {
   }
 
   /**
-   * Updates an upload mapping
+   * Updates an existing upload mapping by changing its remote URL template for a given
    *
    * @remarks
    * Updates the URL template for an existing folder mapping
@@ -65,18 +69,18 @@ export class UploadMappings extends ClientSDK {
   }
 
   /**
-   * Deletes an upload mapping
+   * Deletes a folder upload mapping
    *
    * @remarks
    * Permanently deletes the upload mapping for the specified folder
    */
   async deleteUploadMapping(
-    request: operations.DeleteUploadMappingRequest,
+    folder: string,
     options?: RequestOptions,
   ): Promise<operations.DeleteUploadMappingResponse> {
     return unwrapAsync(uploadMappingsDeleteUploadMapping(
       this,
-      request,
+      folder,
       options,
     ));
   }

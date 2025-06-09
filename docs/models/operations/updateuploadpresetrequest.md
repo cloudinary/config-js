@@ -7,16 +7,6 @@ import { UpdateUploadPresetRequest } from "@cloudinary/config/models/operations"
 
 let value: UpdateUploadPresetRequest = {
   name: "<value>",
-  uploadPreset: {
-    headers: "X-Robots-Tag: noindex",
-    moderation: "manual",
-    rawConvert: "google_speech:vtt:en-US",
-    backgroundRemoval: "pixelz",
-    format: "jpg",
-    allowedFormats: "mp4,ogv,jpg,png,pdf",
-    autoTagging: 0.5,
-    detection: "coco_v2",
-  },
 };
 ```
 

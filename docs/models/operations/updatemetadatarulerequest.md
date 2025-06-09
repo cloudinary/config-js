@@ -7,13 +7,6 @@ import { UpdateMetadataRuleRequest } from "@cloudinary/config/models/operations"
 
 let value: UpdateMetadataRuleRequest = {
   externalId: "<id>",
-  metadataRuleUpdate: {
-    metadataFieldId: "abcdefghij",
-    name: "My Rule",
-    condition: {},
-    result: {},
-    externalId: "1234567890",
-  },
 };
 ```
 

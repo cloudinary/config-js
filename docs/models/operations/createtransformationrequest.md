@@ -7,10 +7,6 @@ import { CreateTransformationRequest } from "@cloudinary/config/models/operation
 
 let value: CreateTransformationRequest = {
   transformation: "small_profile_thumbnail",
-  createRequest: {
-    transformation: "w_100,h_150,c_fill,g_auto",
-    allowedForStrict: true,
-  },
 };
 ```
 

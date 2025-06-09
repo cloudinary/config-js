@@ -7,9 +7,6 @@ import { ReorderMetadataFieldRequest } from "@cloudinary/config/models/operation
 
 let value: ReorderMetadataFieldRequest = {
   externalId: "<id>",
-  requestBody: {
-    position: 182327,
-  },
 };
 ```
 

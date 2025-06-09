@@ -7,7 +7,6 @@ import { SearchDatasourceInMDFieldRequest } from "@cloudinary/config/models/oper
 
 let value: SearchDatasourceInMDFieldRequest = {
   externalId: "<id>",
-  requestBody: {},
 };
 ```
 

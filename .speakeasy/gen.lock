@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b863a9b5-6231-49a5-af17-282115e1a208
 management:
-  docChecksum: f40830cf038164bef1a62d0e1622302e
-  docVersion: 0.1.0
-  speakeasyVersion: 1.555.0
-  generationVersion: 2.618.0
-  releaseVersion: 0.2.1
-  configChecksum: 002de1e06ad51c3d8bd43f021182eec9
+  docChecksum: 55390c060e48107e7e91c574cb94b269
+  docVersion: 0.2.0
+  speakeasyVersion: 1.557.1
+  generationVersion: 2.623.2
+  releaseVersion: 0.3.0
+  configChecksum: 6ec398bedc8a7a62c1170245e5bff306
   repoURL: https://github.com/cloudinary/config-js.git
   installationURL: https://github.com/cloudinary/config-js
   published: true
@@ -21,6 +21,7 @@ features:
     devContainers: 2.90.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
+    flattening: 2.82.1
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.5
@@ -349,8 +350,10 @@ generatedFiles:
   - src/models/components/uploadpreset.ts
   - src/models/components/uritype.ts
   - src/models/errors/apierror.ts
+  - src/models/errors/cloudinaryconfigerror.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
+  - src/models/errors/responsevalidationerror.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/models/operations/createmetadatafield.ts

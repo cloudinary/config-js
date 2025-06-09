@@ -11,6 +11,7 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import * as components from "../models/components/index.js";
+import { CloudinaryConfigError } from "../models/errors/cloudinaryconfigerror.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -19,7 +20,7 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
-import { SDKError } from "../models/errors/sdkerror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
@@ -33,50 +34,60 @@ import { Result } from "../types/fp.js";
  */
 export function metadataFieldsRestoreMetadataFieldDatasource(
   client: CloudinaryConfigCore,
-  request: operations.RestoreMetadataFieldDatasourceRequest,
+  externalId: string,
+  requestBody: operations.RestoreMetadataFieldDatasourceRequestBody,
   options?: RequestOptions,
 ): APIPromise<
   Result<
     components.MetadataFieldDatasourceValuesArray,
     | errors.ApiError
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | CloudinaryConfigError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
     client,
-    request,
+    externalId,
+    requestBody,
     options,
   ));
 }
 
 async function $do(
   client: CloudinaryConfigCore,
-  request: operations.RestoreMetadataFieldDatasourceRequest,
+  externalId: string,
+  requestBody: operations.RestoreMetadataFieldDatasourceRequestBody,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
       components.MetadataFieldDatasourceValuesArray,
       | errors.ApiError
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | CloudinaryConfigError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
 > {
+  const input: operations.RestoreMetadataFieldDatasourceRequest = {
+    externalId: externalId,
+    requestBody: requestBody,
+  };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
       operations.RestoreMetadataFieldDatasourceRequest$outboundSchema.parse(
         value,
@@ -160,19 +171,20 @@ async function $do(
   const [result] = await M.match<
     components.MetadataFieldDatasourceValuesArray,
     | errors.ApiError
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | CloudinaryConfigError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.json(200, components.MetadataFieldDatasourceValuesArray$inboundSchema),
     M.jsonErr([400, 401, 403, 404], errors.ApiError$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

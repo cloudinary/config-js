@@ -14,7 +14,7 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class StreamingProfiles extends ClientSDK {
   /**
-   * Create streaming profile
+   * Creates a new adaptive streaming profile in your Cloudinary account
    */
   async createStreamingProfile(
     request: components.StreamingProfileCreate,
@@ -28,7 +28,7 @@ export class StreamingProfiles extends ClientSDK {
   }
 
   /**
-   * Get streaming profiles
+   * Lists all adaptive streaming profiles (both built-in and custom) defined in your Cloudinary account
    */
   async getStreamingProfiles(
     request: operations.GetStreamingProfilesRequest,
@@ -42,29 +42,31 @@ export class StreamingProfiles extends ClientSDK {
   }
 
   /**
-   * Get streaming profile
+   * Retrieves the details of a single adaptive streaming profile by its name
    */
   async getStreamingProfile(
-    request: operations.GetStreamingProfileRequest,
+    name: string,
     options?: RequestOptions,
   ): Promise<operations.GetStreamingProfileResponse> {
     return unwrapAsync(streamingProfilesGetStreamingProfile(
       this,
-      request,
+      name,
       options,
     ));
   }
 
   /**
-   * Update streaming profile
+   * Modifies an existing adaptive streaming profile's configuration
    */
   async updateStreamingProfile(
-    request: operations.UpdateStreamingProfileRequest,
+    name: string,
+    streamingProfileUpdate: components.StreamingProfileUpdate,
     options?: RequestOptions,
   ): Promise<operations.UpdateStreamingProfileResponse> {
     return unwrapAsync(streamingProfilesUpdateStreamingProfile(
       this,
-      request,
+      name,
+      streamingProfileUpdate,
       options,
     ));
   }
@@ -73,12 +75,12 @@ export class StreamingProfiles extends ClientSDK {
    * Delete custom streaming profile or revert built-in profile to the original settings
    */
   async deleteStreamingProfile(
-    request: operations.DeleteStreamingProfileRequest,
+    name: string,
     options?: RequestOptions,
   ): Promise<operations.DeleteStreamingProfileResponse> {
     return unwrapAsync(streamingProfilesDeleteStreamingProfile(
       this,
-      request,
+      name,
       options,
     ));
   }

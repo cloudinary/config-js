@@ -14,7 +14,7 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class UploadPresets extends ClientSDK {
   /**
-   * Creates an upload preset
+   * Creates a new upload preset with specified configuration settings
    */
   async createUploadPreset(
     request: components.UploadPreset,
@@ -28,15 +28,19 @@ export class UploadPresets extends ClientSDK {
   }
 
   /**
-   * lists upload presets
+   * Lists all upload presets configured in the account
    */
   async listUploadPresets(
-    request: operations.ListUploadPresetsRequest,
+    orderBy?: operations.ListUploadPresetsOrderBy | undefined,
+    direction?: operations.ListUploadPresetsDirection | undefined,
+    nextCursor?: number | undefined,
     options?: RequestOptions,
   ): Promise<operations.ListUploadPresetsResponse> {
     return unwrapAsync(uploadPresetsListUploadPresets(
       this,
-      request,
+      orderBy,
+      direction,
+      nextCursor,
       options,
     ));
   }
@@ -45,40 +49,42 @@ export class UploadPresets extends ClientSDK {
    * Retrieves details of a single upload preset
    */
   async getUploadPreset(
-    request: operations.GetUploadPresetRequest,
+    name: string,
     options?: RequestOptions,
   ): Promise<components.UploadPreset> {
     return unwrapAsync(uploadPresetsGetUploadPreset(
       this,
-      request,
+      name,
       options,
     ));
   }
 
   /**
-   * Updates an upload preset
+   * Updates an existing upload preset's configuration settings
    */
   async updateUploadPreset(
-    request: operations.UpdateUploadPresetRequest,
+    name: string,
+    uploadPreset: components.UploadPreset,
     options?: RequestOptions,
   ): Promise<operations.UpdateUploadPresetResponse> {
     return unwrapAsync(uploadPresetsUpdateUploadPreset(
       this,
-      request,
+      name,
+      uploadPreset,
       options,
     ));
   }
 
   /**
-   * Deletes an upload preset
+   * Deletes an upload preset from the account
    */
   async deleteUploadPreset(
-    request: operations.DeleteUploadPresetRequest,
+    name: string,
     options?: RequestOptions,
   ): Promise<operations.DeleteUploadPresetResponse> {
     return unwrapAsync(uploadPresetsDeleteUploadPreset(
       this,
-      request,
+      name,
       options,
     ));
   }

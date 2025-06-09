@@ -14,9 +14,15 @@ export const tool$uploadMappingsCreateUploadMapping: ToolDefinition<
   typeof args
 > = {
   name: "create-upload-mapping",
-  description: `Creates an upload mapping
-
-Creates a new upload mapping for the specified folder`,
+  description:
+    `Purpose: Creates custom URL mappings that define how assets in specific folders are delivered through branded or custom domain URLs, enabling consistent branding and custom URL structures for asset delivery.
+Usage: Use this to set up branded asset delivery, create custom domain mappings for specific folders, implement consistent URL patterns, or establish dedicated delivery paths for different content types. Essential for white-label solutions and custom branding.
+Example request: {"folder": "products", "template": "https://cdn.mystore.com/images/{public_id}"}
+Parameters: folder(target folder path), template(URL pattern with {public_id} placeholder)
+When Not to Use: Don't create mappings for temporary folders or without proper DNS/domain setup. Avoid overly complex URL patterns that might cause routing issues.
+Output: Returns creation confirmation: message(creation status), folder(mapped folder path), external_id(unique mapping identifier)
+Example output: {"message": "created", "folder": "products", "external_id": "mapping_456"}
+`,
   scopes: ["builder"],
   args,
   tool: async (client, args, ctx) => {

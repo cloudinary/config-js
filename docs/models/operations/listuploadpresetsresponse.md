@@ -11,7 +11,7 @@ let value: ListUploadPresetsResponse = {
   presets: [
     {
       headers: "X-Robots-Tag: noindex",
-      moderation: "google_video_moderation",
+      moderation: "metascan",
       rawConvert: "google_speech:vtt:en-US",
       backgroundRemoval: "pixelz",
       format: "jpg",

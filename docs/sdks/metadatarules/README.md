@@ -7,10 +7,10 @@ Enables you to set up dependencies and relationships between structured metadata
 
 ### Available Operations
 
-* [createMetadataRule](#createmetadatarule) - Create a metadata rule
-* [listMetadataRules](#listmetadatarules) - Get metadata rules
-* [updateMetadataRule](#updatemetadatarule) - Update metadata rule
-* [deleteMetadataRule](#deletemetadatarule) - Delete metadata rule
+* [createMetadataRule](#createmetadatarule) - Creates a new conditional metadata rule
+* [listMetadataRules](#listmetadatarules) - Retrieves a list of all conditional metadata rules defined in your accountcloudinary
+* [updateMetadataRule](#updatemetadatarule) - Updates an existing conditional metadata rule's definition
+* [deleteMetadataRule](#deletemetadatarule) - Deletes a conditional metadata rule by its ID
 
 ## createMetadataRule
 
@@ -22,6 +22,7 @@ Creates a new metadata rule with the specified properties and configuration.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -36,7 +37,6 @@ async function run() {
     result: {},
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -54,6 +54,7 @@ import { metadataRulesCreateMetadataRule } from "@cloudinary/config/funcs/metada
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -67,15 +68,12 @@ async function run() {
     condition: {},
     result: {},
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataRulesCreateMetadataRule failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -85,7 +83,12 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.MetadataRuleCreate](../../models/components/metadatarulecreate.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `metadataFieldId`                                                                                                                                                              | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID of the metadata field this rule applies to.                                                                                                                             |
+| `name`                                                                                                                                                                         | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | A descriptive name for the metadata rule.                                                                                                                                      |
+| `condition`                                                                                                                                                                    | [components.MetadataRuleCreateCondition](../../models/components/metadatarulecreatecondition.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The condition that triggers this rule. Ensure it adheres to the metadata rule condition schema.                                                                                |
+| `result`                                                                                                                                                                       | [components.MetadataRuleCreateResult](../../models/components/metadatarulecreateresult.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The result to apply when the condition is met, should adhere to the metadata rule result schema.                                                                               |
+| `state`                                                                                                                                                                        | [components.MetadataRuleCreateState](../../models/components/metadatarulecreatestate.md)                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The state of the rule.                                                                                                                                                         |
+| `position`                                                                                                                                                                     | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The position/order of this rule relative to other rules.                                                                                                                       |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -111,6 +114,7 @@ Retrieves a list of all metadata rules in the cloud.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -120,7 +124,6 @@ const cloudinaryConfig = new CloudinaryConfig({
 async function run() {
   const result = await cloudinaryConfig.metadataRules.listMetadataRules({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -138,6 +141,7 @@ import { metadataRulesListMetadataRules } from "@cloudinary/config/funcs/metadat
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -146,15 +150,12 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 
 async function run() {
   const res = await metadataRulesListMetadataRules(cloudinaryConfig, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataRulesListMetadataRules failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -164,7 +165,6 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListMetadataRulesRequest](../../models/operations/listmetadatarulesrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -190,6 +190,7 @@ Updates the properties and configuration of an existing metadata rule.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -197,18 +198,14 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.metadataRules.updateMetadataRule({
-    externalId: "<id>",
-    metadataRuleUpdate: {
-      metadataFieldId: "abcdefghij",
-      name: "My Rule",
-      condition: {},
-      result: {},
-      externalId: "1234567890",
-    },
+  const result = await cloudinaryConfig.metadataRules.updateMetadataRule("<id>", {
+    metadataFieldId: "abcdefghij",
+    name: "My Rule",
+    condition: {},
+    result: {},
+    externalId: "1234567890",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -226,6 +223,7 @@ import { metadataRulesUpdateMetadataRule } from "@cloudinary/config/funcs/metada
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -233,25 +231,19 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await metadataRulesUpdateMetadataRule(cloudinaryConfig, {
-    externalId: "<id>",
-    metadataRuleUpdate: {
-      metadataFieldId: "abcdefghij",
-      name: "My Rule",
-      condition: {},
-      result: {},
-      externalId: "1234567890",
-    },
+  const res = await metadataRulesUpdateMetadataRule(cloudinaryConfig, "<id>", {
+    metadataFieldId: "abcdefghij",
+    name: "My Rule",
+    condition: {},
+    result: {},
+    externalId: "1234567890",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataRulesUpdateMetadataRule failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -259,12 +251,13 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.UpdateMetadataRuleRequest](../../models/operations/updatemetadatarulerequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `externalId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique identifier of the metadata rule.                                                                                                                                    |                                                                                                                                                                                |
+| `metadataRuleUpdate`                                                                                                                                                           | [components.MetadataRuleUpdate](../../models/components/metadataruleupdate.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
 ### Response
 
@@ -287,6 +280,7 @@ Permanently deletes a metadata rule.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -294,11 +288,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.metadataRules.deleteMetadataRule({
-    externalId: "<id>",
-  });
+  const result = await cloudinaryConfig.metadataRules.deleteMetadataRule("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -316,6 +307,7 @@ import { metadataRulesDeleteMetadataRule } from "@cloudinary/config/funcs/metada
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -323,18 +315,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await metadataRulesDeleteMetadataRule(cloudinaryConfig, {
-    externalId: "<id>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await metadataRulesDeleteMetadataRule(cloudinaryConfig, "<id>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataRulesDeleteMetadataRule failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -344,7 +331,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DeleteMetadataRuleRequest](../../models/operations/deletemetadatarulerequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `externalId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The unique identifier of the metadata rule.                                                                                                                                    |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

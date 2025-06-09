@@ -3,6 +3,7 @@
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -10,11 +11,11 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations({
-    nextCursor: "8edbc61040178db60b0973ca9494bf3a",
-  });
+  const result = await cloudinaryConfig.transformations.listTransformations(
+    20,
+    "8edbc61040178db60b0973ca9494bf3a",
+  );
 
-  // Handle the result
   console.log(result);
 }
 

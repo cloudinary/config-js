@@ -7,10 +7,6 @@ import { UpdateTransformationRequest } from "@cloudinary/config/models/operation
 
 let value: UpdateTransformationRequest = {
   transformation: "<value>",
-  updateRequest: {
-    unsafeUpdate: "w_200,h_200,c_fill,g_face",
-    allowedForStrict: true,
-  },
 };
 ```
 
