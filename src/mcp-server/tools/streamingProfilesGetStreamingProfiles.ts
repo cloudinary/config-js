@@ -14,7 +14,12 @@ export const tool$streamingProfilesGetStreamingProfiles: ToolDefinition<
   typeof args
 > = {
   name: "list-streaming-profiles",
-  description: `Get streaming profiles`,
+  description:
+    `Purpose: Lists all adaptive streaming profiles (both built-in and custom) defined in your Cloudinary account, which are used to deliver videos via HLS/DASH adaptive bitrate streaming. This operation provides a complete overview of every streaming profile by name and details in the product environment.
+Usage: Use this operation when you need to retrieve the full list of streaming profiles configured for your account. It's useful for auditing available profiles or populating a selection list in an application. Since it returns all profiles, you can identify both Cloudinary's predefined profiles and any custom profiles you've created.
+When Not to Use: If you only require details of a single profile, avoid retrieving all profiles; use **get-streaming-profile** for a specific name instead. Also, do not use this if your goal is to create or modify profiles (use the respective **create** or **update** operations for those purposes).
+Output: Returns an array of streaming profile definitions. The response includes each profile's information such as its \`name\`, \`display_name\`, whether it is a predefined (built-in) profile, and the list of video representations configured under that profile.
+`,
   scopes: ["builder"],
   args,
   tool: async (client, args, ctx) => {

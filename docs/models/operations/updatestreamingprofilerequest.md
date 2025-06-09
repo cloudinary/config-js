@@ -7,11 +7,6 @@ import { UpdateStreamingProfileRequest } from "@cloudinary/config/models/operati
 
 let value: UpdateStreamingProfileRequest = {
   name: "<value>",
-  streamingProfileUpdate: {
-    displayName: "HD 1080p Updated",
-    representations:
-      "[{\"transformation\":\"w_1920,h_1080,c_scale/vc_h264,br_3000k/ac_aac,abr_192k/fps_30\"},{\"transformation\":\"w_1280,h_720,c_scale/vc_h264,br_2000k/ac_aac,abr_192k/fps_30\"}]",
-  },
 };
 ```
 

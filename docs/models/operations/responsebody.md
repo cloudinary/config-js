@@ -15,7 +15,7 @@ let value: ResponseBody = {
       externalId: "<id>",
     },
   ],
-  totalEntries: 838262,
+  totalEntries: 163977,
 };
 ```
 

@@ -6,12 +6,7 @@
 import { ReplaceUploadMappingsRequest } from "@cloudinary/config/models/operations";
 
 let value: ReplaceUploadMappingsRequest = {
-  mappings: [
-    {
-      folder: "<value>",
-      template: "<value>",
-    },
-  ],
+  mappings: [],
 };
 ```
 

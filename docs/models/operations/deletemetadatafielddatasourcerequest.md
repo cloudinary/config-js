@@ -7,11 +7,6 @@ import { DeleteMetadataFieldDatasourceRequest } from "@cloudinary/config/models/
 
 let value: DeleteMetadataFieldDatasourceRequest = {
   externalId: "<id>",
-  requestBody: {
-    externalIds: [
-      "<value>",
-    ],
-  },
 };
 ```
 

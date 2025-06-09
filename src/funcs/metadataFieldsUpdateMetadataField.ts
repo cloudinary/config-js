@@ -11,6 +11,7 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import * as components from "../models/components/index.js";
+import { CloudinaryConfigError } from "../models/errors/cloudinaryconfigerror.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -19,64 +20,74 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
-import { SDKError } from "../models/errors/sdkerror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Update metadata field
+ * Updates the configuration of an existing metadata field
  *
  * @remarks
  * Updates the properties and configuration of the specified metadata field.
  */
 export function metadataFieldsUpdateMetadataField(
   client: CloudinaryConfigCore,
-  request: operations.UpdateMetadataFieldRequest,
+  externalId: string,
+  metadataField: components.MetadataField,
   options?: RequestOptions,
 ): APIPromise<
   Result<
     components.MetadataField,
     | errors.ApiError
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | CloudinaryConfigError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
     client,
-    request,
+    externalId,
+    metadataField,
     options,
   ));
 }
 
 async function $do(
   client: CloudinaryConfigCore,
-  request: operations.UpdateMetadataFieldRequest,
+  externalId: string,
+  metadataField: components.MetadataField,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
       components.MetadataField,
       | errors.ApiError
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | CloudinaryConfigError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
 > {
+  const input: operations.UpdateMetadataFieldRequest = {
+    externalId: externalId,
+    metadataField: metadataField,
+  };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) =>
       operations.UpdateMetadataFieldRequest$outboundSchema.parse(value),
     "Input validation failed",
@@ -158,19 +169,20 @@ async function $do(
   const [result] = await M.match<
     components.MetadataField,
     | errors.ApiError
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | CloudinaryConfigError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.json(200, components.MetadataField$inboundSchema),
     M.jsonErr([400, 401, 403, 404], errors.ApiError$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

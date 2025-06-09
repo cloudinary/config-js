@@ -13,24 +13,24 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Triggers extends ClientSDK {
   /**
-   * Get event triggers
+   * Lists all webhook notification triggers configured for your product environmentcloudinary
    *
    * @remarks
    * Retrieves a list of all event triggers and notifications within your product environment.
    */
   async listTrigger(
-    request: operations.ListTriggerRequest,
+    eventType?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.ListTriggerResponse> {
     return unwrapAsync(triggersListTrigger(
       this,
-      request,
+      eventType,
       options,
     ));
   }
 
   /**
-   * Create a trigger
+   * Creates a new notification trigger (webhook) by specifying an event type and a destination
    *
    * @remarks
    * Creates a new trigger.
@@ -48,35 +48,37 @@ export class Triggers extends ClientSDK {
   }
 
   /**
-   * Update trigger URL
+   * Updates the callback URL of an existing webhook trigger in your Cloudinary account
    *
    * @remarks
    * Updates a notification URL for a trigger.
    */
   async updateTrigger(
-    request: operations.UpdateTriggerRequest,
+    id: string,
+    requestBody: operations.UpdateTriggerRequestBody,
     options?: RequestOptions,
   ): Promise<operations.UpdateTriggerResponse> {
     return unwrapAsync(triggersUpdateTrigger(
       this,
-      request,
+      id,
+      requestBody,
       options,
     ));
   }
 
   /**
-   * Delete a trigger
+   * Deletes a notification trigger
    *
    * @remarks
    * Deletes a trigger.
    */
   async deleteTrigger(
-    request: operations.DeleteTriggerRequest,
+    id: string,
     options?: RequestOptions,
   ): Promise<operations.DeleteTriggerResponse> {
     return unwrapAsync(triggersDeleteTrigger(
       this,
-      request,
+      id,
       options,
     ));
   }

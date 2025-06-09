@@ -7,16 +7,16 @@ Enables you to manage structured metadata fields.
 
 ### Available Operations
 
-* [createMetadataField](#createmetadatafield) - Create a metadata field
-* [listMetadataFields](#listmetadatafields) - Get metadata fields
-* [getMetadataField](#getmetadatafield) - Get metadata field
-* [updateMetadataField](#updatemetadatafield) - Update metadata field
-* [deleteMetadataField](#deletemetadatafield) - Delete metadata field
+* [createMetadataField](#createmetadatafield) - Creates a new structured metadata field in your account
+* [listMetadataFields](#listmetadatafields) - Lists all structured metadata fields defined in your Cloudinary product environment
+* [getMetadataField](#getmetadatafield) - Retrieves the definition of a specific structured metadata field by its identifier (external_id)
+* [updateMetadataField](#updatemetadatafield) - Updates the configuration of an existing metadata field
+* [deleteMetadataField](#deletemetadatafield) - Deletes a structured metadata field definition from your account
 * [searchMetadataFieldDatasource](#searchmetadatafielddatasource) - Search across all metadata field datasources
 * [reorderMetadataFields](#reordermetadatafields) - Reorder all metadata fields
 * [reorderMetadataField](#reordermetadatafield) - Change position of metadata field
-* [updateMetadataFieldDatasource](#updatemetadatafielddatasource) - Update datasource values
-* [deleteMetadataFieldDatasource](#deletemetadatafielddatasource) - Delete datasource values
+* [updateMetadataFieldDatasource](#updatemetadatafielddatasource) - Updates the allowed values (the datasource) for a specified metadata field
+* [deleteMetadataFieldDatasource](#deletemetadatafielddatasource) - Removes one or more allowed values from a metadata field's datasource
 * [searchDatasourceInMDField](#searchdatasourceinmdfield) - Search datasource values in a metadata field
 * [restoreMetadataFieldDatasource](#restoremetadatafielddatasource) - Restore datasource values
 
@@ -30,6 +30,7 @@ Creates a new metadata field with the specified properties and configuration.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -42,7 +43,6 @@ async function run() {
     label: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -60,6 +60,7 @@ import { metadataFieldsCreateMetadataField } from "@cloudinary/config/funcs/meta
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -71,15 +72,12 @@ async function run() {
     type: "set",
     label: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataFieldsCreateMetadataField failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -89,7 +87,16 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.MetadataField](../../models/components/metadatafield.md)                                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `type`                                                                                                                                                                         | [components.MetadataFieldType](../../models/components/metadatafieldtype.md)                                                                                                   | :heavy_check_mark:                                                                                                                                                             | The type of the metadata field.                                                                                                                                                |
+| `label`                                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The label of the metadata field.                                                                                                                                               |
+| `externalId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The external ID of the metadata field.                                                                                                                                         |
+| `mandatory`                                                                                                                                                                    | *boolean*                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                             | Whether the metadata field is mandatory.                                                                                                                                       |
+| `defaultValue`                                                                                                                                                                 | *components.DefaultValue*                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                             | The default value of the metadata field.                                                                                                                                       |
+| `defaultDisabled`                                                                                                                                                              | *boolean*                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                             | Whether the default value is disabled.                                                                                                                                         |
+| `validation`                                                                                                                                                                   | [components.Validation](../../models/components/validation.md)                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | The validation defined for the metadata field.                                                                                                                                 |
+| `restrictions`                                                                                                                                                                 | [components.Restrictions](../../models/components/restrictions.md)                                                                                                             | :heavy_minus_sign:                                                                                                                                                             | The restrictions defined for the metadata field.                                                                                                                               |
+| `datasource`                                                                                                                                                                   | [components.Datasource](../../models/components/datasource.md)                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | The datasource defined for the metadata field.                                                                                                                                 |
+| `allowDynamicListValues`                                                                                                                                                       | *boolean*                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                             | Whether the metadata field allows adding new options to the datasource dynamically.                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -115,6 +122,7 @@ Retrieves a list of all metadata fields in the product environment based on the 
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -122,9 +130,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.metadataFields.listMetadataFields({});
+  const result = await cloudinaryConfig.metadataFields.listMetadataFields();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -142,6 +149,7 @@ import { metadataFieldsListMetadataFields } from "@cloudinary/config/funcs/metad
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -149,16 +157,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await metadataFieldsListMetadataFields(cloudinaryConfig, {});
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await metadataFieldsListMetadataFields(cloudinaryConfig);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataFieldsListMetadataFields failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -168,7 +173,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListMetadataFieldsRequest](../../models/operations/listmetadatafieldsrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `externalIds`                                                                                                                                                                  | *string*[]                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                             | The external IDs of the metadata fields to retrieve. if not provided, all metadata fields will be returned.                                                                    |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -194,6 +199,7 @@ Retrieves detailed information about the specified metadata field.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -201,11 +207,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.metadataFields.getMetadataField({
-    externalId: "<id>",
-  });
+  const result = await cloudinaryConfig.metadataFields.getMetadataField("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -223,6 +226,7 @@ import { metadataFieldsGetMetadataField } from "@cloudinary/config/funcs/metadat
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -230,18 +234,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await metadataFieldsGetMetadataField(cloudinaryConfig, {
-    externalId: "<id>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await metadataFieldsGetMetadataField(cloudinaryConfig, "<id>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataFieldsGetMetadataField failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -251,7 +250,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetMetadataFieldRequest](../../models/operations/getmetadatafieldrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `externalId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The external ID of the metadata field to retrieve.                                                                                                                             |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -277,6 +276,7 @@ Updates the properties and configuration of the specified metadata field.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -284,15 +284,11 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.metadataFields.updateMetadataField({
-    externalId: "<id>",
-    metadataField: {
-      type: "date",
-      label: "<value>",
-    },
+  const result = await cloudinaryConfig.metadataFields.updateMetadataField("<id>", {
+    type: "date",
+    label: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -310,6 +306,7 @@ import { metadataFieldsUpdateMetadataField } from "@cloudinary/config/funcs/meta
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -317,22 +314,16 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await metadataFieldsUpdateMetadataField(cloudinaryConfig, {
-    externalId: "<id>",
-    metadataField: {
-      type: "date",
-      label: "<value>",
-    },
+  const res = await metadataFieldsUpdateMetadataField(cloudinaryConfig, "<id>", {
+    type: "date",
+    label: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataFieldsUpdateMetadataField failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -342,7 +333,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.UpdateMetadataFieldRequest](../../models/operations/updatemetadatafieldrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `externalId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The external ID of the metadata field to retrieve.                                                                                                                             |
+| `metadataField`                                                                                                                                                                | [components.MetadataField](../../models/components/metadatafield.md)                                                                                                           | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -368,6 +360,7 @@ Permanently deletes the specified metadata field and all its associated data.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -375,11 +368,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.metadataFields.deleteMetadataField({
-    externalId: "<id>",
-  });
+  const result = await cloudinaryConfig.metadataFields.deleteMetadataField("<id>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -397,6 +387,7 @@ import { metadataFieldsDeleteMetadataField } from "@cloudinary/config/funcs/meta
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -404,18 +395,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await metadataFieldsDeleteMetadataField(cloudinaryConfig, {
-    externalId: "<id>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await metadataFieldsDeleteMetadataField(cloudinaryConfig, "<id>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataFieldsDeleteMetadataField failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -425,7 +411,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DeleteMetadataFieldRequest](../../models/operations/deletemetadatafieldrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `externalId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The external ID of the metadata field to retrieve.                                                                                                                             |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -451,6 +437,7 @@ Performs a search across all metadata field datasources to find matching values.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -460,7 +447,6 @@ const cloudinaryConfig = new CloudinaryConfig({
 async function run() {
   const result = await cloudinaryConfig.metadataFields.searchMetadataFieldDatasource({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -478,6 +464,7 @@ import { metadataFieldsSearchMetadataFieldDatasource } from "@cloudinary/config/
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -486,15 +473,12 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 
 async function run() {
   const res = await metadataFieldsSearchMetadataFieldDatasource(cloudinaryConfig, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataFieldsSearchMetadataFieldDatasource failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -504,7 +488,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SearchMetadataFieldDatasourceRequest](../../models/operations/searchmetadatafielddatasourcerequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `term`                                                                                                                                                                         | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The term to search for. Can be any substring of the value.                                                                                                                     |
+| `maxResults`                                                                                                                                                                   | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The maximum number of results to return.                                                                                                                                       |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -530,6 +515,7 @@ Changes the display order of all metadata fields based on specified criteria.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -541,7 +527,6 @@ async function run() {
     orderBy: "external_id",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -559,6 +544,7 @@ import { metadataFieldsReorderMetadataFields } from "@cloudinary/config/funcs/me
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -569,15 +555,12 @@ async function run() {
   const res = await metadataFieldsReorderMetadataFields(cloudinaryConfig, {
     orderBy: "external_id",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataFieldsReorderMetadataFields failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -587,7 +570,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ReorderMetadataFieldsRequest](../../models/operations/reordermetadatafieldsrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `orderBy`                                                                                                                                                                      | [operations.ReorderMetadataFieldsOrderBy](../../models/operations/reordermetadatafieldsorderby.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The field to order by.                                                                                                                                                         |
+| `direction`                                                                                                                                                                    | [operations.ReorderMetadataFieldsDirection](../../models/operations/reordermetadatafieldsdirection.md)                                                                         | :heavy_minus_sign:                                                                                                                                                             | The direction to order by.                                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -613,6 +597,7 @@ Changes the display position of a specific metadata field within the list.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -620,14 +605,10 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.metadataFields.reorderMetadataField({
-    externalId: "<id>",
-    requestBody: {
-      position: 33651,
-    },
+  const result = await cloudinaryConfig.metadataFields.reorderMetadataField("<id>", {
+    position: 33651,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -645,6 +626,7 @@ import { metadataFieldsReorderMetadataField } from "@cloudinary/config/funcs/met
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -652,21 +634,15 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await metadataFieldsReorderMetadataField(cloudinaryConfig, {
-    externalId: "<id>",
-    requestBody: {
-      position: 33651,
-    },
+  const res = await metadataFieldsReorderMetadataField(cloudinaryConfig, "<id>", {
+    position: 33651,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataFieldsReorderMetadataField failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -676,7 +652,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ReorderMetadataFieldRequest](../../models/operations/reordermetadatafieldrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `externalId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The external ID of the metadata field to reorder.                                                                                                                              |
+| `requestBody`                                                                                                                                                                  | [operations.ReorderMetadataFieldRequestBody](../../models/operations/reordermetadatafieldrequestbody.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -702,6 +679,7 @@ Updates the values in a metadata field's datasource, including adding, modifying
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -709,12 +687,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.metadataFields.updateMetadataFieldDatasource({
-    externalId: "<id>",
-    requestBody: {},
-  });
+  const result = await cloudinaryConfig.metadataFields.updateMetadataFieldDatasource("<id>", {});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -732,6 +706,7 @@ import { metadataFieldsUpdateMetadataFieldDatasource } from "@cloudinary/config/
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -739,19 +714,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await metadataFieldsUpdateMetadataFieldDatasource(cloudinaryConfig, {
-    externalId: "<id>",
-    requestBody: {},
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await metadataFieldsUpdateMetadataFieldDatasource(cloudinaryConfig, "<id>", {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataFieldsUpdateMetadataFieldDatasource failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -761,7 +730,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.UpdateMetadataFieldDatasourceRequest](../../models/operations/updatemetadatafielddatasourcerequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `externalId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The external ID of the metadata field to update the datasource for.                                                                                                            |
+| `requestBody`                                                                                                                                                                  | [operations.UpdateMetadataFieldDatasourceRequestBody](../../models/operations/updatemetadatafielddatasourcerequestbody.md)                                                     | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -787,6 +757,7 @@ Removes specific values from a metadata field's datasource by their external IDs
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -794,17 +765,13 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.metadataFields.deleteMetadataFieldDatasource({
-    externalId: "<id>",
-    requestBody: {
-      externalIds: [
-        "<value 1>",
-        "<value 2>",
-      ],
-    },
+  const result = await cloudinaryConfig.metadataFields.deleteMetadataFieldDatasource("<id>", {
+    externalIds: [
+      "<value 1>",
+      "<value 2>",
+    ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -822,6 +789,7 @@ import { metadataFieldsDeleteMetadataFieldDatasource } from "@cloudinary/config/
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -829,24 +797,18 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await metadataFieldsDeleteMetadataFieldDatasource(cloudinaryConfig, {
-    externalId: "<id>",
-    requestBody: {
-      externalIds: [
-        "<value 1>",
-        "<value 2>",
-      ],
-    },
+  const res = await metadataFieldsDeleteMetadataFieldDatasource(cloudinaryConfig, "<id>", {
+    externalIds: [
+      "<value 1>",
+      "<value 2>",
+    ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataFieldsDeleteMetadataFieldDatasource failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -856,7 +818,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DeleteMetadataFieldDatasourceRequest](../../models/operations/deletemetadatafielddatasourcerequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `externalId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The external ID of the metadata field to update the datasource for.                                                                                                            |
+| `requestBody`                                                                                                                                                                  | [operations.DeleteMetadataFieldDatasourceRequestBody](../../models/operations/deletemetadatafielddatasourcerequestbody.md)                                                     | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -882,6 +845,7 @@ Performs a search within a specific metadata field's datasource to find matching
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -889,12 +853,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.metadataFields.searchDatasourceInMDField({
-    externalId: "<id>",
-    requestBody: {},
-  });
+  const result = await cloudinaryConfig.metadataFields.searchDatasourceInMDField("<id>", {});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -912,6 +872,7 @@ import { metadataFieldsSearchDatasourceInMDField } from "@cloudinary/config/func
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -919,19 +880,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await metadataFieldsSearchDatasourceInMDField(cloudinaryConfig, {
-    externalId: "<id>",
-    requestBody: {},
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await metadataFieldsSearchDatasourceInMDField(cloudinaryConfig, "<id>", {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataFieldsSearchDatasourceInMDField failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -941,7 +896,11 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SearchDatasourceInMDFieldRequest](../../models/operations/searchdatasourceinmdfieldrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `externalId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The external ID of the metadata field to search the datasource for.                                                                                                            |
+| `requestBody`                                                                                                                                                                  | [operations.SearchDatasourceInMDFieldRequestBody](../../models/operations/searchdatasourceinmdfieldrequestbody.md)                                                             | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `maxResults`                                                                                                                                                                   | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The maximum number of results to return.                                                                                                                                       |
+| `term`                                                                                                                                                                         | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The term to search for. can be any substring of the value.                                                                                                                     |
+| `exactMatch`                                                                                                                                                                   | *boolean*                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                             | Whether to search for an exact match.                                                                                                                                          |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -967,6 +926,7 @@ Restores datasource values that have been deleted.
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -974,12 +934,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.metadataFields.restoreMetadataFieldDatasource({
-    externalId: "<id>",
-    requestBody: {},
-  });
+  const result = await cloudinaryConfig.metadataFields.restoreMetadataFieldDatasource("<id>", {});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -997,6 +953,7 @@ import { metadataFieldsRestoreMetadataFieldDatasource } from "@cloudinary/config
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -1004,19 +961,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await metadataFieldsRestoreMetadataFieldDatasource(cloudinaryConfig, {
-    externalId: "<id>",
-    requestBody: {},
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await metadataFieldsRestoreMetadataFieldDatasource(cloudinaryConfig, "<id>", {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("metadataFieldsRestoreMetadataFieldDatasource failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1026,7 +977,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.RestoreMetadataFieldDatasourceRequest](../../models/operations/restoremetadatafielddatasourcerequest.md)                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `externalId`                                                                                                                                                                   | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The external ID of the metadata field to restore the datasource values for.                                                                                                    |
+| `requestBody`                                                                                                                                                                  | [operations.RestoreMetadataFieldDatasourceRequestBody](../../models/operations/restoremetadatafielddatasourcerequestbody.md)                                                   | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

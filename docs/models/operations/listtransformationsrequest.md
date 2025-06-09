@@ -6,6 +6,7 @@
 import { ListTransformationsRequest } from "@cloudinary/config/models/operations";
 
 let value: ListTransformationsRequest = {
+  maxResults: 20,
   nextCursor: "8edbc61040178db60b0973ca9494bf3a",
 };
 ```

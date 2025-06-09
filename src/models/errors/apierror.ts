@@ -4,24 +4,27 @@
 
 import * as z from "zod";
 import * as components from "../components/index.js";
+import { CloudinaryConfigError } from "./cloudinaryconfigerror.js";
 
 export type ApiErrorData = {
   error: components.ErrorT;
 };
 
-export class ApiError extends Error {
+export class ApiError extends CloudinaryConfigError {
   error: components.ErrorT;
 
   /** The original data that was passed to this error instance. */
   data$: ApiErrorData;
 
-  constructor(err: ApiErrorData) {
+  constructor(
+    err: ApiErrorData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.error = err.error;
 
     this.name = "ApiError";
@@ -35,9 +38,16 @@ export const ApiError$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   error: z.lazy(() => components.ErrorT$inboundSchema),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new ApiError(v);
+    return new ApiError(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

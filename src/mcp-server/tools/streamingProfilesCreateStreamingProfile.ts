@@ -14,7 +14,12 @@ export const tool$streamingProfilesCreateStreamingProfile: ToolDefinition<
   typeof args
 > = {
   name: "create-streaming-profile",
-  description: `Create streaming profile`,
+  description:
+    `Purpose: Creates a new adaptive streaming profile in your Cloudinary account. You define a unique profile name and a set of video representations (each with specific transformation parameters like resolution, bitrate, codec, etc.) for adaptive bitrate streaming. This operation allows you to customize streaming profiles beyond the built-in ones by specifying exactly how videos should be encoded at various quality levels.
+Usage: Use this operation when the existing built-in streaming profiles do not meet your requirements and you need a custom profile. For example, if you require different resolutions or advanced codecs (such as VP9 or H.265/HEVC for DASH streaming) that are not covered by the default profiles, you can create your own. Provide a profile name (not already in use) and an array of representation definitions. Once created, the new profile can be applied in video uploads (e.g., as an eager transformation) and for delivering videos using the \`sp_<profile>\` parameter.
+When Not to Use: Do not create a new profile if an existing Cloudinary predefined profile already satisfies your needs, as that would be redundant. Also, avoid using this operation to change an existing profile's settings—if a profile exists but needs adjustments, use **update-streaming-profile** instead. Ensure the profile name you choose isn't already taken by another profile (attempting to recreate an existing name will result in an error).
+Output: On success, returns the details of the newly created streaming profile. The response will include the profile's \`name\`, any \`display_name\` you set, and the list of \`representations\` (transformation specifications) for that profile, confirming that the profile was created.
+`,
   scopes: ["builder"],
   args,
   tool: async (client, args, ctx) => {

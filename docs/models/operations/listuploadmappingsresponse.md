@@ -16,7 +16,7 @@ const value: operations.ResponseBody = {
       externalId: "<id>",
     },
   ],
-  totalEntries: 903268,
+  totalEntries: 163977,
 };
 ```
 

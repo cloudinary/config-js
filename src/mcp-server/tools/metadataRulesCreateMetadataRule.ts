@@ -13,9 +13,15 @@ const args = {
 export const tool$metadataRulesCreateMetadataRule: ToolDefinition<typeof args> =
   {
     name: "create-metadata-rule",
-    description: `Create a metadata rule
-
-Creates a new metadata rule with the specified properties and configuration.`,
+    description:
+      `Purpose: Creates automated metadata rules that populate metadata fields based on asset properties or conditions, enabling dynamic content organization and reducing manual tagging overhead.
+Usage: Use this to automate metadata assignment based on upload conditions like file names, folder paths, tags, or other asset properties. Essential for implementing consistent metadata workflows and automatic content categorization.
+Example request: {"metadata_field_id": "product_category", "name": "Auto-tag electronics", "condition": {"resource_type": "image", "tags": {"$in": ["electronics", "gadgets"]}}, "result": {"value": "electronics"}, "state": "active", "position": 1}
+Parameters: metadata_field_id(target field ID), name(rule description), condition(trigger criteria), result(value to assign), state(active/inactive), position(execution order)
+When Not to Use: Don't create overlapping rules that might conflict. Avoid complex conditions that could slow down upload processing. Be careful with broad conditions that might incorrectly categorize assets.
+Output: Returns created metadata rule: external_id(unique rule identifier), metadata_field_id(target field), name(rule name), condition(trigger criteria), result(assigned value), state(activation status), position(execution order), created_at(creation time)
+Example output: {"external_id":"rule_123","metadata_field_id":"product_category","name":"Auto-tag electronics","condition":{"tags":{"$in":["electronics","gadgets"]}},"result":{"value":"electronics"},"state":"active","position":1,"created_at":"2023-01-15T16:00:00Z"}
+`,
     scopes: ["builder"],
     args,
     tool: async (client, args, ctx) => {

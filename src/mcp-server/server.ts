@@ -56,11 +56,12 @@ export function createMCPServer(deps: {
   security?: SDKOptions["security"] | undefined;
   cloudName?: SDKOptions["cloudName"] | undefined;
   serverIdx?: SDKOptions["serverIdx"] | undefined;
-  defaultHost?: SDKOptions["defaultHost"] | undefined;
+  region?: SDKOptions["region"] | undefined;
+  host?: SDKOptions["host"] | undefined;
 }) {
   const server = new McpServer({
     name: "CloudinaryConfig",
-    version: "0.2.1",
+    version: "0.3.0",
   });
 
   const client = new CloudinaryConfigCore({
@@ -68,7 +69,8 @@ export function createMCPServer(deps: {
     cloudName: deps.cloudName,
     serverURL: deps.serverURL,
     serverIdx: deps.serverIdx,
-    defaultHost: deps.defaultHost,
+    region: deps.region,
+    host: deps.host,
   });
 
   const scopes = new Set(deps.scopes);

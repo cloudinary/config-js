@@ -14,86 +14,96 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Transformations extends ClientSDK {
   /**
-   * Get transformations
+   * Lists all transformation definitions in your account (including named transformations
    *
    * @remarks
    * Retrieves a list of all transformations, which can be filtered to show either only named or unnamed transformations.
    */
   async listTransformations(
-    request: operations.ListTransformationsRequest,
+    named?: boolean | undefined,
+    maxResults?: number | undefined,
+    nextCursor?: string | undefined,
     options?: RequestOptions,
   ): Promise<components.ListResponse> {
     return unwrapAsync(transformationsListTransformations(
       this,
-      request,
+      named,
+      maxResults,
+      nextCursor,
       options,
     ));
   }
 
   /**
-   * Get a transformation
+   * Retrieves details of a specific transformation
    *
    * @remarks
    * Retrieves details for a named or unnamed transformation.
    */
   async getTransformation(
-    request: operations.GetTransformationRequest,
+    transformation: string,
     options?: RequestOptions,
   ): Promise<components.TransformationInfo> {
     return unwrapAsync(transformationsGetTransformation(
       this,
-      request,
+      transformation,
       options,
     ));
   }
 
   /**
-   * Create a named transformation
+   * Creates a new named transformation (assigning a custom name to a set of transformation
    *
    * @remarks
    * Creates a new named transformation with the given name and transformation string.
    */
   async createTransformation(
-    request: operations.CreateTransformationRequest,
+    transformation: string,
+    createRequest: components.CreateRequest,
     options?: RequestOptions,
   ): Promise<operations.CreateTransformationResponse> {
     return unwrapAsync(transformationsCreateTransformation(
       this,
-      request,
+      transformation,
+      createRequest,
       options,
     ));
   }
 
   /**
-   * Update a transformation
+   * Updates the definition of an existing named transformation
    *
    * @remarks
    * Update an existing named or unnamed transformation.
    */
   async updateTransformation(
-    request: operations.UpdateTransformationRequest,
+    transformation: string,
+    updateRequest: components.UpdateRequest,
     options?: RequestOptions,
   ): Promise<operations.UpdateTransformationResponse> {
     return unwrapAsync(transformationsUpdateTransformation(
       this,
-      request,
+      transformation,
+      updateRequest,
       options,
     ));
   }
 
   /**
-   * Delete a transformation
+   * Deletes a named transformation from your account
    *
    * @remarks
    * Delete a named or unnamed transformation. Optionally invalidate derived resources generated using the named transformation.
    */
   async deleteTransformation(
-    request: operations.DeleteTransformationRequest,
+    transformation: string,
+    invalidate?: boolean | undefined,
     options?: RequestOptions,
   ): Promise<operations.DeleteTransformationResponse> {
     return unwrapAsync(transformationsDeleteTransformation(
       this,
-      request,
+      transformation,
+      invalidate,
       options,
     ));
   }

@@ -21,7 +21,7 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class MetadataFields extends ClientSDK {
   /**
-   * Create a metadata field
+   * Creates a new structured metadata field in your account
    *
    * @remarks
    * Creates a new metadata field with the specified properties and configuration.
@@ -38,69 +38,71 @@ export class MetadataFields extends ClientSDK {
   }
 
   /**
-   * Get metadata fields
+   * Lists all structured metadata fields defined in your Cloudinary product environment
    *
    * @remarks
    * Retrieves a list of all metadata fields in the product environment based on the provided filters.
    */
   async listMetadataFields(
-    request: operations.ListMetadataFieldsRequest,
+    externalIds?: Array<string> | undefined,
     options?: RequestOptions,
   ): Promise<operations.ListMetadataFieldsResponse> {
     return unwrapAsync(metadataFieldsListMetadataFields(
       this,
-      request,
+      externalIds,
       options,
     ));
   }
 
   /**
-   * Get metadata field
+   * Retrieves the definition of a specific structured metadata field by its identifier (external_id)
    *
    * @remarks
    * Retrieves detailed information about the specified metadata field.
    */
   async getMetadataField(
-    request: operations.GetMetadataFieldRequest,
+    externalId: string,
     options?: RequestOptions,
   ): Promise<components.MetadataField> {
     return unwrapAsync(metadataFieldsGetMetadataField(
       this,
-      request,
+      externalId,
       options,
     ));
   }
 
   /**
-   * Update metadata field
+   * Updates the configuration of an existing metadata field
    *
    * @remarks
    * Updates the properties and configuration of the specified metadata field.
    */
   async updateMetadataField(
-    request: operations.UpdateMetadataFieldRequest,
+    externalId: string,
+    metadataField: components.MetadataField,
     options?: RequestOptions,
   ): Promise<components.MetadataField> {
     return unwrapAsync(metadataFieldsUpdateMetadataField(
       this,
-      request,
+      externalId,
+      metadataField,
       options,
     ));
   }
 
   /**
-   * Delete metadata field
+   * Deletes a structured metadata field definition from your account
    *
    * @remarks
    * Permanently deletes the specified metadata field and all its associated data.
    */
   async deleteMetadataField(
-    request: operations.DeleteMetadataFieldRequest,
+    externalId: string,
     options?: RequestOptions,
   ): Promise<operations.DeleteMetadataFieldResponse> {
     return unwrapAsync(metadataFieldsDeleteMetadataField(
       this,
-      request,
+      externalId,
       options,
     ));
   }
@@ -146,46 +148,52 @@ export class MetadataFields extends ClientSDK {
    * Changes the display position of a specific metadata field within the list.
    */
   async reorderMetadataField(
-    request: operations.ReorderMetadataFieldRequest,
+    externalId: string,
+    requestBody: operations.ReorderMetadataFieldRequestBody,
     options?: RequestOptions,
   ): Promise<operations.ReorderMetadataFieldResponse> {
     return unwrapAsync(metadataFieldsReorderMetadataField(
       this,
-      request,
+      externalId,
+      requestBody,
       options,
     ));
   }
 
   /**
-   * Update datasource values
+   * Updates the allowed values (the datasource) for a specified metadata field
    *
    * @remarks
    * Updates the values in a metadata field's datasource, including adding, modifying, or changing the order of values.
    */
   async updateMetadataFieldDatasource(
-    request: operations.UpdateMetadataFieldDatasourceRequest,
+    externalId: string,
+    requestBody: operations.UpdateMetadataFieldDatasourceRequestBody,
     options?: RequestOptions,
   ): Promise<operations.UpdateMetadataFieldDatasourceResponse> {
     return unwrapAsync(metadataFieldsUpdateMetadataFieldDatasource(
       this,
-      request,
+      externalId,
+      requestBody,
       options,
     ));
   }
 
   /**
-   * Delete datasource values
+   * Removes one or more allowed values from a metadata field's datasource
    *
    * @remarks
    * Removes specific values from a metadata field's datasource by their external IDs.
    */
   async deleteMetadataFieldDatasource(
-    request: operations.DeleteMetadataFieldDatasourceRequest,
+    externalId: string,
+    requestBody: operations.DeleteMetadataFieldDatasourceRequestBody,
     options?: RequestOptions,
   ): Promise<components.MetadataFieldDatasourceValuesArray> {
     return unwrapAsync(metadataFieldsDeleteMetadataFieldDatasource(
       this,
-      request,
+      externalId,
+      requestBody,
       options,
     ));
   }
@@ -197,12 +205,20 @@ export class MetadataFields extends ClientSDK {
    * Performs a search within a specific metadata field's datasource to find matching values, with support for exact or partial matches.
    */
   async searchDatasourceInMDField(
-    request: operations.SearchDatasourceInMDFieldRequest,
+    externalId: string,
+    requestBody: operations.SearchDatasourceInMDFieldRequestBody,
+    maxResults?: number | undefined,
+    term?: string | undefined,
+    exactMatch?: boolean | undefined,
     options?: RequestOptions,
   ): Promise<components.MetadataFieldDatasourceValuesArray> {
     return unwrapAsync(metadataFieldsSearchDatasourceInMDField(
       this,
-      request,
+      externalId,
+      requestBody,
+      maxResults,
+      term,
+      exactMatch,
       options,
     ));
   }
@@ -214,12 +230,14 @@ export class MetadataFields extends ClientSDK {
    * Restores datasource values that have been deleted.
    */
   async restoreMetadataFieldDatasource(
-    request: operations.RestoreMetadataFieldDatasourceRequest,
+    externalId: string,
+    requestBody: operations.RestoreMetadataFieldDatasourceRequestBody,
     options?: RequestOptions,
   ): Promise<components.MetadataFieldDatasourceValuesArray> {
     return unwrapAsync(metadataFieldsRestoreMetadataFieldDatasource(
       this,
-      request,
+      externalId,
+      requestBody,
       options,
     ));
   }

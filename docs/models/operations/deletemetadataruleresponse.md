@@ -8,7 +8,7 @@ metadata rule deleted.
 import { DeleteMetadataRuleResponse } from "@cloudinary/config/models/operations";
 
 let value: DeleteMetadataRuleResponse = {
-  success: false,
+  success: true,
 };
 ```
 

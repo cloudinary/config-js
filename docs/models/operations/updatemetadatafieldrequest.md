@@ -7,10 +7,6 @@ import { UpdateMetadataFieldRequest } from "@cloudinary/config/models/operations
 
 let value: UpdateMetadataFieldRequest = {
   externalId: "<id>",
-  metadataField: {
-    type: "integer",
-    label: "<value>",
-  },
 };
 ```
 

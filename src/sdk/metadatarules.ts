@@ -13,7 +13,7 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class MetadataRules extends ClientSDK {
   /**
-   * Create a metadata rule
+   * Creates a new conditional metadata rule
    *
    * @remarks
    * Creates a new metadata rule with the specified properties and configuration.
@@ -30,7 +30,7 @@ export class MetadataRules extends ClientSDK {
   }
 
   /**
-   * Get metadata rules
+   * Retrieves a list of all conditional metadata rules defined in your accountcloudinary
    *
    * @remarks
    * Retrieves a list of all metadata rules in the cloud.
@@ -47,35 +47,37 @@ export class MetadataRules extends ClientSDK {
   }
 
   /**
-   * Update metadata rule
+   * Updates an existing conditional metadata rule's definition
    *
    * @remarks
    * Updates the properties and configuration of an existing metadata rule.
    */
   async updateMetadataRule(
-    request: operations.UpdateMetadataRuleRequest,
+    externalId: string,
+    metadataRuleUpdate: components.MetadataRuleUpdate,
     options?: RequestOptions,
   ): Promise<components.MetadataRuleResponse> {
     return unwrapAsync(metadataRulesUpdateMetadataRule(
       this,
-      request,
+      externalId,
+      metadataRuleUpdate,
       options,
     ));
   }
 
   /**
-   * Delete metadata rule
+   * Deletes a conditional metadata rule by its ID
    *
    * @remarks
    * Permanently deletes a metadata rule.
    */
   async deleteMetadataRule(
-    request: operations.DeleteMetadataRuleRequest,
+    externalId: string,
     options?: RequestOptions,
   ): Promise<operations.DeleteMetadataRuleResponse> {
     return unwrapAsync(metadataRulesDeleteMetadataRule(
       this,
-      request,
+      externalId,
       options,
     ));
   }

@@ -7,15 +7,15 @@ Enables you to manage upload presets.
 
 ### Available Operations
 
-* [createUploadPreset](#createuploadpreset) - Creates an upload preset
-* [listUploadPresets](#listuploadpresets) - lists upload presets
+* [createUploadPreset](#createuploadpreset) - Creates a new upload preset with specified configuration settings
+* [listUploadPresets](#listuploadpresets) - Lists all upload presets configured in the account
 * [getUploadPreset](#getuploadpreset) - Retrieves details of a single upload preset
-* [updateUploadPreset](#updateuploadpreset) - Updates an upload preset
-* [deleteUploadPreset](#deleteuploadpreset) - Deletes an upload preset
+* [updateUploadPreset](#updateuploadpreset) - Updates an existing upload preset's configuration settings
+* [deleteUploadPreset](#deleteuploadpreset) - Deletes an upload preset from the account
 
 ## createUploadPreset
 
-Creates an upload preset
+Creates a new upload preset with specified configuration settings
 
 ### Example Usage
 
@@ -23,6 +23,7 @@ Creates an upload preset
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -41,7 +42,6 @@ async function run() {
     detection: "coco_v2",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -59,6 +59,7 @@ import { uploadPresetsCreateUploadPreset } from "@cloudinary/config/funcs/upload
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -76,15 +77,12 @@ async function run() {
     autoTagging: 0.5,
     detection: "coco_v2",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("uploadPresetsCreateUploadPreset failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -112,7 +110,7 @@ run();
 
 ## listUploadPresets
 
-lists upload presets
+Lists all upload presets configured in the account
 
 ### Example Usage
 
@@ -120,6 +118,7 @@ lists upload presets
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -127,9 +126,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadPresets.listUploadPresets({});
+  const result = await cloudinaryConfig.uploadPresets.listUploadPresets();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -147,6 +145,7 @@ import { uploadPresetsListUploadPresets } from "@cloudinary/config/funcs/uploadP
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -154,16 +153,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadPresetsListUploadPresets(cloudinaryConfig, {});
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await uploadPresetsListUploadPresets(cloudinaryConfig);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("uploadPresetsListUploadPresets failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -173,7 +169,9 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ListUploadPresetsRequest](../../models/operations/listuploadpresetsrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `orderBy`                                                                                                                                                                      | [operations.ListUploadPresetsOrderBy](../../models/operations/listuploadpresetsorderby.md)                                                                                     | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `direction`                                                                                                                                                                    | [operations.ListUploadPresetsDirection](../../models/operations/listuploadpresetsdirection.md)                                                                                 | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `nextCursor`                                                                                                                                                                   | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -199,6 +197,7 @@ Retrieves details of a single upload preset
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -206,11 +205,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadPresets.getUploadPreset({
-    name: "<value>",
-  });
+  const result = await cloudinaryConfig.uploadPresets.getUploadPreset("<value>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -228,6 +224,7 @@ import { uploadPresetsGetUploadPreset } from "@cloudinary/config/funcs/uploadPre
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -235,18 +232,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadPresetsGetUploadPreset(cloudinaryConfig, {
-    name: "<value>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await uploadPresetsGetUploadPreset(cloudinaryConfig, "<value>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("uploadPresetsGetUploadPreset failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -256,7 +248,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetUploadPresetRequest](../../models/operations/getuploadpresetrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `name`                                                                                                                                                                         | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -274,7 +266,7 @@ run();
 
 ## updateUploadPreset
 
-Updates an upload preset
+Updates an existing upload preset's configuration settings
 
 ### Example Usage
 
@@ -282,6 +274,7 @@ Updates an upload preset
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -289,21 +282,17 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadPresets.updateUploadPreset({
-    name: "<value>",
-    uploadPreset: {
-      headers: "X-Robots-Tag: noindex",
-      moderation: "google_video_moderation",
-      rawConvert: "google_speech:vtt:en-US",
-      backgroundRemoval: "pixelz",
-      format: "jpg",
-      allowedFormats: "mp4,ogv,jpg,png,pdf",
-      autoTagging: 0.5,
-      detection: "coco_v2",
-    },
+  const result = await cloudinaryConfig.uploadPresets.updateUploadPreset("<value>", {
+    headers: "X-Robots-Tag: noindex",
+    moderation: "google_video_moderation",
+    rawConvert: "google_speech:vtt:en-US",
+    backgroundRemoval: "pixelz",
+    format: "jpg",
+    allowedFormats: "mp4,ogv,jpg,png,pdf",
+    autoTagging: 0.5,
+    detection: "coco_v2",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -321,6 +310,7 @@ import { uploadPresetsUpdateUploadPreset } from "@cloudinary/config/funcs/upload
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -328,28 +318,22 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadPresetsUpdateUploadPreset(cloudinaryConfig, {
-    name: "<value>",
-    uploadPreset: {
-      headers: "X-Robots-Tag: noindex",
-      moderation: "google_video_moderation",
-      rawConvert: "google_speech:vtt:en-US",
-      backgroundRemoval: "pixelz",
-      format: "jpg",
-      allowedFormats: "mp4,ogv,jpg,png,pdf",
-      autoTagging: 0.5,
-      detection: "coco_v2",
-    },
+  const res = await uploadPresetsUpdateUploadPreset(cloudinaryConfig, "<value>", {
+    headers: "X-Robots-Tag: noindex",
+    moderation: "google_video_moderation",
+    rawConvert: "google_speech:vtt:en-US",
+    backgroundRemoval: "pixelz",
+    format: "jpg",
+    allowedFormats: "mp4,ogv,jpg,png,pdf",
+    autoTagging: 0.5,
+    detection: "coco_v2",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("uploadPresetsUpdateUploadPreset failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -359,7 +343,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.UpdateUploadPresetRequest](../../models/operations/updateuploadpresetrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `name`                                                                                                                                                                         | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `uploadPreset`                                                                                                                                                                 | [components.UploadPreset](../../models/components/uploadpreset.md)                                                                                                             | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -377,7 +362,7 @@ run();
 
 ## deleteUploadPreset
 
-Deletes an upload preset
+Deletes an upload preset from the account
 
 ### Example Usage
 
@@ -385,6 +370,7 @@ Deletes an upload preset
 import { CloudinaryConfig } from "@cloudinary/config";
 
 const cloudinaryConfig = new CloudinaryConfig({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -392,11 +378,8 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadPresets.deleteUploadPreset({
-    name: "<value>",
-  });
+  const result = await cloudinaryConfig.uploadPresets.deleteUploadPreset("<value>");
 
-  // Handle the result
   console.log(result);
 }
 
@@ -414,6 +397,7 @@ import { uploadPresetsDeleteUploadPreset } from "@cloudinary/config/funcs/upload
 // Use `CloudinaryConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const cloudinaryConfig = new CloudinaryConfigCore({
+  cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -421,18 +405,13 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadPresetsDeleteUploadPreset(cloudinaryConfig, {
-    name: "<value>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await uploadPresetsDeleteUploadPreset(cloudinaryConfig, "<value>");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("uploadPresetsDeleteUploadPreset failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -442,7 +421,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DeleteUploadPresetRequest](../../models/operations/deleteuploadpresetrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `name`                                                                                                                                                                         | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

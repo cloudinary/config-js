@@ -11,6 +11,7 @@ import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import * as components from "../models/components/index.js";
+import { CloudinaryConfigError } from "../models/errors/cloudinaryconfigerror.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -19,64 +20,70 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
-import { SDKError } from "../models/errors/sdkerror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get a transformation
+ * Retrieves details of a specific transformation
  *
  * @remarks
  * Retrieves details for a named or unnamed transformation.
  */
 export function transformationsGetTransformation(
   client: CloudinaryConfigCore,
-  request: operations.GetTransformationRequest,
+  transformation: string,
   options?: RequestOptions,
 ): APIPromise<
   Result<
     components.TransformationInfo,
     | errors.ApiError
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | CloudinaryConfigError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
     client,
-    request,
+    transformation,
     options,
   ));
 }
 
 async function $do(
   client: CloudinaryConfigCore,
-  request: operations.GetTransformationRequest,
+  transformation: string,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
       components.TransformationInfo,
       | errors.ApiError
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | CloudinaryConfigError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
 > {
+  const input: operations.GetTransformationRequest = {
+    transformation: transformation,
+  };
+
   const parsed = safeParse(
-    request,
+    input,
     (value) => operations.GetTransformationRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
@@ -156,19 +163,20 @@ async function $do(
   const [result] = await M.match<
     components.TransformationInfo,
     | errors.ApiError
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | CloudinaryConfigError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.json(200, components.TransformationInfo$inboundSchema),
     M.jsonErr([400, 401, 403, 404], errors.ApiError$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }
