@@ -17,26 +17,22 @@ export type ListUploadPresetsGlobals = {
   cloudName?: string | undefined;
 };
 
-export const ListUploadPresetsOrderBy = {
+export const OrderBy = {
   Name: "name",
   Id: "id",
   UpdatedAt: "updated_at",
 } as const;
-export type ListUploadPresetsOrderBy = ClosedEnum<
-  typeof ListUploadPresetsOrderBy
->;
+export type OrderBy = ClosedEnum<typeof OrderBy>;
 
-export const ListUploadPresetsDirection = {
+export const Direction = {
   Asc: "asc",
   Desc: "desc",
 } as const;
-export type ListUploadPresetsDirection = ClosedEnum<
-  typeof ListUploadPresetsDirection
->;
+export type Direction = ClosedEnum<typeof Direction>;
 
 export type ListUploadPresetsRequest = {
-  orderBy?: ListUploadPresetsOrderBy | undefined;
-  direction?: ListUploadPresetsDirection | undefined;
+  orderBy?: OrderBy | undefined;
+  direction?: Direction | undefined;
   nextCursor?: number | undefined;
 };
 
@@ -110,45 +106,41 @@ export function listUploadPresetsGlobalsFromJSON(
 }
 
 /** @internal */
-export const ListUploadPresetsOrderBy$inboundSchema: z.ZodNativeEnum<
-  typeof ListUploadPresetsOrderBy
-> = z.nativeEnum(ListUploadPresetsOrderBy);
+export const OrderBy$inboundSchema: z.ZodNativeEnum<typeof OrderBy> = z
+  .nativeEnum(OrderBy);
 
 /** @internal */
-export const ListUploadPresetsOrderBy$outboundSchema: z.ZodNativeEnum<
-  typeof ListUploadPresetsOrderBy
-> = ListUploadPresetsOrderBy$inboundSchema;
+export const OrderBy$outboundSchema: z.ZodNativeEnum<typeof OrderBy> =
+  OrderBy$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListUploadPresetsOrderBy$ {
-  /** @deprecated use `ListUploadPresetsOrderBy$inboundSchema` instead. */
-  export const inboundSchema = ListUploadPresetsOrderBy$inboundSchema;
-  /** @deprecated use `ListUploadPresetsOrderBy$outboundSchema` instead. */
-  export const outboundSchema = ListUploadPresetsOrderBy$outboundSchema;
+export namespace OrderBy$ {
+  /** @deprecated use `OrderBy$inboundSchema` instead. */
+  export const inboundSchema = OrderBy$inboundSchema;
+  /** @deprecated use `OrderBy$outboundSchema` instead. */
+  export const outboundSchema = OrderBy$outboundSchema;
 }
 
 /** @internal */
-export const ListUploadPresetsDirection$inboundSchema: z.ZodNativeEnum<
-  typeof ListUploadPresetsDirection
-> = z.nativeEnum(ListUploadPresetsDirection);
+export const Direction$inboundSchema: z.ZodNativeEnum<typeof Direction> = z
+  .nativeEnum(Direction);
 
 /** @internal */
-export const ListUploadPresetsDirection$outboundSchema: z.ZodNativeEnum<
-  typeof ListUploadPresetsDirection
-> = ListUploadPresetsDirection$inboundSchema;
+export const Direction$outboundSchema: z.ZodNativeEnum<typeof Direction> =
+  Direction$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ListUploadPresetsDirection$ {
-  /** @deprecated use `ListUploadPresetsDirection$inboundSchema` instead. */
-  export const inboundSchema = ListUploadPresetsDirection$inboundSchema;
-  /** @deprecated use `ListUploadPresetsDirection$outboundSchema` instead. */
-  export const outboundSchema = ListUploadPresetsDirection$outboundSchema;
+export namespace Direction$ {
+  /** @deprecated use `Direction$inboundSchema` instead. */
+  export const inboundSchema = Direction$inboundSchema;
+  /** @deprecated use `Direction$outboundSchema` instead. */
+  export const outboundSchema = Direction$outboundSchema;
 }
 
 /** @internal */
@@ -157,8 +149,8 @@ export const ListUploadPresetsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  order_by: ListUploadPresetsOrderBy$inboundSchema.optional(),
-  direction: ListUploadPresetsDirection$inboundSchema.optional(),
+  order_by: OrderBy$inboundSchema.optional(),
+  direction: Direction$inboundSchema.optional(),
   next_cursor: z.number().int().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -180,8 +172,8 @@ export const ListUploadPresetsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListUploadPresetsRequest
 > = z.object({
-  orderBy: ListUploadPresetsOrderBy$outboundSchema.optional(),
-  direction: ListUploadPresetsDirection$outboundSchema.optional(),
+  orderBy: OrderBy$outboundSchema.optional(),
+  direction: Direction$outboundSchema.optional(),
   nextCursor: z.number().int().optional(),
 }).transform((v) => {
   return remap$(v, {

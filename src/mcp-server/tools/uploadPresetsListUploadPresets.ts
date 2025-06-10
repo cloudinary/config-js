@@ -8,8 +8,8 @@ import * as operations from "../../models/operations/index.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
-  orderBy: operations.ListUploadPresetsOrderBy$inboundSchema.optional(),
-  direction: operations.ListUploadPresetsDirection$inboundSchema.optional(),
+  orderBy: operations.OrderBy$inboundSchema.optional(),
+  direction: operations.Direction$inboundSchema.optional(),
   nextCursor: z.number().int().optional(),
 };
 

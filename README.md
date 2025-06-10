@@ -253,28 +253,6 @@ run();
 <summary>Available methods</summary>
 
 
-### [metadataFields](docs/sdks/metadatafields/README.md)
-
-* [createMetadataField](docs/sdks/metadatafields/README.md#createmetadatafield) - Creates a new structured metadata field in your account
-* [listMetadataFields](docs/sdks/metadatafields/README.md#listmetadatafields) - Lists all structured metadata fields defined in your Cloudinary product environment
-* [getMetadataField](docs/sdks/metadatafields/README.md#getmetadatafield) - Retrieves the definition of a specific structured metadata field by its identifier (external_id)
-* [updateMetadataField](docs/sdks/metadatafields/README.md#updatemetadatafield) - Updates the configuration of an existing metadata field
-* [deleteMetadataField](docs/sdks/metadatafields/README.md#deletemetadatafield) - Deletes a structured metadata field definition from your account
-* [searchMetadataFieldDatasource](docs/sdks/metadatafields/README.md#searchmetadatafielddatasource) - Search across all metadata field datasources
-* [reorderMetadataFields](docs/sdks/metadatafields/README.md#reordermetadatafields) - Reorder all metadata fields
-* [reorderMetadataField](docs/sdks/metadatafields/README.md#reordermetadatafield) - Change position of metadata field
-* [updateMetadataFieldDatasource](docs/sdks/metadatafields/README.md#updatemetadatafielddatasource) - Updates the allowed values (the datasource) for a specified metadata field
-* [deleteMetadataFieldDatasource](docs/sdks/metadatafields/README.md#deletemetadatafielddatasource) - Removes one or more allowed values from a metadata field's datasource
-* [searchDatasourceInMDField](docs/sdks/metadatafields/README.md#searchdatasourceinmdfield) - Search datasource values in a metadata field
-* [restoreMetadataFieldDatasource](docs/sdks/metadatafields/README.md#restoremetadatafielddatasource) - Restore datasource values
-
-### [metadataRules](docs/sdks/metadatarules/README.md)
-
-* [createMetadataRule](docs/sdks/metadatarules/README.md#createmetadatarule) - Creates a new conditional metadata rule
-* [listMetadataRules](docs/sdks/metadatarules/README.md#listmetadatarules) - Retrieves a list of all conditional metadata rules defined in your accountcloudinary
-* [updateMetadataRule](docs/sdks/metadatarules/README.md#updatemetadatarule) - Updates an existing conditional metadata rule's definition
-* [deleteMetadataRule](docs/sdks/metadatarules/README.md#deletemetadatarule) - Deletes a conditional metadata rule by its ID
-
 ### [streamingProfiles](docs/sdks/streamingprofiles/README.md)
 
 * [createStreamingProfile](docs/sdks/streamingprofiles/README.md#createstreamingprofile) - Creates a new adaptive streaming profile in your Cloudinary account
@@ -332,22 +310,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`metadataFieldsCreateMetadataField`](docs/sdks/metadatafields/README.md#createmetadatafield) - Creates a new structured metadata field in your account
-- [`metadataFieldsDeleteMetadataField`](docs/sdks/metadatafields/README.md#deletemetadatafield) - Deletes a structured metadata field definition from your account
-- [`metadataFieldsDeleteMetadataFieldDatasource`](docs/sdks/metadatafields/README.md#deletemetadatafielddatasource) - Removes one or more allowed values from a metadata field's datasource
-- [`metadataFieldsGetMetadataField`](docs/sdks/metadatafields/README.md#getmetadatafield) - Retrieves the definition of a specific structured metadata field by its identifier (external_id)
-- [`metadataFieldsListMetadataFields`](docs/sdks/metadatafields/README.md#listmetadatafields) - Lists all structured metadata fields defined in your Cloudinary product environment
-- [`metadataFieldsReorderMetadataField`](docs/sdks/metadatafields/README.md#reordermetadatafield) - Change position of metadata field
-- [`metadataFieldsReorderMetadataFields`](docs/sdks/metadatafields/README.md#reordermetadatafields) - Reorder all metadata fields
-- [`metadataFieldsRestoreMetadataFieldDatasource`](docs/sdks/metadatafields/README.md#restoremetadatafielddatasource) - Restore datasource values
-- [`metadataFieldsSearchDatasourceInMDField`](docs/sdks/metadatafields/README.md#searchdatasourceinmdfield) - Search datasource values in a metadata field
-- [`metadataFieldsSearchMetadataFieldDatasource`](docs/sdks/metadatafields/README.md#searchmetadatafielddatasource) - Search across all metadata field datasources
-- [`metadataFieldsUpdateMetadataField`](docs/sdks/metadatafields/README.md#updatemetadatafield) - Updates the configuration of an existing metadata field
-- [`metadataFieldsUpdateMetadataFieldDatasource`](docs/sdks/metadatafields/README.md#updatemetadatafielddatasource) - Updates the allowed values (the datasource) for a specified metadata field
-- [`metadataRulesCreateMetadataRule`](docs/sdks/metadatarules/README.md#createmetadatarule) - Creates a new conditional metadata rule
-- [`metadataRulesDeleteMetadataRule`](docs/sdks/metadatarules/README.md#deletemetadatarule) - Deletes a conditional metadata rule by its ID
-- [`metadataRulesListMetadataRules`](docs/sdks/metadatarules/README.md#listmetadatarules) - Retrieves a list of all conditional metadata rules defined in your accountcloudinary
-- [`metadataRulesUpdateMetadataRule`](docs/sdks/metadatarules/README.md#updatemetadatarule) - Updates an existing conditional metadata rule's definition
 - [`streamingProfilesCreateStreamingProfile`](docs/sdks/streamingprofiles/README.md#createstreamingprofile) - Creates a new adaptive streaming profile in your Cloudinary account
 - [`streamingProfilesDeleteStreamingProfile`](docs/sdks/streamingprofiles/README.md#deletestreamingprofile) - Delete custom streaming profile or revert built-in profile to the original settings
 - [`streamingProfilesGetStreamingProfile`](docs/sdks/streamingprofiles/README.md#getstreamingprofile) - Retrieves the details of a single adaptive streaming profile by its name

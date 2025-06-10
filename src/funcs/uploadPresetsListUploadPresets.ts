@@ -30,8 +30,8 @@ import { Result } from "../types/fp.js";
  */
 export function uploadPresetsListUploadPresets(
   client: CloudinaryConfigCore,
-  orderBy?: operations.ListUploadPresetsOrderBy | undefined,
-  direction?: operations.ListUploadPresetsDirection | undefined,
+  orderBy?: operations.OrderBy | undefined,
+  direction?: operations.Direction | undefined,
   nextCursor?: number | undefined,
   options?: RequestOptions,
 ): APIPromise<
@@ -59,8 +59,8 @@ export function uploadPresetsListUploadPresets(
 
 async function $do(
   client: CloudinaryConfigCore,
-  orderBy?: operations.ListUploadPresetsOrderBy | undefined,
-  direction?: operations.ListUploadPresetsDirection | undefined,
+  orderBy?: operations.OrderBy | undefined,
+  direction?: operations.Direction | undefined,
   nextCursor?: number | undefined,
   options?: RequestOptions,
 ): Promise<
