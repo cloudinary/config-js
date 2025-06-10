@@ -14,14 +14,9 @@ export const tool$transformationsGetTransformation: ToolDefinition<
   typeof args
 > = {
   name: "get-transformation-details",
-  description:
-    `Purpose: Retrieves detailed information about a specific transformation, including its usage statistics, derived resources count, and configuration parameters. Transformations define how media assets are processed during delivery.
-Usage: Use this to inspect transformation details, verify configuration parameters, or analyze usage statistics for specific transformations. Essential for transformation debugging and optimization analysis.
-Example request: GET /transformations/c_fill,w_100,h_150 (transformation string in URL path)
-Parameters: transformation(URL-encoded transformation string - either named transformation or full parameter string)
-When Not to Use: Don't use for listing multiple transformations - use list-transformations instead. Not needed if you only want to apply the transformation without inspecting details.
-Output: Returns comprehensive transformation details: name(transformation identifier), allowed_for_strict(strict mode compatibility), used(whether applied to assets), derived_resource_count(number of derived resources), transformation_string(full parameter string), max_width(maximum width if constrained), max_height(maximum height if constrained)
-Example output: {"name":"c_fill,w_100,h_150","allowed_for_strict":false,"used":true,"derived_resource_count":15,"transformation_string":"c_fill,w_100,h_150"}
+  description: `Retrieves details of a specific transformation
+
+Retrieves details for a named or unnamed transformation.
 `,
   scopes: ["admin"],
   args,

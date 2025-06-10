@@ -13,12 +13,7 @@ const args = {
 export const tool$uploadPresetsDeleteUploadPreset: ToolDefinition<typeof args> =
   {
     name: "delete-upload-preset",
-    description:
-      `Purpose: Deletes an upload preset from your product environment, preventing any further uploads from using that preset. 
-Usage: Use this to remove presets that are no longer needed or relevant (for example, a deprecated upload configuration). 
-When Not to Use: Avoid deleting a preset that is still in active use by your applications or integrations; doing so will cause any uploads referencing it to act as expected in that upload preset profile that is deleted.
-Output: Confirms the deletion of the preset (the preset will no longer appear in listing results).
-`,
+    description: `Deletes an upload preset from the account`,
     scopes: ["builder"],
     args,
     tool: async (client, args, ctx) => {

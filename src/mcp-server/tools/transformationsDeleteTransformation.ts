@@ -15,14 +15,9 @@ export const tool$transformationsDeleteTransformation: ToolDefinition<
   typeof args
 > = {
   name: "delete-transformation",
-  description:
-    `Purpose: Permanently removes a named or unnamed transformation from your Cloudinary account. This operation can also invalidate all derived resources (cached versions) that were generated using this transformation.
-Usage: Use this to clean up unused transformations, remove deprecated transformation configurations, or manage transformation inventory. Essential for maintaining organized transformation catalogs and reducing account clutter.
-Example request: DELETE /transformations/my_old_transformation?invalidate=true
-Parameters: transformation(URL-encoded transformation string or name), invalidate(whether to invalidate derived resources using this transformation from CDN)
-When Not to Use: Don't delete transformations that are still actively used in production applications, as this will break image/video delivery. Avoid deleting without testing if invalidate=true, as this affects cached content delivery.
-Output: Returns deletion confirmation: message(deletion status confirmation)
-Example output: {"message": "deleted"}
+  description: `Deletes a named transformation from your account
+
+Delete a named or unnamed transformation. Optionally invalidate derived resources generated using the named transformation.
 `,
   scopes: ["admin"],
   args,

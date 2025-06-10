@@ -16,15 +16,9 @@ export const tool$metadataFieldsUpdateMetadataField: ToolDefinition<
   typeof args
 > = {
   name: "update-metadata-field",
-  description:
-    `Purpose: Updates the configuration properties of an existing structured metadata field, allowing you to modify field labels, validation rules, default values, and datasource options without recreating the field.
-Usage: Use this to refine metadata field configurations as requirements evolve, such as updating validation rules, changing labels, adding new enum values, or modifying default values. Essential for maintaining current metadata schemas and improving data quality.
-Example request: {"label": "Updated Product Category", "default_value": "general", "datasource": {"values": [{"value": "electronics", "position": 1}, {"value": "clothing", "position": 2}, {"value": "books", "position": 3}]}}
-Parameters: external_id(field identifier from URL path), plus updatable field properties: label(display name), default_value(default field value), datasource(available values for enum/set), validation(field constraints), mandatory(required status), restrictions(access controls)
-When Not to Use: Avoid changing field types after creation as this can break existing data. Don't update fields that are actively used in production without careful testing. Be cautious with mandatory field changes as this affects existing assets.
-Output: Returns updated metadata field configuration: external_id(unique identifier), type(field data type), label(updated name), mandatory(required status), default_value(updated default), datasource(updated values), validation(updated rules), updated_at(modification timestamp)
-Example output: {"external_id":"product_category","type":"enum","label":"Updated Product Category","mandatory":false,"default_value":"general","datasource":{"values":[{"value":"electronics","position":1},{"value":"clothing","position":2},{"value":"books","position":3}]},"updated_at":"2023-01-15T14:30:00Z"}
-`,
+  description: `Updates the configuration of an existing metadata field
+
+Updates the properties and configuration of the specified metadata field.`,
   scopes: ["admin"],
   args,
   tool: async (client, args, ctx) => {

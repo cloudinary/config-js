@@ -15,15 +15,9 @@ const args = {
 export const tool$metadataRulesUpdateMetadataRule: ToolDefinition<typeof args> =
   {
     name: "update-metadata-rule",
-    description:
-      `Purpose: Updates the configuration of existing automated metadata rules, allowing you to modify conditions, results, execution order, or activation status without recreating the rule from scratch.
-Usage: Use this to refine metadata automation logic as requirements evolve, fix rule conditions that aren't working correctly, change rule priorities through position updates, or temporarily disable rules. Essential for maintaining effective metadata workflows.
-Example request: {"name": "Updated auto-tag rule", "condition": {"resource_type": "image", "tags": {"$in": ["electronics", "gadgets", "tech"]}}, "result": {"value": "technology"}, "state": "active", "position": 2}
-Parameters: external_id(rule identifier from URL path), plus updatable properties: name(rule description), condition(trigger criteria), result(assigned value), state(active/inactive), position(execution order)
-When Not to Use: Avoid updating rules that are actively processing uploads without testing. Don't change critical production rules during peak hours. Be careful with condition changes that might affect existing asset categorization.
-Output: Returns updated metadata rule: external_id(unique identifier), metadata_field_id(target field), name(updated description), condition(updated criteria), result(updated value), state(current status), position(execution order), updated_at(modification time)
-Example output: {"external_id":"rule_123","metadata_field_id":"product_category","name":"Updated auto-tag rule","condition":{"tags":{"$in":["electronics","gadgets","tech"]}},"result":{"value":"technology"},"state":"active","position":2,"updated_at":"2023-01-15T17:00:00Z"}
-`,
+    description: `Updates an existing conditional metadata rule's definition
+
+Updates the properties and configuration of an existing metadata rule.`,
     scopes: ["builder"],
     args,
     tool: async (client, args, ctx) => {

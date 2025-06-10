@@ -15,14 +15,9 @@ const args = {
 export const tool$triggersUpdateTrigger: ToolDefinition<typeof args> = {
   name: "update-trigger",
   description:
-    `Purpose: Updates the notification URL for an existing event trigger, allowing you to redirect webhook notifications to a new endpoint without recreating the trigger configuration.
-Usage: Use this when you need to change the destination URL for webhook notifications due to infrastructure changes, endpoint migrations, or updated integration requirements. Essential for maintaining webhook continuity during system updates.
-Example request: {"new_uri": "https://new-webhook.site/updated-endpoint"}
-Parameters: id(trigger identifier from URL path), new_uri(updated webhook URL that will receive notifications)
-When Not to Use: Don't use for changing event types (delete and recreate trigger instead) or for testing webhooks (use dedicated testing tools). Avoid frequent URL changes as this may disrupt notification delivery.
-Output: Returns update confirmation: message(success confirmation - typically "ok")
-Example output: {"message": "ok"}
-`,
+    `Updates the callback URL of an existing webhook trigger in your Cloudinary account
+
+Updates a notification URL for a trigger.`,
   scopes: ["admin"],
   args,
   tool: async (client, args, ctx) => {

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b863a9b5-6231-49a5-af17-282115e1a208
 management:
-  docChecksum: 55390c060e48107e7e91c574cb94b269
+  docChecksum: eff68a5dd75c78821e8d65729662a63b
   docVersion: 0.2.0
-  speakeasyVersion: 1.557.1
-  generationVersion: 2.623.2
-  releaseVersion: 0.3.0
-  configChecksum: 6ec398bedc8a7a62c1170245e5bff306
+  speakeasyVersion: 1.559.0
+  generationVersion: 2.624.0
+  releaseVersion: 0.3.1
+  configChecksum: 3bcda34f614b89a0fd8d378ca7f57197
   repoURL: https://github.com/cloudinary/config-js.git
   installationURL: https://github.com/cloudinary/config-js
   published: true
@@ -32,7 +32,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.8
+    unions: 2.85.9
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

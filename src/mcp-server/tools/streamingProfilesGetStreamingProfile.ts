@@ -15,11 +15,7 @@ export const tool$streamingProfilesGetStreamingProfile: ToolDefinition<
 > = {
   name: "get-streaming-profile",
   description:
-    `Purpose: Retrieves the details of a single adaptive streaming profile by its name It returns the profile's full configuration, including all representation settings, so you can inspect exactly how that profile is defined.
-Usage: Use this operation when you need information about one specific streaming profile. For example, to verify a custom profile's resolutions and bitrates or to display the configuration of a particular profile in a management interface. Simply provide the profile's name to get its attributes and settings.
-When Not to Use: Avoid using this to fetch many profiles one by one; if you require multiple profiles or an overview of all profiles, use **list-streaming-profiles** instead. Also, do not use this operation for creating or updating profiles (it is read-only); use **create-streaming-profile** or **update-streaming-profile** for those tasks.
-Output: Returns a single streaming profile object with its details. The output includes fields such as the profile's unique \`external_id\`, \`name\`, \`display_name\`, a \`predefined\` flag (indicating if it's a built-in profile), and an array of \`representations\` (each describing a video transformation for that profile).
-`,
+    `Retrieves the details of a single adaptive streaming profile by its name`,
   scopes: ["builder"],
   args,
   tool: async (client, args, ctx) => {

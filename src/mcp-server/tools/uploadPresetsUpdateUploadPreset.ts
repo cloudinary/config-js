@@ -15,13 +15,7 @@ const args = {
 export const tool$uploadPresetsUpdateUploadPreset: ToolDefinition<typeof args> =
   {
     name: "update-upload-preset",
-    description:
-      `Purpose: Updates the settings of an existing upload preset. This lets you change parameters like allowed transformations, moderation settings, or whether unsigned uploads are allowed. 
-Usage: Use this to modify a preset when requirements change (for example, enabling a new format or altering incoming transformation rules) without creating a new preset. 
-Note 1: Should be used carefully, as updating upload_presets may impact existed production flows that uses the upload_preset profile that is being updated. consider creating new one with the modification and then change the production flow to the new one if the intent is to modify a production flow. Note 2: Cannot set overwrite=true for unsigned presets. , Note-3: Uses  this (PUT) method to update existing presets rather than creating new ones.
-When Not to Use: Don't use for creating new presets (use create-upload-preset instead). Also, if the preset doesn't exist, you'd need to create it first. 
-Output: Returns update confirmation with preset identifier: message(update status), external_id(unique system identifier)
-`,
+    description: `Updates an existing upload preset's configuration settings`,
     scopes: ["builder"],
     args,
     tool: async (client, args, ctx) => {

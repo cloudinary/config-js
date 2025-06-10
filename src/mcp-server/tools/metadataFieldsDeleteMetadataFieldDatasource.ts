@@ -18,15 +18,9 @@ export const tool$metadataFieldsDeleteMetadataFieldDatasource: ToolDefinition<
 > = {
   name: "delete-metadata-datasource-values",
   description:
-    `Purpose: Permanently removes specific predefined values from enum and set metadata fields using their external IDs, effectively removing these options from the available choices for asset metadata assignment.
-Usage: Use this to clean up unused enum values, remove deprecated options, or streamline selection lists by eliminating outdated choices. Essential for maintaining clean, relevant option lists in categorical metadata fields.
-Example request: {"external_ids": ["old_category_1", "deprecated_option", "unused_value"]}
-Parameters: external_id(field identifier from URL path), external_ids array(list of value identifiers to remove)
-Warning: This permanently removes values and may affect assets that currently use these values. Consider setting values to "inactive" state instead for safer option management.
-When Not to Use: Don't delete values that are actively used in production assets. Avoid deletion if you might need to restore the values later - use inactive state instead.
-Output: Returns updated datasource configuration: values array with remaining active values and their properties
-Example output: {"values":[{"external_id":"electronics","value":"Electronics","position":1,"state":"active"},{"external_id":"clothing","value":"Clothing","position":2,"state":"active"}]}
-`,
+    `Removes one or more allowed values from a metadata field's datasource
+
+Removes specific values from a metadata field's datasource by their external IDs.`,
   scopes: ["builder"],
   args,
   tool: async (client, args, ctx) => {

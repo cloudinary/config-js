@@ -14,16 +14,9 @@ export const tool$metadataFieldsDeleteMetadataField: ToolDefinition<
   typeof args
 > = {
   name: "delete-metadata-field",
-  description:
-    `Purpose: Permanently removes a structured metadata field from your Cloudinary account, including all associated data, values, and configurations. This action also removes the field from any assets that currently have values for this field.
-Usage: Use this to clean up unused metadata fields, remove deprecated data structures, or reorganize metadata schemas when fields are no longer needed. Essential for maintaining clean metadata organization and reducing schema complexity.
-Example request: DELETE /metadata_fields/old_product_field (external_id in URL path)
-Parameters: external_id(field identifier from URL path)
-Warning: This is irreversible and will permanently delete all field data from assets. Ensure the field is not needed for production workflows before deletion.
-When Not to Use: Don't delete fields that are still being used in production applications or contain valuable data. Avoid deletion without backing up field data if it might be needed later.
-Output: Returns deletion confirmation: message(deletion status confirmation)
-Example output: {"message": "Field deleted successfully"}
-`,
+  description: `Deletes a structured metadata field definition from your account
+
+Permanently deletes the specified metadata field and all its associated data.`,
   scopes: ["builder"],
   args,
   tool: async (client, args, ctx) => {

@@ -12,12 +12,7 @@ const args = {
 
 export const tool$uploadPresetsGetUploadPreset: ToolDefinition<typeof args> = {
   name: "get-upload-preset-details",
-  description:
-    `Purpose: Retrieves the configuration details of a specific upload preset (such as its allowed parameters and settings). 
-Usage: Use this when you need to inspect or utilize a preset's settings (for example, to verify if unsigned uploading is enabled or what transformations are applied on upload by default). 
-When Not to Use: Not required if you only need a list of preset names (use list-upload-presets for that). Also not useful if the preset name is unknown. 
-Output: Returns a JSON object containing information on the upload preset profile. Some returned parameters examples: presets(array of preset objects), name(preset name), unsigned(allows unsigned uploads), settings(preset configuration object), external_id(unique preset identifier), transformation(default transformation string), tags(auto-applied tags), allowed_formats(permitted file formats), eager(transformations generated on upload), overwrite(overwrite existing files), use_filename(use original filename), unique_filename(ensure unique filenames), use_filename_as_display_name(filename as display name), use_asset_folder_as_public_id_prefix(folder prefix for public ID), type(upload type), moderation(content moderation settings), auto_transcription(automatic transcription settings), asset_folder(default upload folder), access_control(access permissions)
-`,
+  description: `Retrieves details of a single upload preset`,
   scopes: ["builder"],
   args,
   tool: async (client, args, ctx) => {

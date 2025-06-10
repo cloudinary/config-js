@@ -13,16 +13,9 @@ const args = {
 export const tool$metadataRulesDeleteMetadataRule: ToolDefinition<typeof args> =
   {
     name: "delete-metadata-rule",
-    description:
-      `Purpose: Permanently removes automated metadata rules from your Cloudinary account, stopping their execution for future uploads and cleaning up unused automation configurations.
-Usage: Use this to remove obsolete automation rules, clean up metadata workflows, or eliminate rules that are causing incorrect categorization. Essential for maintaining clean, efficient metadata automation and preventing rule conflicts.
-Example request: DELETE /metadata_rules/rule_123 (external_id in URL path)
-Parameters: external_id(rule identifier from URL path)
-Warning: This permanently removes the rule and stops its execution for future uploads. Existing assets with metadata assigned by this rule will retain their current values.
-When Not to Use: Don't delete rules that are still needed for production workflows. Avoid deletion if you might need the rule logic later - consider setting to "inactive" state instead.
-Output: Returns deletion confirmation: success(boolean status indicating successful removal)
-Example output: {"success": true}
-`,
+    description: `Deletes a conditional metadata rule by its ID
+
+Permanently deletes a metadata rule.`,
     scopes: ["builder"],
     args,
     tool: async (client, args, ctx) => {

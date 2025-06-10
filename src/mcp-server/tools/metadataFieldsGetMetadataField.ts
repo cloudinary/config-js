@@ -14,14 +14,9 @@ export const tool$metadataFieldsGetMetadataField: ToolDefinition<typeof args> =
   {
     name: "get-metadata-field",
     description:
-      `Purpose: Retrieves comprehensive details about a specific structured metadata field using its external ID, providing complete configuration information including data type, validation rules, and available values for enum/set fields.
-Usage: Use this to inspect metadata field configurations, build dynamic forms based on field types, validate field settings, or understand field constraints before updating. Essential for metadata management interfaces and field-specific operations.
-Example request: GET /metadata_fields/product_category (external_id in URL path)
-Parameters: external_id(unique field identifier from URL path)
-When Not to Use: Don't use for listing multiple fields (use list-metadata-fields instead) or for high-frequency polling as metadata schemas change infrequently.
-Output: Returns complete metadata field configuration: external_id(unique identifier), type(field data type), label(human-readable name), mandatory(required status), default_value(default value), datasource(available values for enum/set types), validation(field constraints), restrictions(access limitations), created_at(creation timestamp), updated_at(last modification time)
-Example output: {"external_id":"product_category","type":"enum","label":"Product Category","mandatory":false,"default_value":"electronics","datasource":{"values":[{"value":"electronics","position":1},{"value":"clothing","position":2}]},"created_at":"2023-01-15T10:00:00Z"}
-`,
+      `Retrieves the definition of a specific structured metadata field by its identifier (external_id)
+
+Retrieves detailed information about the specified metadata field.`,
     scopes: ["admin"],
     args,
     tool: async (client, args, ctx) => {

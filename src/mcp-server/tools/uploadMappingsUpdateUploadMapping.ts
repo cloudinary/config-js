@@ -15,14 +15,9 @@ export const tool$uploadMappingsUpdateUploadMapping: ToolDefinition<
 > = {
   name: "update-upload-mapping",
   description:
-    `Purpose: Updates existing URL mappings to modify custom delivery patterns for folders, allowing you to change domain endpoints, URL structures, or routing configurations without recreating the mapping.
-Usage: Use this to update branded domains, modify URL patterns for existing folders, fix routing configurations, or migrate to new delivery endpoints while maintaining folder associations. Essential for maintaining current branded delivery setups.
-Example request: {"folder": "products", "template": "https://newcdn.mystore.com/assets/{public_id}"}
-Parameters: folder(existing folder path), template(updated URL pattern with {public_id} placeholder)
-When Not to Use: Avoid updating production mappings without testing the new URLs. Don't change mappings during high-traffic periods as this affects asset delivery.
-Output: Returns update confirmation: message(update status), external_id(unique mapping identifier)
-Example output: {"message": "updated", "external_id": "mapping_456"}
-`,
+    `Updates an existing upload mapping by changing its remote URL template for a given
+
+Updates the URL template for an existing folder mapping`,
   scopes: ["builder"],
   args,
   tool: async (client, args, ctx) => {

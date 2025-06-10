@@ -18,14 +18,9 @@ export const tool$metadataFieldsUpdateMetadataFieldDatasource: ToolDefinition<
 > = {
   name: "update-metadata-datasource-values",
   description:
-    `Purpose: Updates the predefined values available for enum and set metadata fields, allowing you to add new options, modify existing values, reorder choices, or activate/deactivate specific values without recreating the entire field.
-Usage: Use this to maintain current option lists for categorical metadata fields, such as adding new product categories, reordering selection options, or temporarily disabling specific values. Essential for keeping enum/set fields relevant and well-organized.
-Example request: {"values": [{"external_id": "electronics", "value": "Electronics", "position": 1, "state": "active"}, {"external_id": "clothing", "value": "Clothing & Apparel", "position": 2, "state": "active"}, {"external_id": "books", "value": "Books", "position": 3, "state": "inactive"}]}
-Parameters: external_id(field identifier from URL path), values array containing: external_id(unique value identifier), value(display text), position(sort order), state(active/inactive status)
-When Not to Use: Don't use for string/integer/date field types that don't have datasources. Avoid frequent updates to stable option lists. Be careful when deactivating values that are actively used in production.
-Output: Returns updated datasource configuration: values array with external_id(unique identifier), value(display text), position(sort order), state(activation status), created_at(creation timestamp), updated_at(modification time)
-Example output: {"values":[{"external_id":"electronics","value":"Electronics","position":1,"state":"active","updated_at":"2023-01-15T15:00:00Z"},{"external_id":"clothing","value":"Clothing & Apparel","position":2,"state":"active","updated_at":"2023-01-15T15:00:00Z"}]}
-`,
+    `Updates the allowed values (the datasource) for a specified metadata field
+
+Updates the values in a metadata field's datasource, including adding, modifying, or changing the order of values.`,
   scopes: ["builder"],
   args,
   tool: async (client, args, ctx) => {

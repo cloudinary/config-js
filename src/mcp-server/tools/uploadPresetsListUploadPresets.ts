@@ -16,15 +16,7 @@ const args = {
 export const tool$uploadPresetsListUploadPresets: ToolDefinition<typeof args> =
   {
     name: "list-upload-presets",
-    description:
-      `Purpose: Lists all upload presets defined in your Cloudinary product environment with their complete configuration settings. Upload presets contain predefined upload parameters that streamline file processing workflows.
-Usage: Use when you need to audit existing upload configurations, build management interfaces, or understand available preset options before creating new ones. Essential for preset management and configuration discovery.
-Example request: GET /upload_presets (no request body required)
-Parameters: direction(asc/desc sort order), order_by(name/id/updated_at sort field), next_cursor(pagination token for additional results)
-When Not to Use: Don't use for retrieving a single preset's details - use get-upload-preset-details instead. Avoid frequent polling as preset configurations rarely change.
-Output: Returns array of preset objects with configuration details: presets(array containing preset objects), name(preset identifier), unsigned(authentication requirement), settings(configuration object with upload parameters), external_id(unique system identifier)
-Example output: {"presets":[{"name":"Prepend Folder","unsigned":false,"settings":{"overwrite":"1","use_filename":"1","unique_filename":"0","use_filename_as_display_name":"1","use_asset_folder_as_public_id_prefix":"1","type":"upload"},"external_id":"6052708a-94b2-47e3-9368-c9de14032b72"}]}
-`,
+    description: `Lists all upload presets configured in the account`,
     scopes: ["builder"],
     args,
     tool: async (client, args, ctx) => {

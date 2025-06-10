@@ -15,14 +15,9 @@ export const tool$metadataFieldsListMetadataFields: ToolDefinition<
 > = {
   name: "list-metadata-fields",
   description:
-    `Purpose: Retrieves a comprehensive list of all structured metadata fields configured in your Cloudinary account, providing the schema and configuration details for each field used to organize and categorize your assets.
-Usage: Use this to discover available metadata fields, build dynamic forms, audit metadata configurations, or understand the data structure available for asset organization. Essential for metadata management interfaces and asset organization workflows.
-Example request: GET /metadata_fields?external_ids=product_category,brand_name (no request body required)
-Parameters: external_ids(filter by specific field identifiers - if not provided, returns all fields)
-When Not to Use: Don't use for retrieving a single field's details (use get-metadata-field instead) or for high-frequency polling as metadata schemas change infrequently.
-Output: Returns array of metadata field configurations: metadata_fields(array of field objects). Each field contains: external_id(unique identifier), type(field data type), label(human-readable name), mandatory(required status), default_value(default value), datasource(available values for enum/set), validation(field rules), created_at(creation timestamp), updated_at(last modification time)
-Example output: {"metadata_fields":[{"external_id":"product_category","type":"string","label":"Product Category","mandatory":false,"default_value":"uncategorized"},{"external_id":"price","type":"integer","label":"Price","mandatory":true}]}
-`,
+    `Lists all structured metadata fields defined in your Cloudinary product environment
+
+Retrieves a list of all metadata fields in the product environment based on the provided filters.`,
   scopes: ["builder"],
   args,
   tool: async (client, args, ctx) => {

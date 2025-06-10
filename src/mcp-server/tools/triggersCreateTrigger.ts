@@ -13,14 +13,10 @@ const args = {
 export const tool$triggersCreateTrigger: ToolDefinition<typeof args> = {
   name: "create-trigger",
   description:
-    `Purpose: Creates a new event trigger that automatically sends HTTP POST notifications to your specified URL when specific Cloudinary events occur. This enables real-time integration and automation workflows based on asset lifecycle events.
-Usage: Use this to set up webhook notifications for asset uploads, deletions, transformations, moderation results, or other events. Essential for building event-driven integrations, audit systems, and automated content workflows.
-Example request: {"uri": "https://trigger.site/124", "event_type": "upload"}
-Parameters: uri(webhook URL that will receive notifications), event_type(type of event to monitor - upload, delete, transformation, moderation, etc.)
-Note: Your account supports up to 30 notification URLs per event type. Total triggers are limited by (unique event types × 30).
-When Not to Use: Don't create triggers for events you don't need to process, as this increases notification volume. Avoid creating duplicate triggers for the same event type and URL combination.
-Output: Returns created trigger configuration: id(unique trigger identifier), uri(notification URL), event_type(monitored event type), created_at(creation timestamp)
-Example output: {"id":"12345678","uri":"https://trigger.site/124","event_type":"upload","created_at":"2023-01-15T10:00:00Z"}
+    `Creates a new notification trigger (webhook) by specifying an event type and a destination
+
+Creates a new trigger. 
+Your product environment supports triggers up to a maximum determined by multiplying the number of unique event types by the limit of 30 notification URLs.
 `,
   scopes: ["admin"],
   args,
