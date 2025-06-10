@@ -12,15 +12,9 @@ const args = {
 
 export const tool$triggersDeleteTrigger: ToolDefinition<typeof args> = {
   name: "delete-trigger",
-  description:
-    `Purpose: Permanently removes an event trigger from your Cloudinary account, stopping all webhook notifications for the specified trigger configuration.
-Usage: Use this to clean up unused triggers, remove deprecated webhook endpoints, or stop notifications that are no longer needed. Essential for maintaining organized webhook configurations and reducing unnecessary network traffic.
-Example request: DELETE /notifications/triggers/c2c822dd1aa41ba6d81299df8b5ae949
-Parameters: id(trigger identifier from URL path)
-When Not to Use: Don't delete triggers that are still needed for production workflows. Avoid deleting without confirming the trigger ID, as this action cannot be undone.
-Output: Returns deletion confirmation: message(success confirmation - typically "ok")
-Example output: {"message": "ok"}
-`,
+  description: `Deletes a notification trigger
+
+Deletes a trigger.`,
   scopes: ["admin"],
   args,
   tool: async (client, args, ctx) => {

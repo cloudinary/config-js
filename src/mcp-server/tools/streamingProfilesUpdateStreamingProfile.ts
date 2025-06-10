@@ -17,11 +17,7 @@ export const tool$streamingProfilesUpdateStreamingProfile: ToolDefinition<
 > = {
   name: "update-streaming-profile",
   description:
-    `Purpose: Modifies an existing adaptive streaming profile's configuration. You can update both custom and built-in profiles by providing a new set of video representations (transformations), which will replace the profile's previous representations entirely. This allows you to change the resolutions, bitrates, codecs, or other settings of the streaming profile while keeping the same profile name.
-Usage: Use this operation to adjust an established streaming profile when requirements change. For example, you might add a lower-resolution fallback representation to a custom profile or tweak the bitrate of a built-in profile's entries to better suit your audience's bandwidth. To use it, provide the target profile's name and a full updated list of representations that should define the profile. The next time that profile is used for encoding, it will use these new settings.
-When Not to Use: Do not call this for a profile name that doesn't exist in your account (it will fail with a 'not found' error — use **create-streaming-profile** first if needed). If a built-in profile already meets your needs as provided, there's no need to update it (unnecessary overrides can be avoided). Also, this operation is not for retrieving profile info (use **get-streaming-profile** for that) and not for removing profiles (use **delete-streaming-profile** if you intend to remove or reset a profile).
-Output: Returns the streaming profile's details after the update, reflecting the new configuration. In the response, you will see the profile's name and properties with the updated list of representations, confirming the changes were applied successfully.
-`,
+    `Modifies an existing adaptive streaming profile's configuration`,
   scopes: ["builder"],
   args,
   tool: async (client, args, ctx) => {

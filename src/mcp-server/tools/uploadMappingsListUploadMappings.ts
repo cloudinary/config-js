@@ -17,13 +17,10 @@ export const tool$uploadMappingsListUploadMappings: ToolDefinition<
 > = {
   name: "list-upload-mappings",
   description:
-    `Purpose: Retrieves all upload mappings configured in your Cloudinary account, which define custom URL structures for accessing assets in specific folders, enabling branded or custom domain delivery patterns.
-Usage: Use this to audit existing URL mappings, understand current delivery configurations, troubleshoot URL routing issues, or review mappings before creating new ones. Essential for managing custom domain setups and branded asset delivery.
-Example request: GET /upload_mappings?folder=products&max_results=50
-Parameters: folder(optional - filter by specific folder), max_results(pagination limit 1-500), next_cursor(pagination token)
-When Not to Use: Not needed for standard Cloudinary URL delivery. Avoid frequent polling as mappings change infrequently.
-Output: Returns mapping list or single mapping: mappings array containing folder(folder path), template(URL pattern), external_id(unique identifier), created_at(creation time), plus total_entries(count) and next_cursor(pagination) for lists
-Example output: {"mappings":[{"folder":"products","template":"https://cdn.example.com/{public_id}","external_id":"map_123","created_at":"2023-01-15T18:00:00Z"}],"total_entries":1}
+    `Retrieves a list of all upload mapping rules configured in your Cloudinary product environment
+
+Returns a list of all upload mappings defined for your account.
+Upload mappings allow you to map an upload preset to a specific folder and URL template.
 `,
   scopes: ["builder"],
   args,

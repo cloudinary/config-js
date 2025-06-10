@@ -14,15 +14,9 @@ export const tool$metadataFieldsCreateMetadataField: ToolDefinition<
   typeof args
 > = {
   name: "create-metadata-field",
-  description:
-    `Purpose: Creates a new structured metadata field that can be used to store custom information with your assets. Metadata fields define the schema for storing structured data like product information, content tags, or custom attributes that can be searched and filtered.
-Usage: Use this to establish custom data structures for your assets, enabling rich content organization and searchability. Essential for content management workflows, asset categorization, and building custom asset management interfaces.
-Example request: {"type": "string", "label": "Product Category", "external_id": "product_category", "mandatory": false, "default_value": "uncategorized"}
-Parameters: type(field data type - string/integer/date/enum/set), label(human-readable field name), external_id(unique field identifier), mandatory(whether field is required), default_value(default field value), datasource(for enum/set types - predefined values), validation(validation rules), restrictions(field access restrictions)
-When Not to Use: Don't create fields for data that changes frequently or is better suited for tags. Avoid creating too many fields as this can impact performance and user experience.
-Output: Returns created metadata field configuration: external_id(unique identifier), type(field type), label(display name), mandatory(required status), default_value(default value), datasource(available values for enum/set types), validation(field rules), created_at(creation timestamp)
-Example output: {"external_id":"product_category","type":"string","label":"Product Category","mandatory":false,"default_value":"uncategorized","created_at":"2023-01-15T10:00:00Z"}
-`,
+  description: `Creates a new structured metadata field in your account
+
+Creates a new metadata field with the specified properties and configuration.`,
   scopes: ["admin"],
   args,
   tool: async (client, args, ctx) => {

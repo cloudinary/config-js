@@ -13,13 +13,9 @@ const args = {
 export const tool$triggersListTrigger: ToolDefinition<typeof args> = {
   name: "list-triggers",
   description:
-    `Purpose: Retrieves a comprehensive list of all event triggers and notification configurations in your Cloudinary account. Event triggers automatically send HTTP notifications to your specified URLs when specific events occur (like asset uploads, deletions, or transformations).
-Usage: Use this to audit existing webhook configurations, manage event notification setups, or discover what events are currently being monitored. Essential for webhook management and event-driven integration monitoring.
-Example request: GET /notifications/triggers?event_type=upload
-Parameters: event_type(filter triggers by specific event type - upload, delete, transformation, etc.)
-When Not to Use: Don't use for creating or modifying triggers (use create-trigger or update-trigger instead), real-time event processing, or when you need immediate notification delivery status.
-Output: Returns array of trigger configurations: triggers(array of trigger objects), total(total count of triggers). Each trigger object contains: id(trigger identifier), uri(notification URL), event_type(triggering event), created_at(creation timestamp), updated_at(last modification time)
-Example output: {"triggers":[{"id":"12345678","uri":"https://webhook.site/124","event_type":"upload","created_at":"2023-01-15T10:00:00Z","updated_at":"2023-01-15T10:00:00Z"}],"total":1}
+    `Lists all webhook notification triggers configured for your product environmentcloudinary
+
+Retrieves a list of all event triggers and notifications within your product environment.
 `,
   scopes: ["admin"],
   args,

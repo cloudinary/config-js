@@ -17,13 +17,9 @@ export const tool$transformationsCreateTransformation: ToolDefinition<
 > = {
   name: "create-transformation",
   description:
-    `Purpose: Creates a new named transformation that can be referenced by a simple name instead of using the full transformation parameter string. Named transformations provide reusable transformation templates that can be applied consistently across your applications.
-Usage: Use this to create commonly-used transformation patterns that can be referenced by name rather than repeating complex parameter strings. Essential for establishing consistent media processing workflows and simplifying application code.
-Example request: {"transformation": "c_fill,w_300,h_300,q_auto", "allowed_for_strict": true}
-Parameters: transformation(complete transformation parameter string), allowed_for_strict(whether transformation can be used in strict mode - boolean)
-When Not to Use: Don't create named transformations for one-time use cases or rarely-used parameter combinations. Avoid creating duplicates of existing named transformations - check existing transformations first using list-transformations.
-Output: Returns creation confirmation with transformation name: message(creation status confirmation)
-Example output: {"message": "created"}
+    `Creates a new named transformation (assigning a custom name to a set of transformation
+
+Creates a new named transformation with the given name and transformation string.
 `,
   scopes: ["admin"],
   args,

@@ -14,14 +14,9 @@ export const tool$metadataRulesListMetadataRules: ToolDefinition<typeof args> =
   {
     name: "list-metadata-rules",
     description:
-      `Purpose: Retrieves all automated metadata rules configured in your Cloudinary account, providing complete visibility into your metadata automation workflows and rule configurations.
-Usage: Use this to audit existing metadata rules, understand current automation logic, troubleshoot metadata assignment issues, or review rule configurations before creating new ones. Essential for metadata rule management and workflow optimization.
-Example request: GET /metadata_rules
-Parameters: None required - returns all rules in the account
-When Not to Use: Not needed for simple metadata operations that don't involve automation. Avoid frequent polling as metadata rules change infrequently.
-Output: Returns comprehensive rule list: metadata_rules array containing external_id(unique identifiers), metadata_field_id(target fields), name(rule descriptions), condition(trigger criteria), result(assigned values), state(activation status), position(execution order), created_at(creation timestamps), updated_at(modification times)
-Example output: {"metadata_rules":[{"external_id":"rule_123","metadata_field_id":"product_category","name":"Auto-tag electronics","condition":{"tags":{"$in":["electronics"]}},"result":{"value":"electronics"},"state":"active","position":1,"created_at":"2023-01-15T16:00:00Z"}]}
-`,
+      `Retrieves a list of all conditional metadata rules defined in your accountcloudinary
+
+Retrieves a list of all metadata rules in the cloud.`,
     scopes: ["builder"],
     args,
     tool: async (client, args, ctx) => {

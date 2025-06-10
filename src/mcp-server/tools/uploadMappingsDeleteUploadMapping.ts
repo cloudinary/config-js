@@ -14,16 +14,9 @@ export const tool$uploadMappingsDeleteUploadMapping: ToolDefinition<
   typeof args
 > = {
   name: "delete-upload-mapping",
-  description:
-    `Purpose: Permanently removes custom URL mappings for specific folders, stopping branded or custom domain delivery for assets in those folders and reverting to standard Cloudinary URL patterns.
-Usage: Use this to clean up unused mappings, remove deprecated custom domains, or eliminate mapping configurations that are no longer needed. Essential for maintaining clean URL routing and removing outdated branded delivery setups.
-Example request: DELETE /upload_mappings?folder=old_products
-Parameters: folder(folder path of mapping to remove)
-Warning: This permanently removes the custom URL mapping and affects how assets in this folder are delivered. Ensure alternative delivery methods are in place if needed.
-When Not to Use: Don't delete mappings that are actively used in production without confirming impact on asset delivery. Avoid deletion during high-traffic periods.
-Output: Returns deletion confirmation: message(deletion status), external_id(unique identifier of deleted mapping)
-Example output: {"message": "deleted", "external_id": "mapping_456"}
-`,
+  description: `Deletes a folder upload mapping
+
+Permanently deletes the upload mapping for the specified folder`,
   scopes: ["builder"],
   args,
   tool: async (client, args, ctx) => {

@@ -16,14 +16,9 @@ export const tool$transformationsUpdateTransformation: ToolDefinition<
   typeof args
 > = {
   name: "update-transformation",
-  description:
-    `Purpose: Updates the settings of an existing named or unnamed transformation, allowing you to modify the transformation string or change whether it's allowed in strict mode without creating a new transformation.
-Usage: Use this to modify existing transformation configurations when requirements change, such as updating quality settings or adding new processing parameters. Essential for maintaining transformation consistency across applications.
-Example request: {"allowed_for_strict": false, "unsafe_update": "c_fill,w_400,h_400,q_80"}
-Parameters: allowed_for_strict(whether transformation can be used in strict mode), unsafe_update(new transformation parameter string - use with caution)
-When Not to Use: Avoid updating transformations that are actively used in production without careful testing, as this affects all assets using that transformation. Don't use for creating new transformations - use create-transformation instead.
-Output: Returns update confirmation: message(update status confirmation)
-Example output: {"message": "updated"}
+  description: `Updates the definition of an existing named transformation
+
+Update an existing named or unnamed transformation.
 `,
   scopes: ["admin"],
   args,

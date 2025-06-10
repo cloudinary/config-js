@@ -1,21 +1,21 @@
-speakeasyVersion: 1.557.1
+speakeasyVersion: 1.559.0
 sources:
     Config API:
         sourceNamespace: config-api
-        sourceRevisionDigest: sha256:67c19edfd5a3320d1e9fd7e77a52432307e94e0526f063929a47db8ea7d70280
-        sourceBlobDigest: sha256:7e833885b23e7d22ab82e5a39d3755ec3a05fbf7e6d2032b24a0dd949b2fc8a8
+        sourceRevisionDigest: sha256:56e8f09544e5a8c63d1404071a88516e31826454d473e5ef72ab752c1e0d53fb
+        sourceBlobDigest: sha256:2c8b408ca63994318f80556d42f15591fc8efc28d877a149afb64435b56f4533
         tags:
             - latest
-            - speakeasy-sdk-regen-1749481726
+            - speakeasy-sdk-regen-1749556078
             - 0.2.0
 targets:
     config-js:
         source: Config API
         sourceNamespace: config-api
-        sourceRevisionDigest: sha256:67c19edfd5a3320d1e9fd7e77a52432307e94e0526f063929a47db8ea7d70280
-        sourceBlobDigest: sha256:7e833885b23e7d22ab82e5a39d3755ec3a05fbf7e6d2032b24a0dd949b2fc8a8
+        sourceRevisionDigest: sha256:56e8f09544e5a8c63d1404071a88516e31826454d473e5ef72ab752c1e0d53fb
+        sourceBlobDigest: sha256:2c8b408ca63994318f80556d42f15591fc8efc28d877a149afb64435b56f4533
         codeSamplesNamespace: config-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:cbeaee5c0145ad7035e0c9bcfdbf3e8df66313dfa05c8cab0ba59e766f911dd9
+        codeSamplesRevisionDigest: sha256:505de3ced6002d3a5068a992c33d36e5bcde33da30b083bb557e05c9b2e10d30
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -27,6 +27,7 @@ workflow:
                 - location: https://cloudinary.github.io/api-schemas/overlays/security-scheme-cloud-overlay.yaml
                 - location: https://cloudinary.github.io/api-schemas/overlays/cloud-name-overlay.yml
                 - location: https://cloudinary.github.io/api-schemas/overlays/mcp-disabled.yml
+                - location: https://cloudinary.github.io/api-schemas/overlays/remove-mcp-description.yml
             registry:
                 location: registry.speakeasyapi.dev/cloudinary/cloudinary/config-api
     targets:
