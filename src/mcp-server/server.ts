@@ -13,17 +13,6 @@ import {
 } from "./resources.js";
 import { MCPScope } from "./scopes.js";
 import { createRegisterTool } from "./tools.js";
-import { tool$metadataFieldsCreateMetadataField } from "./tools/metadataFieldsCreateMetadataField.js";
-import { tool$metadataFieldsDeleteMetadataField } from "./tools/metadataFieldsDeleteMetadataField.js";
-import { tool$metadataFieldsDeleteMetadataFieldDatasource } from "./tools/metadataFieldsDeleteMetadataFieldDatasource.js";
-import { tool$metadataFieldsGetMetadataField } from "./tools/metadataFieldsGetMetadataField.js";
-import { tool$metadataFieldsListMetadataFields } from "./tools/metadataFieldsListMetadataFields.js";
-import { tool$metadataFieldsUpdateMetadataField } from "./tools/metadataFieldsUpdateMetadataField.js";
-import { tool$metadataFieldsUpdateMetadataFieldDatasource } from "./tools/metadataFieldsUpdateMetadataFieldDatasource.js";
-import { tool$metadataRulesCreateMetadataRule } from "./tools/metadataRulesCreateMetadataRule.js";
-import { tool$metadataRulesDeleteMetadataRule } from "./tools/metadataRulesDeleteMetadataRule.js";
-import { tool$metadataRulesListMetadataRules } from "./tools/metadataRulesListMetadataRules.js";
-import { tool$metadataRulesUpdateMetadataRule } from "./tools/metadataRulesUpdateMetadataRule.js";
 import { tool$streamingProfilesCreateStreamingProfile } from "./tools/streamingProfilesCreateStreamingProfile.js";
 import { tool$streamingProfilesDeleteStreamingProfile } from "./tools/streamingProfilesDeleteStreamingProfile.js";
 import { tool$streamingProfilesGetStreamingProfile } from "./tools/streamingProfilesGetStreamingProfile.js";
@@ -61,7 +50,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CloudinaryConfig",
-    version: "0.3.1",
+    version: "0.3.2",
   });
 
   const client = new CloudinaryConfigCore({
@@ -104,17 +93,6 @@ export function createMCPServer(deps: {
   tool(tool$uploadPresetsGetUploadPreset);
   tool(tool$uploadPresetsUpdateUploadPreset);
   tool(tool$uploadPresetsDeleteUploadPreset);
-  tool(tool$metadataFieldsCreateMetadataField);
-  tool(tool$metadataFieldsListMetadataFields);
-  tool(tool$metadataFieldsGetMetadataField);
-  tool(tool$metadataFieldsUpdateMetadataField);
-  tool(tool$metadataFieldsDeleteMetadataField);
-  tool(tool$metadataFieldsUpdateMetadataFieldDatasource);
-  tool(tool$metadataFieldsDeleteMetadataFieldDatasource);
-  tool(tool$metadataRulesCreateMetadataRule);
-  tool(tool$metadataRulesListMetadataRules);
-  tool(tool$metadataRulesUpdateMetadataRule);
-  tool(tool$metadataRulesDeleteMetadataRule);
   tool(tool$uploadMappingsListUploadMappings);
   tool(tool$uploadMappingsCreateUploadMapping);
   tool(tool$uploadMappingsUpdateUploadMapping);

@@ -3,8 +3,6 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { MetadataFields } from "./metadatafields.js";
-import { MetadataRules } from "./metadatarules.js";
 import { StreamingProfiles } from "./streamingprofiles.js";
 import { Transformations } from "./transformations.js";
 import { Triggers } from "./triggers.js";
@@ -20,16 +18,6 @@ export class CloudinaryConfig extends ClientSDK {
   private _uploadPresets?: UploadPresets;
   get uploadPresets(): UploadPresets {
     return (this._uploadPresets ??= new UploadPresets(this._options));
-  }
-
-  private _metadataFields?: MetadataFields;
-  get metadataFields(): MetadataFields {
-    return (this._metadataFields ??= new MetadataFields(this._options));
-  }
-
-  private _metadataRules?: MetadataRules;
-  get metadataRules(): MetadataRules {
-    return (this._metadataRules ??= new MetadataRules(this._options));
   }
 
   private _uploadMappings?: UploadMappings;

@@ -76,7 +76,7 @@ export type ResponsiveBreakpoint = {
 /**
  * The delivery type that defines if and how the uploaded asset is available for public delivery. By default, all uploaded assets are public (upload). Possible values are upload, authenticated, private or asset.
  */
-export const UploadPresetType = {
+export const Type = {
   Upload: "upload",
   Authenticated: "authenticated",
   Private: "private",
@@ -85,7 +85,7 @@ export const UploadPresetType = {
 /**
  * The delivery type that defines if and how the uploaded asset is available for public delivery. By default, all uploaded assets are public (upload). Possible values are upload, authenticated, private or asset.
  */
-export type UploadPresetType = ClosedEnum<typeof UploadPresetType>;
+export type Type = ClosedEnum<typeof Type>;
 
 /**
  * Allows the asset to behave as if it's of the authenticated 'type' (see above) while still using the default 'upload' type in delivery URLs. The asset can later be made public by changing its access_mode via the Admin API, without having to update any delivery URLs. Valid values: public, and authenticated.
@@ -326,7 +326,7 @@ export type UploadPreset = {
   /**
    * The delivery type that defines if and how the uploaded asset is available for public delivery. By default, all uploaded assets are public (upload). Possible values are upload, authenticated, private or asset.
    */
-  type?: UploadPresetType | undefined;
+  type?: Type | undefined;
   /**
    * Allows the asset to behave as if it's of the authenticated 'type' (see above) while still using the default 'upload' type in delivery URLs. The asset can later be made public by changing its access_mode via the Admin API, without having to update any delivery URLs. Valid values: public, and authenticated.
    *
@@ -600,24 +600,23 @@ export function responsiveBreakpointFromJSON(
 }
 
 /** @internal */
-export const UploadPresetType$inboundSchema: z.ZodNativeEnum<
-  typeof UploadPresetType
-> = z.nativeEnum(UploadPresetType);
+export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
+  Type,
+);
 
 /** @internal */
-export const UploadPresetType$outboundSchema: z.ZodNativeEnum<
-  typeof UploadPresetType
-> = UploadPresetType$inboundSchema;
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
+  Type$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UploadPresetType$ {
-  /** @deprecated use `UploadPresetType$inboundSchema` instead. */
-  export const inboundSchema = UploadPresetType$inboundSchema;
-  /** @deprecated use `UploadPresetType$outboundSchema` instead. */
-  export const outboundSchema = UploadPresetType$outboundSchema;
+export namespace Type$ {
+  /** @deprecated use `Type$inboundSchema` instead. */
+  export const inboundSchema = Type$inboundSchema;
+  /** @deprecated use `Type$outboundSchema` instead. */
+  export const outboundSchema = Type$outboundSchema;
 }
 
 /** @internal */
@@ -738,7 +737,7 @@ export const UploadPreset$inboundSchema: z.ZodType<
   discard_original_filename: z.boolean().optional(),
   overwrite: z.boolean().optional(),
   return_delete_token: z.boolean().optional(),
-  type: UploadPresetType$inboundSchema.optional(),
+  type: Type$inboundSchema.optional(),
   access_mode: AccessMode$inboundSchema.optional(),
   categorization: Categorization$inboundSchema.optional(),
   ocr: Ocr$inboundSchema.optional(),
@@ -909,7 +908,7 @@ export const UploadPreset$outboundSchema: z.ZodType<
   discardOriginalFilename: z.boolean().optional(),
   overwrite: z.boolean().optional(),
   returnDeleteToken: z.boolean().optional(),
-  type: UploadPresetType$outboundSchema.optional(),
+  type: Type$outboundSchema.optional(),
   accessMode: AccessMode$outboundSchema.optional(),
   categorization: Categorization$outboundSchema.optional(),
   ocr: Ocr$outboundSchema.optional(),

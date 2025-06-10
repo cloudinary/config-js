@@ -31,8 +31,8 @@ export class UploadPresets extends ClientSDK {
    * Lists all upload presets configured in the account
    */
   async listUploadPresets(
-    orderBy?: operations.ListUploadPresetsOrderBy | undefined,
-    direction?: operations.ListUploadPresetsDirection | undefined,
+    orderBy?: operations.OrderBy | undefined,
+    direction?: operations.Direction | undefined,
     nextCursor?: number | undefined,
     options?: RequestOptions,
   ): Promise<operations.ListUploadPresetsResponse> {
