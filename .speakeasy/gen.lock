@@ -3,10 +3,10 @@ id: b863a9b5-6231-49a5-af17-282115e1a208
 management:
   docChecksum: f2e5c97c2172203fee51eca4b6d9aefc
   docVersion: 0.2.2
-  speakeasyVersion: 1.559.0
-  generationVersion: 2.624.0
-  releaseVersion: 0.3.2
-  configChecksum: a6cbfbc986fa1fd96cb4d08f9c4bc797
+  speakeasyVersion: 1.561.0
+  generationVersion: 2.628.0
+  releaseVersion: 0.3.3
+  configChecksum: 2204daf7b9b07e22636a1c4362a6288f
   repoURL: https://github.com/cloudinary/config-js.git
   installationURL: https://github.com/cloudinary/config-js
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.10
+    core: 3.21.11
     customSecuritySchemes: 0.1.1
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
@@ -307,6 +307,18 @@ examples:
           application/json: {"transformations": [{"name": "t_small_profile_thumbnail", "allowed_for_strict": true, "used": false, "named": true}, {"name": "t_small_profile_thumbnail", "allowed_for_strict": true, "used": false, "named": true}, {"name": "t_small_profile_thumbnail", "allowed_for_strict": true, "used": false, "named": true}]}
         "400":
           application/json: {"error": {"message": "<value>"}}
+    speakeasy-default-list-transformations:
+      parameters:
+        path:
+          cloud_name: "<value>"
+        query:
+          max_results: 20
+          next_cursor: "8edbc61040178db60b0973ca9494bf3a"
+      responses:
+        "200":
+          application/json: {"transformations": [{"name": "t_small_profile_thumbnail", "allowed_for_strict": true, "used": false, "named": true}]}
+        "400":
+          application/json: {"error": {"message": "<value>"}}
   getTransformation:
     named:
       parameters:
@@ -392,6 +404,18 @@ examples:
         "400":
           application/json: {"error": {"message": "<value>"}}
     "":
+      parameters:
+        path:
+          cloud_name: "<value>"
+          transformation: "<value>"
+        query:
+          invalidate: true
+      responses:
+        "200":
+          application/json: {}
+        "400":
+          application/json: {"error": {"message": "<value>"}}
+    speakeasy-default-delete-transformation:
       parameters:
         path:
           cloud_name: "<value>"
@@ -750,6 +774,18 @@ examples:
       responses:
         "400":
           application/json: {"error": {"message": "missing_attributes"}}
+    speakeasy-default-update-trigger:
+      parameters:
+        path:
+          cloud_name: "<value>"
+          id: "c2c822dd1aa41ba6d81299df8b5ae949"
+      requestBody:
+        application/json: {"new_uri": "http://example.com"}
+      responses:
+        "200":
+          application/json: {"message": "ok"}
+        "400":
+          application/json: {"error": {"message": "<value>"}}
   deleteTrigger:
     speakeasy-default-delete-trigger:
       parameters:
