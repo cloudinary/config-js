@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateTriggerRequest } from "@cloudinary/config/models/operations";
+import { CreateTriggerRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: CreateTriggerRequest = {
   uri: "https://trigger.site/124",

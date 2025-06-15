@@ -20,9 +20,9 @@ Creates a new adaptive streaming profile in your Cloudinary account
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -31,7 +31,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.streamingProfiles.createStreamingProfile({
+  const result = await cloudinaryEnvConfig.streamingProfiles.createStreamingProfile({
     name: "hd_1080p",
     displayName: "HD 1080p",
     representations: "[{\"transformation\":\"w_1920,h_1080,c_scale/vc_h264,br_2500k/ac_aac,abr_128k/fps_30\"},{\"transformation\":\"w_1280,h_720,c_scale/vc_h264,br_1500k/ac_aac,abr_128k/fps_30\"}]",
@@ -48,12 +48,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { streamingProfilesCreateStreamingProfile } from "@cloudinary/config/funcs/streamingProfilesCreateStreamingProfile.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { streamingProfilesCreateStreamingProfile } from "@cloudinary/environment-config/funcs/streamingProfilesCreateStreamingProfile.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -62,7 +62,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await streamingProfilesCreateStreamingProfile(cloudinaryConfig, {
+  const res = await streamingProfilesCreateStreamingProfile(cloudinaryEnvConfig, {
     name: "hd_1080p",
     displayName: "HD 1080p",
     representations: "[{\"transformation\":\"w_1920,h_1080,c_scale/vc_h264,br_2500k/ac_aac,abr_128k/fps_30\"},{\"transformation\":\"w_1280,h_720,c_scale/vc_h264,br_1500k/ac_aac,abr_128k/fps_30\"}]",
@@ -107,9 +107,9 @@ Lists all adaptive streaming profiles (both built-in and custom) defined in your
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -118,7 +118,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.streamingProfiles.getStreamingProfiles({});
+  const result = await cloudinaryEnvConfig.streamingProfiles.getStreamingProfiles({});
 
   console.log(result);
 }
@@ -131,12 +131,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { streamingProfilesGetStreamingProfiles } from "@cloudinary/config/funcs/streamingProfilesGetStreamingProfiles.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { streamingProfilesGetStreamingProfiles } from "@cloudinary/environment-config/funcs/streamingProfilesGetStreamingProfiles.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -145,7 +145,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await streamingProfilesGetStreamingProfiles(cloudinaryConfig, {});
+  const res = await streamingProfilesGetStreamingProfiles(cloudinaryEnvConfig, {});
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -183,9 +183,9 @@ Retrieves the details of a single adaptive streaming profile by its name
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -194,7 +194,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.streamingProfiles.getStreamingProfile("<value>");
+  const result = await cloudinaryEnvConfig.streamingProfiles.getStreamingProfile("<value>");
 
   console.log(result);
 }
@@ -207,12 +207,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { streamingProfilesGetStreamingProfile } from "@cloudinary/config/funcs/streamingProfilesGetStreamingProfile.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { streamingProfilesGetStreamingProfile } from "@cloudinary/environment-config/funcs/streamingProfilesGetStreamingProfile.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -221,7 +221,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await streamingProfilesGetStreamingProfile(cloudinaryConfig, "<value>");
+  const res = await streamingProfilesGetStreamingProfile(cloudinaryEnvConfig, "<value>");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -260,9 +260,9 @@ Modifies an existing adaptive streaming profile's configuration
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -271,7 +271,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.streamingProfiles.updateStreamingProfile("<value>", {
+  const result = await cloudinaryEnvConfig.streamingProfiles.updateStreamingProfile("<value>", {
     displayName: "HD 1080p Updated",
     representations: "[{\"transformation\":\"w_1920,h_1080,c_scale/vc_h264,br_3000k/ac_aac,abr_192k/fps_30\"},{\"transformation\":\"w_1280,h_720,c_scale/vc_h264,br_2000k/ac_aac,abr_192k/fps_30\"}]",
   });
@@ -287,12 +287,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { streamingProfilesUpdateStreamingProfile } from "@cloudinary/config/funcs/streamingProfilesUpdateStreamingProfile.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { streamingProfilesUpdateStreamingProfile } from "@cloudinary/environment-config/funcs/streamingProfilesUpdateStreamingProfile.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -301,7 +301,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await streamingProfilesUpdateStreamingProfile(cloudinaryConfig, "<value>", {
+  const res = await streamingProfilesUpdateStreamingProfile(cloudinaryEnvConfig, "<value>", {
     displayName: "HD 1080p Updated",
     representations: "[{\"transformation\":\"w_1920,h_1080,c_scale/vc_h264,br_3000k/ac_aac,abr_192k/fps_30\"},{\"transformation\":\"w_1280,h_720,c_scale/vc_h264,br_2000k/ac_aac,abr_192k/fps_30\"}]",
   });
@@ -344,9 +344,9 @@ Delete custom streaming profile or revert built-in profile to the original setti
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -355,7 +355,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.streamingProfiles.deleteStreamingProfile("<value>");
+  const result = await cloudinaryEnvConfig.streamingProfiles.deleteStreamingProfile("<value>");
 
   console.log(result);
 }
@@ -368,12 +368,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { streamingProfilesDeleteStreamingProfile } from "@cloudinary/config/funcs/streamingProfilesDeleteStreamingProfile.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { streamingProfilesDeleteStreamingProfile } from "@cloudinary/environment-config/funcs/streamingProfilesDeleteStreamingProfile.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -382,7 +382,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await streamingProfilesDeleteStreamingProfile(cloudinaryConfig, "<value>");
+  const res = await streamingProfilesDeleteStreamingProfile(cloudinaryEnvConfig, "<value>");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

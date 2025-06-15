@@ -4,13 +4,13 @@
 
 import * as z from "zod";
 import * as components from "../components/index.js";
-import { CloudinaryConfigError } from "./cloudinaryconfigerror.js";
+import { CloudinaryEnvConfigError } from "./cloudinaryenvconfigerror.js";
 
 export type ApiErrorData = {
   error: components.ErrorT;
 };
 
-export class ApiError extends CloudinaryConfigError {
+export class ApiError extends CloudinaryEnvConfigError {
   error: components.ErrorT;
 
   /** The original data that was passed to this error instance. */

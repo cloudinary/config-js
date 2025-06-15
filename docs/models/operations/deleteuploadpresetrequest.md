@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteUploadPresetRequest } from "@cloudinary/config/models/operations";
+import { DeleteUploadPresetRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: DeleteUploadPresetRequest = {
   name: "<value>",

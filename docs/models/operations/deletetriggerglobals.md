@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteTriggerGlobals } from "@cloudinary/config/models/operations";
+import { DeleteTriggerGlobals } from "@cloudinary/environment-config/models/operations";
 
 let value: DeleteTriggerGlobals = {
   cloudName: "<value>",

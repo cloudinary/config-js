@@ -5,7 +5,7 @@ Represents an upload mapping
 ## Example Usage
 
 ```typescript
-import { UploadMapping } from "@cloudinary/config/models/components";
+import { UploadMapping } from "@cloudinary/environment-config/models/components";
 
 let value: UploadMapping = {
   folder: "my_folder",

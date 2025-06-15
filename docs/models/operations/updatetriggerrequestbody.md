@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateTriggerRequestBody } from "@cloudinary/config/models/operations";
+import { UpdateTriggerRequestBody } from "@cloudinary/environment-config/models/operations";
 
 let value: UpdateTriggerRequestBody = {
   newUri: "http://example.com",

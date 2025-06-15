@@ -1,14 +1,14 @@
 lockVersion: 2.0.0
 id: b863a9b5-6231-49a5-af17-282115e1a208
 management:
-  docChecksum: f2e5c97c2172203fee51eca4b6d9aefc
-  docVersion: 0.2.2
-  speakeasyVersion: 1.561.0
-  generationVersion: 2.628.0
-  releaseVersion: 0.3.3
-  configChecksum: 2204daf7b9b07e22636a1c4362a6288f
-  repoURL: https://github.com/cloudinary/config-js.git
-  installationURL: https://github.com/cloudinary/config-js
+  docChecksum: 6ae23d08576a5c4f2da96f72bbcb8ec1
+  docVersion: 0.2.5
+  speakeasyVersion: 1.563.1
+  generationVersion: 2.629.1
+  releaseVersion: 0.3.4
+  configChecksum: f2fa6f965b6ff88d6511ac75c055940e
+  repoURL: https://github.com/cloudinary/environment-config-js.git
+  installationURL: https://github.com/cloudinary/environment-config-js
   published: true
 features:
   typescript:
@@ -139,7 +139,7 @@ generatedFiles:
   - docs/models/operations/updateuploadpresetglobals.md
   - docs/models/operations/updateuploadpresetrequest.md
   - docs/models/operations/updateuploadpresetresponse.md
-  - docs/sdks/cloudinaryconfig/README.md
+  - docs/sdks/cloudinaryenvconfig/README.md
   - docs/sdks/streamingprofiles/README.md
   - docs/sdks/transformations/README.md
   - docs/sdks/triggers/README.md
@@ -245,7 +245,7 @@ generatedFiles:
   - src/models/components/uploadpreset.ts
   - src/models/components/uritype.ts
   - src/models/errors/apierror.ts
-  - src/models/errors/cloudinaryconfigerror.ts
+  - src/models/errors/cloudinaryenvconfigerror.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
   - src/models/errors/responsevalidationerror.ts

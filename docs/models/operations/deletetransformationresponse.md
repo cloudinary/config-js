@@ -5,7 +5,7 @@ Transformation deleted
 ## Example Usage
 
 ```typescript
-import { DeleteTransformationResponse } from "@cloudinary/config/models/operations";
+import { DeleteTransformationResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: DeleteTransformationResponse = {};
 ```

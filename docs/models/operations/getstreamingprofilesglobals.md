@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GetStreamingProfilesGlobals } from "@cloudinary/config/models/operations";
+import { GetStreamingProfilesGlobals } from "@cloudinary/environment-config/models/operations";
 
 let value: GetStreamingProfilesGlobals = {
   cloudName: "<value>",

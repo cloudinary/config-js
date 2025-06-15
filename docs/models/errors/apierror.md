@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ApiError } from "@cloudinary/config/models/errors";
+import { ApiError } from "@cloudinary/environment-config/models/errors";
 
 // No examples available for this model
 ```

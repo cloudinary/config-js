@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ReplaceUploadMappingsRequest } from "@cloudinary/config/models/operations";
+import { ReplaceUploadMappingsRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: ReplaceUploadMappingsRequest = {
   mappings: [],

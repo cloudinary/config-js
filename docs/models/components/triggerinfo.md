@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TriggerInfo } from "@cloudinary/config/models/components";
+import { TriggerInfo } from "@cloudinary/environment-config/models/components";
 
 let value: TriggerInfo = {
   id: "c2c822dd1aa41ba6d81299df8b5ae949",

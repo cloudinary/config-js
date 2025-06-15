@@ -19,12 +19,12 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { transformationsListTransformations } from "@cloudinary/config/funcs/transformationsListTransformations.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { transformationsListTransformations } from "@cloudinary/environment-config/funcs/transformationsListTransformations.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -33,7 +33,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await transformationsListTransformations(cloudinaryConfig, 20, "8edbc61040178db60b0973ca9494bf3a");
+  const res = await transformationsListTransformations(cloudinaryEnvConfig, 20, "8edbc61040178db60b0973ca9494bf3a");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

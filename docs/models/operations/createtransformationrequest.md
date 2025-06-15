@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateTransformationRequest } from "@cloudinary/config/models/operations";
+import { CreateTransformationRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: CreateTransformationRequest = {
   transformation: "small_profile_thumbnail",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateTriggerRequest } from "@cloudinary/config/models/operations";
+import { UpdateTriggerRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: UpdateTriggerRequest = {
   id: "c2c822dd1aa41ba6d81299df8b5ae949",

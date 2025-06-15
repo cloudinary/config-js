@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { OrderBy } from "@cloudinary/config/models/operations";
+import { OrderBy } from "@cloudinary/environment-config/models/operations";
 
 let value: OrderBy = "id";
 ```

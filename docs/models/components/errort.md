@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ErrorT } from "@cloudinary/config/models/components";
+import { ErrorT } from "@cloudinary/environment-config/models/components";
 
 let value: ErrorT = {
   message: "<value>",

@@ -5,7 +5,7 @@ List response
 ## Example Usage
 
 ```typescript
-import { ListTriggerResponse } from "@cloudinary/config/models/operations";
+import { ListTriggerResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: ListTriggerResponse = {
   triggers: [],

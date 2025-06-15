@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteStreamingProfileRequest } from "@cloudinary/config/models/operations";
+import { DeleteStreamingProfileRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: DeleteStreamingProfileRequest = {
   name: "<value>",

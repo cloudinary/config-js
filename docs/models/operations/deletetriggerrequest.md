@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteTriggerRequest } from "@cloudinary/config/models/operations";
+import { DeleteTriggerRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: DeleteTriggerRequest = {
   id: "c2c822dd1aa41ba6d81299df8b5ae949",

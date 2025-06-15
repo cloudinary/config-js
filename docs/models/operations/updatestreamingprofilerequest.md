@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateStreamingProfileRequest } from "@cloudinary/config/models/operations";
+import { UpdateStreamingProfileRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: UpdateStreamingProfileRequest = {
   name: "<value>",

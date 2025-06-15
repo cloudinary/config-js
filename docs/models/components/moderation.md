@@ -22,7 +22,7 @@ Note: Rejected assets are automatically invalidated on the CDN within approximat
 ## Example Usage
 
 ```typescript
-import { Moderation } from "@cloudinary/config/models/components";
+import { Moderation } from "@cloudinary/environment-config/models/components";
 
 let value: Moderation = "aws_rek_video";
 ```

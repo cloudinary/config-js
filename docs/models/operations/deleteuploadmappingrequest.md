@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteUploadMappingRequest } from "@cloudinary/config/models/operations";
+import { DeleteUploadMappingRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: DeleteUploadMappingRequest = {
   folder: "<value>",

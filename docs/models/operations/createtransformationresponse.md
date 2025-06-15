@@ -5,7 +5,7 @@ Transformation created
 ## Example Usage
 
 ```typescript
-import { CreateTransformationResponse } from "@cloudinary/config/models/operations";
+import { CreateTransformationResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: CreateTransformationResponse = {};
 ```

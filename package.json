@@ -1,6 +1,6 @@
 {
-  "name": "@cloudinary/config",
-  "version": "0.3.3",
+  "name": "@cloudinary/environment-config",
+  "version": "0.3.4",
   "author": "Cloudinary",
   "type": "module",
   "bin": {
@@ -8,7 +8,7 @@
   },
   "tshy": {
     "sourceDialects": [
-      "@cloudinary/config/source"
+      "@cloudinary/environment-config/source"
     ],
     "exports": {
       ".": "./src/index.ts",
@@ -24,7 +24,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/cloudinary/config-js.git"
+    "url": "https://github.com/cloudinary/environment-config-js.git"
   },
   "scripts": {
     "lint": "eslint --cache --max-warnings=0 src",
@@ -60,7 +60,7 @@
   "exports": {
     ".": {
       "import": {
-        "@cloudinary/config/source": "./src/index.ts",
+        "@cloudinary/environment-config/source": "./src/index.ts",
         "types": "./dist/esm/index.d.ts",
         "default": "./dist/esm/index.js"
       },
@@ -72,7 +72,7 @@
     "./package.json": "./package.json",
     "./types": {
       "import": {
-        "@cloudinary/config/source": "./src/types/index.ts",
+        "@cloudinary/environment-config/source": "./src/types/index.ts",
         "types": "./dist/esm/types/index.d.ts",
         "default": "./dist/esm/types/index.js"
       },
@@ -83,7 +83,7 @@
     },
     "./models/errors": {
       "import": {
-        "@cloudinary/config/source": "./src/models/errors/index.ts",
+        "@cloudinary/environment-config/source": "./src/models/errors/index.ts",
         "types": "./dist/esm/models/errors/index.d.ts",
         "default": "./dist/esm/models/errors/index.js"
       },
@@ -94,7 +94,7 @@
     },
     "./models/components": {
       "import": {
-        "@cloudinary/config/source": "./src/models/components/index.ts",
+        "@cloudinary/environment-config/source": "./src/models/components/index.ts",
         "types": "./dist/esm/models/components/index.d.ts",
         "default": "./dist/esm/models/components/index.js"
       },
@@ -105,7 +105,7 @@
     },
     "./models/operations": {
       "import": {
-        "@cloudinary/config/source": "./src/models/operations/index.ts",
+        "@cloudinary/environment-config/source": "./src/models/operations/index.ts",
         "types": "./dist/esm/models/operations/index.d.ts",
         "default": "./dist/esm/models/operations/index.js"
       },
@@ -116,7 +116,7 @@
     },
     "./*.js": {
       "import": {
-        "@cloudinary/config/source": "./src/*.ts",
+        "@cloudinary/environment-config/source": "./src/*.ts",
         "types": "./dist/esm/*.d.ts",
         "default": "./dist/esm/*.js"
       },
@@ -127,7 +127,7 @@
     },
     "./*": {
       "import": {
-        "@cloudinary/config/source": "./src/*.ts",
+        "@cloudinary/environment-config/source": "./src/*.ts",
         "types": "./dist/esm/*.d.ts",
         "default": "./dist/esm/*.js"
       },

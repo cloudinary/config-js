@@ -3,7 +3,7 @@
  */
 
 /** The base class for all HTTP error responses */
-export class CloudinaryConfigError extends Error {
+export class CloudinaryEnvConfigError extends Error {
   /** HTTP status code */
   public readonly statusCode: number;
   /** HTTP body */
@@ -30,6 +30,6 @@ export class CloudinaryConfigError extends Error {
     this.contentType = httpMeta.response.headers.get("content-type") || "";
     this.rawResponse = httpMeta.response;
 
-    this.name = "CloudinaryConfigError";
+    this.name = "CloudinaryEnvConfigError";
   }
 }

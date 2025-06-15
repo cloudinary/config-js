@@ -5,7 +5,7 @@ upload preset created
 ## Example Usage
 
 ```typescript
-import { CreateUploadPresetResponse } from "@cloudinary/config/models/operations";
+import { CreateUploadPresetResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: CreateUploadPresetResponse = {
   name: "<value>",

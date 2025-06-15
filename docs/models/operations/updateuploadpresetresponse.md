@@ -5,7 +5,7 @@ upload preset updated
 ## Example Usage
 
 ```typescript
-import { UpdateUploadPresetResponse } from "@cloudinary/config/models/operations";
+import { UpdateUploadPresetResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: UpdateUploadPresetResponse = {
   message: "<value>",

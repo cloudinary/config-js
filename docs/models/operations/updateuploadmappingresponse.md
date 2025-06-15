@@ -5,7 +5,7 @@ Upload mapping updated successfully
 ## Example Usage
 
 ```typescript
-import { UpdateUploadMappingResponse } from "@cloudinary/config/models/operations";
+import { UpdateUploadMappingResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: UpdateUploadMappingResponse = {
   message: "updated",

@@ -3,10 +3,10 @@
  */
 
 import * as z from "zod";
-import { CloudinaryConfigError } from "./cloudinaryconfigerror.js";
+import { CloudinaryEnvConfigError } from "./cloudinaryenvconfigerror.js";
 import { formatZodError } from "./sdkvalidationerror.js";
 
-export class ResponseValidationError extends CloudinaryConfigError {
+export class ResponseValidationError extends CloudinaryEnvConfigError {
   /**
    * The raw value that failed validation.
    */

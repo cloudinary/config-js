@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateRequest } from "@cloudinary/config/models/components";
+import { CreateRequest } from "@cloudinary/environment-config/models/components";
 
 let value: CreateRequest = {
   transformation: "w_100,h_150,c_fill,g_auto",

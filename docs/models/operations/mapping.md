@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Mapping } from "@cloudinary/config/models/operations";
+import { Mapping } from "@cloudinary/environment-config/models/operations";
 
 let value: Mapping = {
   folder: "<value>",

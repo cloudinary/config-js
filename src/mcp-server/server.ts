@@ -3,7 +3,7 @@
  */
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { CloudinaryConfigCore } from "../core.js";
+import { CloudinaryEnvConfigCore } from "../core.js";
 import { SDKOptions } from "../lib/config.js";
 import type { ConsoleLogger } from "./console-logger.js";
 import { createRegisterPrompt } from "./prompts.js";
@@ -49,11 +49,11 @@ export function createMCPServer(deps: {
   host?: SDKOptions["host"] | undefined;
 }) {
   const server = new McpServer({
-    name: "CloudinaryConfig",
-    version: "0.3.3",
+    name: "CloudinaryEnvConfig",
+    version: "0.3.4",
   });
 
-  const client = new CloudinaryConfigCore({
+  const client = new CloudinaryEnvConfigCore({
     security: deps.security,
     cloudName: deps.cloudName,
     serverURL: deps.serverURL,

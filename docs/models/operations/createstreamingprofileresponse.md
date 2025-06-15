@@ -5,7 +5,7 @@ Streaming profile created
 ## Example Usage
 
 ```typescript
-import { CreateStreamingProfileResponse } from "@cloudinary/config/models/operations";
+import { CreateStreamingProfileResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: CreateStreamingProfileResponse = {
   data: {

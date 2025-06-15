@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListTransformationsRequest } from "@cloudinary/config/models/operations";
+import { ListTransformationsRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: ListTransformationsRequest = {
   maxResults: 20,

@@ -5,7 +5,7 @@ Streaming profile updated
 ## Example Usage
 
 ```typescript
-import { UpdateStreamingProfileResponse } from "@cloudinary/config/models/operations";
+import { UpdateStreamingProfileResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: UpdateStreamingProfileResponse = {
   message: "<value>",

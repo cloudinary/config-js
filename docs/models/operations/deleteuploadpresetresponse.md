@@ -5,7 +5,7 @@ upload preset deleted
 ## Example Usage
 
 ```typescript
-import { DeleteUploadPresetResponse } from "@cloudinary/config/models/operations";
+import { DeleteUploadPresetResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: DeleteUploadPresetResponse = {
   message: "<value>",

@@ -21,9 +21,9 @@ Retrieves a list of all transformations, which can be filtered to show either on
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -32,7 +32,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations(20, "8edbc61040178db60b0973ca9494bf3a");
+  const result = await cloudinaryEnvConfig.transformations.listTransformations(20, "8edbc61040178db60b0973ca9494bf3a");
 
   console.log(result);
 }
@@ -45,12 +45,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { transformationsListTransformations } from "@cloudinary/config/funcs/transformationsListTransformations.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { transformationsListTransformations } from "@cloudinary/environment-config/funcs/transformationsListTransformations.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -59,7 +59,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await transformationsListTransformations(cloudinaryConfig, 20, "8edbc61040178db60b0973ca9494bf3a");
+  const res = await transformationsListTransformations(cloudinaryEnvConfig, 20, "8edbc61040178db60b0973ca9494bf3a");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -101,9 +101,9 @@ Retrieves details for a named or unnamed transformation.
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -112,7 +112,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.getTransformation("small_profile_thumbnail");
+  const result = await cloudinaryEnvConfig.transformations.getTransformation("small_profile_thumbnail");
 
   console.log(result);
 }
@@ -125,12 +125,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { transformationsGetTransformation } from "@cloudinary/config/funcs/transformationsGetTransformation.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { transformationsGetTransformation } from "@cloudinary/environment-config/funcs/transformationsGetTransformation.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -139,7 +139,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await transformationsGetTransformation(cloudinaryConfig, "small_profile_thumbnail");
+  const res = await transformationsGetTransformation(cloudinaryEnvConfig, "small_profile_thumbnail");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -179,9 +179,9 @@ Creates a new named transformation with the given name and transformation string
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -190,7 +190,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.createTransformation("small_profile_thumbnail", {
+  const result = await cloudinaryEnvConfig.transformations.createTransformation("small_profile_thumbnail", {
     transformation: "w_100,h_150,c_fill,g_auto",
     allowedForStrict: true,
   });
@@ -206,12 +206,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { transformationsCreateTransformation } from "@cloudinary/config/funcs/transformationsCreateTransformation.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { transformationsCreateTransformation } from "@cloudinary/environment-config/funcs/transformationsCreateTransformation.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -220,7 +220,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await transformationsCreateTransformation(cloudinaryConfig, "small_profile_thumbnail", {
+  const res = await transformationsCreateTransformation(cloudinaryEnvConfig, "small_profile_thumbnail", {
     transformation: "w_100,h_150,c_fill,g_auto",
     allowedForStrict: true,
   });
@@ -264,9 +264,9 @@ Update an existing named or unnamed transformation.
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -275,7 +275,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.updateTransformation("small_profile_thumbnail", {
+  const result = await cloudinaryEnvConfig.transformations.updateTransformation("small_profile_thumbnail", {
     unsafeUpdate: "w_200,h_200,c_fill,g_face",
     allowedForStrict: true,
   });
@@ -291,12 +291,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { transformationsUpdateTransformation } from "@cloudinary/config/funcs/transformationsUpdateTransformation.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { transformationsUpdateTransformation } from "@cloudinary/environment-config/funcs/transformationsUpdateTransformation.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -305,7 +305,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await transformationsUpdateTransformation(cloudinaryConfig, "small_profile_thumbnail", {
+  const res = await transformationsUpdateTransformation(cloudinaryEnvConfig, "small_profile_thumbnail", {
     unsafeUpdate: "w_200,h_200,c_fill,g_face",
     allowedForStrict: true,
   });
@@ -349,9 +349,9 @@ Delete a named or unnamed transformation. Optionally invalidate derived resource
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -360,7 +360,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.deleteTransformation("small_profile_thumbnail", true);
+  const result = await cloudinaryEnvConfig.transformations.deleteTransformation("small_profile_thumbnail", true);
 
   console.log(result);
 }
@@ -373,12 +373,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { transformationsDeleteTransformation } from "@cloudinary/config/funcs/transformationsDeleteTransformation.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { transformationsDeleteTransformation } from "@cloudinary/environment-config/funcs/transformationsDeleteTransformation.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -387,7 +387,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await transformationsDeleteTransformation(cloudinaryConfig, "small_profile_thumbnail", true);
+  const res = await transformationsDeleteTransformation(cloudinaryEnvConfig, "small_profile_thumbnail", true);
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

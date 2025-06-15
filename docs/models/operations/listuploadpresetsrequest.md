@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListUploadPresetsRequest } from "@cloudinary/config/models/operations";
+import { ListUploadPresetsRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: ListUploadPresetsRequest = {};
 ```

@@ -5,7 +5,7 @@ Trigger deleted successfully
 ## Example Usage
 
 ```typescript
-import { DeleteTriggerResponse } from "@cloudinary/config/models/operations";
+import { DeleteTriggerResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: DeleteTriggerResponse = {
   message: "ok",

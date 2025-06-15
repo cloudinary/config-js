@@ -1,45 +1,59 @@
-speakeasyVersion: 1.561.0
+speakeasyVersion: 1.563.1
 sources:
     Config API:
-        sourceNamespace: config-api
+        sourceNamespace: environment-config-api
         sourceRevisionDigest: sha256:17458a4b913c220617623ff9c2e199554aa0a1509723564fbce0f2aa83fcf0cb
         sourceBlobDigest: sha256:add94d7751c3555340261cf3485d6fbab5e127242c4be1f542057fbe2edebee3
         tags:
             - latest
             - speakeasy-sdk-regen-1749742009
             - 0.2.2
+    Environment Config API:
+        sourceNamespace: environment-config-api
+        sourceRevisionDigest: sha256:478edf3754c8bec7b06f63ed00a8f4324b7da6f71f5c51bc0eb6bc067dbb2b2a
+        sourceBlobDigest: sha256:cac75f7881f552e789562032fe238e7ad84b39471c71f74668cbdcdaa68e8efb
+        tags:
+            - latest
+            - 0.2.5
 targets:
     config-js:
         source: Config API
-        sourceNamespace: config-api
+        sourceNamespace: environment-config-api
         sourceRevisionDigest: sha256:17458a4b913c220617623ff9c2e199554aa0a1509723564fbce0f2aa83fcf0cb
         sourceBlobDigest: sha256:add94d7751c3555340261cf3485d6fbab5e127242c4be1f542057fbe2edebee3
-        codeSamplesNamespace: config-api-typescript-code-samples
+        codeSamplesNamespace: environment-config-api-typescript-code-samples
         codeSamplesRevisionDigest: sha256:1341fc940c25aa54fadb4e8003ecdb3891842a399f38d81c95b2ce714f10a0bf
+    environment-config-js:
+        source: Environment Config API
+        sourceNamespace: environment-config-api
+        sourceRevisionDigest: sha256:478edf3754c8bec7b06f63ed00a8f4324b7da6f71f5c51bc0eb6bc067dbb2b2a
+        sourceBlobDigest: sha256:cac75f7881f552e789562032fe238e7ad84b39471c71f74668cbdcdaa68e8efb
+        codeSamplesNamespace: environment-config-api-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:2179d59965cd082e983c42d74a3603bb9febf7cbcd7017e94260d0af2acbfae0
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
-        Config API:
+        Environment Config API:
             inputs:
-                - location: https://cloudinary.github.io/api-schemas/config/schema.yml
+                - location: https://cloudinary.github.io/api-schemas/environment-config/schema.yml
             overlays:
                 - location: https://cloudinary.github.io/api-schemas/overlays/security-scheme-cloud-overlay.yaml
                 - location: https://cloudinary.github.io/api-schemas/overlays/cloud-name-overlay.yml
                 - location: https://cloudinary.github.io/api-schemas/overlays/mcp-disabled.yml
                 - location: https://cloudinary.github.io/api-schemas/overlays/remove-mcp-description.yml
             registry:
-                location: registry.speakeasyapi.dev/cloudinary/cloudinary/config-api
+                location: registry.speakeasyapi.dev/cloudinary/cloudinary/environment-config-api
     targets:
-        config-js:
+        environment-config-js:
             target: typescript
-            source: Config API
+            source: Environment Config API
             publish:
                 npm:
                     token: $npm_token
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/cloudinary/cloudinary/config-api-typescript-code-samples
+                    location: registry.speakeasyapi.dev/cloudinary/cloudinary/environment-config-api-typescript-code-samples
                 labelOverride:
                     fixedValue: Typescript (SDK)
                 blocking: false

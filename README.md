@@ -1,4 +1,4 @@
-# Cloudinary Config JS SDK
+# Cloudinary Environment Config JS SDK
 
 <!-- Start Summary [summary] -->
 ## Summary
@@ -9,7 +9,7 @@
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [Cloudinary Config JS SDK](#cloudinary-config-js-sdk)
+* [Cloudinary Environment Config JS SDK](#cloudinary-environment-config-js-sdk)
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
   * [SDK Example Usage](#sdk-example-usage)
@@ -32,25 +32,25 @@ The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https
 ### NPM
 
 ```bash
-npm add @cloudinary/config
+npm add @cloudinary/environment-config
 ```
 
 ### PNPM
 
 ```bash
-pnpm add @cloudinary/config
+pnpm add @cloudinary/environment-config
 ```
 
 ### Bun
 
 ```bash
-bun add @cloudinary/config
+bun add @cloudinary/environment-config
 ```
 
 ### Yarn
 
 ```bash
-yarn add @cloudinary/config zod
+yarn add @cloudinary/environment-config zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -72,10 +72,10 @@ Add the following server definition to your `claude_desktop_config.json` file:
 ```json
 {
   "mcpServers": {
-    "CloudinaryConfig": {
+    "cloudinary-env-config": {
       "command": "npx",
       "args": [
-        "-y", "--package", "@cloudinary/config",
+        "-y", "--package", "@cloudinary/environment-config",
         "--",
         "mcp", "start",
         "--api-key", "...",
@@ -97,10 +97,10 @@ Create a `.cursor/mcp.json` file in your project root with the following content
 ```json
 {
   "mcpServers": {
-    "CloudinaryConfig": {
+    "cloudinary-env-config": {
       "command": "npx",
       "args": [
-        "-y", "--package", "@cloudinary/config",
+        "-y", "--package", "@cloudinary/environment-config",
         "--",
         "mcp", "start",
         "--api-key", "...",
@@ -118,14 +118,14 @@ You can also run MCP servers as a standalone binary with no additional dependenc
 
 ```bash
 curl -L -o mcp-server \
-    https://github.com/cloudinary/config-js/releases/download/{tag}/mcp-server-bun-darwin-arm64 && \
+    https://github.com/cloudinary/environment-config-js/releases/download/{tag}/mcp-server-bun-darwin-arm64 && \
 chmod +x mcp-server
 ```
 
 For a full list of server arguments, run:
 
 ```sh
-npx -y --package @cloudinary/config -- mcp start --help
+npx -y --package @cloudinary/environment-config -- mcp start --help
 ```
 <!-- No SDK Installation [installation] -->
 
@@ -141,9 +141,9 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -152,7 +152,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations(
+  const result = await cloudinaryEnvConfig.transformations.listTransformations(
     20,
     "8edbc61040178db60b0973ca9494bf3a",
   );
@@ -185,9 +185,9 @@ Global parameters can also be set via environment variable.
 ### Example
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -196,7 +196,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations(
+  const result = await cloudinaryEnvConfig.transformations.listTransformations(
     20,
     "8edbc61040178db60b0973ca9494bf3a",
   );
@@ -222,9 +222,9 @@ This SDK supports the following security scheme globally:
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   security: {
     apiKey: "CLOUDINARY_API_KEY",
     apiSecret: "CLOUDINARY_API_SECRET",
@@ -233,7 +233,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations(
+  const result = await cloudinaryEnvConfig.transformations.listTransformations(
     20,
     "8edbc61040178db60b0973ca9494bf3a",
   );
@@ -345,9 +345,9 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -356,7 +356,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations(
+  const result = await cloudinaryEnvConfig.transformations.listTransformations(
     20,
     "8edbc61040178db60b0973ca9494bf3a",
     {
@@ -382,9 +382,9 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   retryConfig: {
     strategy: "backoff",
     backoff: {
@@ -403,7 +403,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations(
+  const result = await cloudinaryEnvConfig.transformations.listTransformations(
     20,
     "8edbc61040178db60b0973ca9494bf3a",
   );
@@ -419,7 +419,7 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-[`CloudinaryConfigError`](./src/models/errors/cloudinaryconfigerror.ts) is the base class for all HTTP error responses. It has the following properties:
+[`CloudinaryEnvConfigError`](./src/models/errors/cloudinaryenvconfigerror.ts) is the base class for all HTTP error responses. It has the following properties:
 
 | Property            | Type       | Description                                                                             |
 | ------------------- | ---------- | --------------------------------------------------------------------------------------- |
@@ -432,10 +432,10 @@ run();
 
 ### Example
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
-import * as errors from "@cloudinary/config/models/errors";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
+import * as errors from "@cloudinary/environment-config/models/errors";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -445,15 +445,13 @@ const cloudinaryConfig = new CloudinaryConfig({
 
 async function run() {
   try {
-    const result = await cloudinaryConfig.transformations.listTransformations(
-      20,
-      "8edbc61040178db60b0973ca9494bf3a",
-    );
+    const result = await cloudinaryEnvConfig.transformations
+      .listTransformations(20, "8edbc61040178db60b0973ca9494bf3a");
 
     console.log(result);
   } catch (error) {
     // The base class for HTTP error responses
-    if (error instanceof errors.CloudinaryConfigError) {
+    if (error instanceof errors.CloudinaryEnvConfigError) {
       console.log(error.message);
       console.log(error.statusCode);
       console.log(error.body);
@@ -473,7 +471,7 @@ run();
 
 ### Error Classes
 **Primary errors:**
-* [`CloudinaryConfigError`](./src/models/errors/cloudinaryconfigerror.ts): The base class for HTTP error responses.
+* [`CloudinaryEnvConfigError`](./src/models/errors/cloudinaryenvconfigerror.ts): The base class for HTTP error responses.
   * [`ApiError`](docs/models/errors/apierror.md): Generic error.
 
 <details><summary>Less common errors (6)</summary>
@@ -488,7 +486,7 @@ run();
 * [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
 
 
-**Inherit from [`CloudinaryConfigError`](./src/models/errors/cloudinaryconfigerror.ts)**:
+**Inherit from [`CloudinaryEnvConfigError`](./src/models/errors/cloudinaryenvconfigerror.ts)**:
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -516,9 +514,9 @@ If the selected server has variables, you may override its default values throug
 #### Example
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   serverIdx: 1,
   host: "unlined-aircraft.info",
   cloudName: "<value>",
@@ -529,7 +527,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations(
+  const result = await cloudinaryEnvConfig.transformations.listTransformations(
     20,
     "8edbc61040178db60b0973ca9494bf3a",
   );
@@ -545,9 +543,9 @@ run();
 
 The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   serverURL: "https://api.cloudinary.com",
   cloudName: "<value>",
   security: {
@@ -557,7 +555,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations(
+  const result = await cloudinaryEnvConfig.transformations.listTransformations(
     20,
     "8edbc61040178db60b0973ca9494bf3a",
   );
@@ -588,8 +586,8 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
-import { HTTPClient } from "@cloudinary/config/lib/http";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
+import { HTTPClient } from "@cloudinary/environment-config/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -615,7 +613,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new CloudinaryConfig({ httpClient });
+const sdk = new CloudinaryEnvConfig({ httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -630,9 +628,9 @@ You can pass a logger that matches `console`'s interface as an SDK option.
 > Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const sdk = new CloudinaryConfig({ debugLogger: console });
+const sdk = new CloudinaryEnvConfig({ debugLogger: console });
 ```
 
 You can also enable a default debug logger by setting an environment variable `CLOUDINARY_DEBUG` to true.

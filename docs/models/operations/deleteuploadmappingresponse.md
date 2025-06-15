@@ -5,7 +5,7 @@ Upload mapping deleted successfully
 ## Example Usage
 
 ```typescript
-import { DeleteUploadMappingResponse } from "@cloudinary/config/models/operations";
+import { DeleteUploadMappingResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: DeleteUploadMappingResponse = {
   message: "deleted",

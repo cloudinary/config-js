@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListTriggerRequest } from "@cloudinary/config/models/operations";
+import { ListTriggerRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: ListTriggerRequest = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UploadPreset } from "@cloudinary/config/models/components";
+import { UploadPreset } from "@cloudinary/environment-config/models/components";
 
 let value: UploadPreset = {
   headers: "X-Robots-Tag: noindex",

@@ -2,8 +2,8 @@ configVersion: 2.0.0
 generation:
   devContainers:
     enabled: true
-    schemaPath: https://cloudinary.github.io/api-schemas/config/schema.yml
-  sdkClassName: CloudinaryConfig
+    schemaPath: https://cloudinary.github.io/api-schemas/environment-config/schema.yml
+  sdkClassName: CloudinaryEnvConfig
   maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
@@ -21,7 +21,7 @@ generation:
     oAuth2PasswordEnabled: true
   sdkHooksConfigAccess: true
 typescript:
-  version: 0.3.3
+  version: 0.3.4
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -31,7 +31,7 @@ typescript:
   authors:
     - Cloudinary
     - Speakeasy
-  baseErrorName: CloudinaryConfigError
+  baseErrorName: CloudinaryEnvConfigError
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
@@ -55,7 +55,7 @@ typescript:
   methodArguments: require-security-and-request
   moduleFormat: dual
   outputModelSuffix: output
-  packageName: '@cloudinary/config'
+  packageName: '@cloudinary/environment-config'
   responseFormat: flat
   templateVersion: v2
   useIndexModules: true

@@ -5,7 +5,7 @@ Transformation updated
 ## Example Usage
 
 ```typescript
-import { UpdateTransformationResponse } from "@cloudinary/config/models/operations";
+import { UpdateTransformationResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: UpdateTransformationResponse = {};
 ```

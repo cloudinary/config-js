@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { UpdateRequest } from "@cloudinary/config/models/components";
+import { UpdateRequest } from "@cloudinary/environment-config/models/components";
 
 let value: UpdateRequest = {
   unsafeUpdate: "w_200,h_200,c_fill,g_face",

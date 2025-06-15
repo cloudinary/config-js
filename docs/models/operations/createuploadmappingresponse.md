@@ -5,7 +5,7 @@ Upload mapping created successfully
 ## Example Usage
 
 ```typescript
-import { CreateUploadMappingResponse } from "@cloudinary/config/models/operations";
+import { CreateUploadMappingResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: CreateUploadMappingResponse = {
   message: "created",

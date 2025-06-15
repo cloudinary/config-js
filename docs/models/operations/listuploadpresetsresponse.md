@@ -5,7 +5,7 @@ upload presets retrieved
 ## Example Usage
 
 ```typescript
-import { ListUploadPresetsResponse } from "@cloudinary/config/models/operations";
+import { ListUploadPresetsResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: ListUploadPresetsResponse = {
   presets: [

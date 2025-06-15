@@ -5,7 +5,7 @@ Streaming profile retrieved
 ## Example Usage
 
 ```typescript
-import { GetStreamingProfileResponse } from "@cloudinary/config/models/operations";
+import { GetStreamingProfileResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: GetStreamingProfileResponse = {
   data: {

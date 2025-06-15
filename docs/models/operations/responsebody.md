@@ -5,7 +5,7 @@ List response
 ## Example Usage
 
 ```typescript
-import { ResponseBody } from "@cloudinary/config/models/operations";
+import { ResponseBody } from "@cloudinary/environment-config/models/operations";
 
 let value: ResponseBody = {
   mappings: [

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TransformationInfo } from "@cloudinary/config/models/components";
+import { TransformationInfo } from "@cloudinary/environment-config/models/components";
 
 let value: TransformationInfo = {
   name: "small_profile_thumbnail",

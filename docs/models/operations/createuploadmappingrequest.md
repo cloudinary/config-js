@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateUploadMappingRequest } from "@cloudinary/config/models/operations";
+import { CreateUploadMappingRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: CreateUploadMappingRequest = {
   folder: "my_folder",

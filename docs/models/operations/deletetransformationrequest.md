@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeleteTransformationRequest } from "@cloudinary/config/models/operations";
+import { DeleteTransformationRequest } from "@cloudinary/environment-config/models/operations";
 
 let value: DeleteTransformationRequest = {
   transformation: "<value>",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { StreamingProfileUpdate } from "@cloudinary/config/models/components";
+import { StreamingProfileUpdate } from "@cloudinary/environment-config/models/components";
 
 let value: StreamingProfileUpdate = {
   displayName: "HD 1080p Updated",

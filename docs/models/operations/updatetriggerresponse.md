@@ -5,7 +5,7 @@ Trigger updated successfully
 ## Example Usage
 
 ```typescript
-import { UpdateTriggerResponse } from "@cloudinary/config/models/operations";
+import { UpdateTriggerResponse } from "@cloudinary/environment-config/models/operations";
 
 let value: UpdateTriggerResponse = {
   message: "ok",

@@ -1,4 +1,4 @@
-# CloudinaryConfig SDK
+# CloudinaryEnvConfig SDK
 
 ## Overview
 

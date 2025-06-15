@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Derived } from "@cloudinary/config/models/components";
+import { Derived } from "@cloudinary/environment-config/models/components";
 
 let value: Derived = {
   publicId: "sample_image",

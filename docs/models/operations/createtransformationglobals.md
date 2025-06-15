@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateTransformationGlobals } from "@cloudinary/config/models/operations";
+import { CreateTransformationGlobals } from "@cloudinary/environment-config/models/operations";
 
 let value: CreateTransformationGlobals = {
   cloudName: "<value>",

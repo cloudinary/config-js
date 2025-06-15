@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { StreamingProfileCreate } from "@cloudinary/config/models/components";
+import { StreamingProfileCreate } from "@cloudinary/environment-config/models/components";
 
 let value: StreamingProfileCreate = {
   name: "hd_1080p",

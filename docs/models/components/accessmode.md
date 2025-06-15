@@ -8,7 +8,7 @@ Allows the asset to behave as if it's of the authenticated 'type' (see above) wh
 ## Example Usage
 
 ```typescript
-import { AccessMode } from "@cloudinary/config/models/components";
+import { AccessMode } from "@cloudinary/environment-config/models/components";
 
 let value: AccessMode = "public";
 ```

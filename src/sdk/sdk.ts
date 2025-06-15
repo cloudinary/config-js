@@ -9,7 +9,7 @@ import { Triggers } from "./triggers.js";
 import { UploadMappings } from "./uploadmappings.js";
 import { UploadPresets } from "./uploadpresets.js";
 
-export class CloudinaryConfig extends ClientSDK {
+export class CloudinaryEnvConfig extends ClientSDK {
   private _transformations?: Transformations;
   get transformations(): Transformations {
     return (this._transformations ??= new Transformations(this._options));

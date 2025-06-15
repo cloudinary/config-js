@@ -22,9 +22,9 @@ Upload mappings allow you to map an upload preset to a specific folder and URL t
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -33,7 +33,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadMappings.listUploadMappings();
+  const result = await cloudinaryEnvConfig.uploadMappings.listUploadMappings();
 
   console.log(result);
 }
@@ -46,12 +46,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { uploadMappingsListUploadMappings } from "@cloudinary/config/funcs/uploadMappingsListUploadMappings.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { uploadMappingsListUploadMappings } from "@cloudinary/environment-config/funcs/uploadMappingsListUploadMappings.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -60,7 +60,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadMappingsListUploadMappings(cloudinaryConfig);
+  const res = await uploadMappingsListUploadMappings(cloudinaryEnvConfig);
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -101,9 +101,9 @@ Creates a new upload mapping for the specified folder
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -112,7 +112,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadMappings.createUploadMapping({
+  const result = await cloudinaryEnvConfig.uploadMappings.createUploadMapping({
     folder: "my_folder",
     template: "http://example.com/files",
   });
@@ -128,12 +128,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { uploadMappingsCreateUploadMapping } from "@cloudinary/config/funcs/uploadMappingsCreateUploadMapping.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { uploadMappingsCreateUploadMapping } from "@cloudinary/environment-config/funcs/uploadMappingsCreateUploadMapping.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -142,7 +142,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadMappingsCreateUploadMapping(cloudinaryConfig, {
+  const res = await uploadMappingsCreateUploadMapping(cloudinaryEnvConfig, {
     folder: "my_folder",
     template: "http://example.com/files",
   });
@@ -185,9 +185,9 @@ Updates the URL template for an existing folder mapping
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -196,7 +196,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadMappings.updateUploadMapping({
+  const result = await cloudinaryEnvConfig.uploadMappings.updateUploadMapping({
     folder: "<value>",
     template: "<value>",
   });
@@ -212,12 +212,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { uploadMappingsUpdateUploadMapping } from "@cloudinary/config/funcs/uploadMappingsUpdateUploadMapping.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { uploadMappingsUpdateUploadMapping } from "@cloudinary/environment-config/funcs/uploadMappingsUpdateUploadMapping.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -226,7 +226,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadMappingsUpdateUploadMapping(cloudinaryConfig, {
+  const res = await uploadMappingsUpdateUploadMapping(cloudinaryEnvConfig, {
     folder: "<value>",
     template: "<value>",
   });
@@ -269,9 +269,9 @@ Permanently deletes the upload mapping for the specified folder
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -280,7 +280,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadMappings.deleteUploadMapping("<value>");
+  const result = await cloudinaryEnvConfig.uploadMappings.deleteUploadMapping("<value>");
 
   console.log(result);
 }
@@ -293,12 +293,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { uploadMappingsDeleteUploadMapping } from "@cloudinary/config/funcs/uploadMappingsDeleteUploadMapping.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { uploadMappingsDeleteUploadMapping } from "@cloudinary/environment-config/funcs/uploadMappingsDeleteUploadMapping.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -307,7 +307,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadMappingsDeleteUploadMapping(cloudinaryConfig, "<value>");
+  const res = await uploadMappingsDeleteUploadMapping(cloudinaryEnvConfig, "<value>");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -346,9 +346,9 @@ Replaces all upload mappings
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -357,7 +357,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadMappings.replaceUploadMappings({
+  const result = await cloudinaryEnvConfig.uploadMappings.replaceUploadMappings({
     mappings: [
       {
         folder: "<value>",
@@ -377,12 +377,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { uploadMappingsReplaceUploadMappings } from "@cloudinary/config/funcs/uploadMappingsReplaceUploadMappings.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { uploadMappingsReplaceUploadMappings } from "@cloudinary/environment-config/funcs/uploadMappingsReplaceUploadMappings.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -391,7 +391,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadMappingsReplaceUploadMappings(cloudinaryConfig, {
+  const res = await uploadMappingsReplaceUploadMappings(cloudinaryEnvConfig, {
     mappings: [
       {
         folder: "<value>",

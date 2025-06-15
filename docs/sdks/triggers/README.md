@@ -20,9 +20,9 @@ Retrieves a list of all event triggers and notifications within your product env
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -31,7 +31,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.triggers.listTrigger();
+  const result = await cloudinaryEnvConfig.triggers.listTrigger();
 
   console.log(result);
 }
@@ -44,12 +44,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { triggersListTrigger } from "@cloudinary/config/funcs/triggersListTrigger.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { triggersListTrigger } from "@cloudinary/environment-config/funcs/triggersListTrigger.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -58,7 +58,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await triggersListTrigger(cloudinaryConfig);
+  const res = await triggersListTrigger(cloudinaryEnvConfig);
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -99,9 +99,9 @@ Your product environment supports triggers up to a maximum determined by multipl
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -110,7 +110,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.triggers.createTrigger({
+  const result = await cloudinaryEnvConfig.triggers.createTrigger({
     uri: "https://trigger.site/124",
     eventType: "upload",
   });
@@ -126,12 +126,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { triggersCreateTrigger } from "@cloudinary/config/funcs/triggersCreateTrigger.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { triggersCreateTrigger } from "@cloudinary/environment-config/funcs/triggersCreateTrigger.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -140,7 +140,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await triggersCreateTrigger(cloudinaryConfig, {
+  const res = await triggersCreateTrigger(cloudinaryEnvConfig, {
     uri: "https://trigger.site/124",
     eventType: "upload",
   });
@@ -183,9 +183,9 @@ Updates a notification URL for a trigger.
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -194,7 +194,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.triggers.updateTrigger("c2c822dd1aa41ba6d81299df8b5ae949", {
+  const result = await cloudinaryEnvConfig.triggers.updateTrigger("c2c822dd1aa41ba6d81299df8b5ae949", {
     newUri: "http://example.com",
   });
 
@@ -209,12 +209,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { triggersUpdateTrigger } from "@cloudinary/config/funcs/triggersUpdateTrigger.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { triggersUpdateTrigger } from "@cloudinary/environment-config/funcs/triggersUpdateTrigger.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -223,7 +223,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await triggersUpdateTrigger(cloudinaryConfig, "c2c822dd1aa41ba6d81299df8b5ae949", {
+  const res = await triggersUpdateTrigger(cloudinaryEnvConfig, "c2c822dd1aa41ba6d81299df8b5ae949", {
     newUri: "http://example.com",
   });
   if (res.ok) {
@@ -265,9 +265,9 @@ Deletes a trigger.
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -276,7 +276,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.triggers.deleteTrigger("c2c822dd1aa41ba6d81299df8b5ae949");
+  const result = await cloudinaryEnvConfig.triggers.deleteTrigger("c2c822dd1aa41ba6d81299df8b5ae949");
 
   console.log(result);
 }
@@ -289,12 +289,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { triggersDeleteTrigger } from "@cloudinary/config/funcs/triggersDeleteTrigger.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { triggersDeleteTrigger } from "@cloudinary/environment-config/funcs/triggersDeleteTrigger.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -303,7 +303,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await triggersDeleteTrigger(cloudinaryConfig, "c2c822dd1aa41ba6d81299df8b5ae949");
+  const res = await triggersDeleteTrigger(cloudinaryEnvConfig, "c2c822dd1aa41ba6d81299df8b5ae949");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

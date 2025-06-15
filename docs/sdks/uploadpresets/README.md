@@ -20,9 +20,9 @@ Creates a new upload preset with specified configuration settings
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -31,7 +31,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadPresets.createUploadPreset({
+  const result = await cloudinaryEnvConfig.uploadPresets.createUploadPreset({
     headers: "X-Robots-Tag: noindex",
     moderation: "metascan",
     rawConvert: "google_speech:vtt:en-US",
@@ -53,12 +53,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { uploadPresetsCreateUploadPreset } from "@cloudinary/config/funcs/uploadPresetsCreateUploadPreset.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { uploadPresetsCreateUploadPreset } from "@cloudinary/environment-config/funcs/uploadPresetsCreateUploadPreset.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -67,7 +67,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadPresetsCreateUploadPreset(cloudinaryConfig, {
+  const res = await uploadPresetsCreateUploadPreset(cloudinaryEnvConfig, {
     headers: "X-Robots-Tag: noindex",
     moderation: "metascan",
     rawConvert: "google_speech:vtt:en-US",
@@ -115,9 +115,9 @@ Lists all upload presets configured in the account
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -126,7 +126,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadPresets.listUploadPresets();
+  const result = await cloudinaryEnvConfig.uploadPresets.listUploadPresets();
 
   console.log(result);
 }
@@ -139,12 +139,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { uploadPresetsListUploadPresets } from "@cloudinary/config/funcs/uploadPresetsListUploadPresets.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { uploadPresetsListUploadPresets } from "@cloudinary/environment-config/funcs/uploadPresetsListUploadPresets.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -153,7 +153,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadPresetsListUploadPresets(cloudinaryConfig);
+  const res = await uploadPresetsListUploadPresets(cloudinaryEnvConfig);
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -194,9 +194,9 @@ Retrieves details of a single upload preset
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -205,7 +205,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadPresets.getUploadPreset("<value>");
+  const result = await cloudinaryEnvConfig.uploadPresets.getUploadPreset("<value>");
 
   console.log(result);
 }
@@ -218,12 +218,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { uploadPresetsGetUploadPreset } from "@cloudinary/config/funcs/uploadPresetsGetUploadPreset.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { uploadPresetsGetUploadPreset } from "@cloudinary/environment-config/funcs/uploadPresetsGetUploadPreset.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -232,7 +232,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadPresetsGetUploadPreset(cloudinaryConfig, "<value>");
+  const res = await uploadPresetsGetUploadPreset(cloudinaryEnvConfig, "<value>");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -271,9 +271,9 @@ Updates an existing upload preset's configuration settings
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -282,7 +282,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadPresets.updateUploadPreset("<value>", {
+  const result = await cloudinaryEnvConfig.uploadPresets.updateUploadPreset("<value>", {
     headers: "X-Robots-Tag: noindex",
     moderation: "google_video_moderation",
     rawConvert: "google_speech:vtt:en-US",
@@ -304,12 +304,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { uploadPresetsUpdateUploadPreset } from "@cloudinary/config/funcs/uploadPresetsUpdateUploadPreset.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { uploadPresetsUpdateUploadPreset } from "@cloudinary/environment-config/funcs/uploadPresetsUpdateUploadPreset.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -318,7 +318,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadPresetsUpdateUploadPreset(cloudinaryConfig, "<value>", {
+  const res = await uploadPresetsUpdateUploadPreset(cloudinaryEnvConfig, "<value>", {
     headers: "X-Robots-Tag: noindex",
     moderation: "google_video_moderation",
     rawConvert: "google_speech:vtt:en-US",
@@ -367,9 +367,9 @@ Deletes an upload preset from the account
 ### Example Usage
 
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -378,7 +378,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.uploadPresets.deleteUploadPreset("<value>");
+  const result = await cloudinaryEnvConfig.uploadPresets.deleteUploadPreset("<value>");
 
   console.log(result);
 }
@@ -391,12 +391,12 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { CloudinaryConfigCore } from "@cloudinary/config/core.js";
-import { uploadPresetsDeleteUploadPreset } from "@cloudinary/config/funcs/uploadPresetsDeleteUploadPreset.js";
+import { CloudinaryEnvConfigCore } from "@cloudinary/environment-config/core.js";
+import { uploadPresetsDeleteUploadPreset } from "@cloudinary/environment-config/funcs/uploadPresetsDeleteUploadPreset.js";
 
-// Use `CloudinaryConfigCore` for best tree-shaking performance.
+// Use `CloudinaryEnvConfigCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const cloudinaryConfig = new CloudinaryConfigCore({
+const cloudinaryEnvConfig = new CloudinaryEnvConfigCore({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -405,7 +405,7 @@ const cloudinaryConfig = new CloudinaryConfigCore({
 });
 
 async function run() {
-  const res = await uploadPresetsDeleteUploadPreset(cloudinaryConfig, "<value>");
+  const res = await uploadPresetsDeleteUploadPreset(cloudinaryEnvConfig, "<value>");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

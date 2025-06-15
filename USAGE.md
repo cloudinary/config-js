@@ -1,8 +1,8 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { CloudinaryConfig } from "@cloudinary/config";
+import { CloudinaryEnvConfig } from "@cloudinary/environment-config";
 
-const cloudinaryConfig = new CloudinaryConfig({
+const cloudinaryEnvConfig = new CloudinaryEnvConfig({
   cloudName: "<value>",
   security: {
     apiKey: "CLOUDINARY_API_KEY",
@@ -11,7 +11,7 @@ const cloudinaryConfig = new CloudinaryConfig({
 });
 
 async function run() {
-  const result = await cloudinaryConfig.transformations.listTransformations(
+  const result = await cloudinaryEnvConfig.transformations.listTransformations(
     20,
     "8edbc61040178db60b0973ca9494bf3a",
   );

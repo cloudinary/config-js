@@ -5,7 +5,7 @@ Set to adv_ocr to extract all text elements in an image as well as the bounding 
 ## Example Usage
 
 ```typescript
-import { Ocr } from "@cloudinary/config/models/components";
+import { Ocr } from "@cloudinary/environment-config/models/components";
 
 let value: Ocr = "adv_ocr";
 ```

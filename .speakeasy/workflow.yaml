@@ -1,26 +1,26 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-    Config API:
+    Environment Config API:
         inputs:
-            - location: https://cloudinary.github.io/api-schemas/config/schema.yml
+            - location: https://cloudinary.github.io/api-schemas/environment-config/schema.yml
         overlays:
             - location: https://cloudinary.github.io/api-schemas/overlays/security-scheme-cloud-overlay.yaml
             - location: https://cloudinary.github.io/api-schemas/overlays/cloud-name-overlay.yml
             - location: https://cloudinary.github.io/api-schemas/overlays/mcp-disabled.yml
             - location: https://cloudinary.github.io/api-schemas/overlays/remove-mcp-description.yml
         registry:
-            location: registry.speakeasyapi.dev/cloudinary/cloudinary/config-api
+            location: registry.speakeasyapi.dev/cloudinary/cloudinary/environment-config-api
 targets:
-    config-js:
+    environment-config-js:
         target: typescript
-        source: Config API
+        source: Environment Config API
         publish:
             npm:
                 token: $npm_token
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/cloudinary/cloudinary/config-api-typescript-code-samples
+                location: registry.speakeasyapi.dev/cloudinary/cloudinary/environment-config-api-typescript-code-samples
             labelOverride:
                 fixedValue: Typescript (SDK)
             blocking: false

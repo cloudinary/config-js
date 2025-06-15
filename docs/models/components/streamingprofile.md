@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { StreamingProfile } from "@cloudinary/config/models/components";
+import { StreamingProfile } from "@cloudinary/environment-config/models/components";
 
 let value: StreamingProfile = {
   externalId: "sp_123456789",
