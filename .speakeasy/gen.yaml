@@ -21,7 +21,7 @@ generation:
     oAuth2PasswordEnabled: true
   sdkHooksConfigAccess: true
 typescript:
-  version: 0.3.4
+  version: 0.3.5
   additionalDependencies:
     dependencies: {}
     devDependencies: {}

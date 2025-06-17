@@ -50,7 +50,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "CloudinaryEnvConfig",
-    version: "0.3.4",
+    version: "0.3.5",
   });
 
   const client = new CloudinaryEnvConfigCore({

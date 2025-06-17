@@ -3,10 +3,10 @@ id: b863a9b5-6231-49a5-af17-282115e1a208
 management:
   docChecksum: 6ae23d08576a5c4f2da96f72bbcb8ec1
   docVersion: 0.2.5
-  speakeasyVersion: 1.563.1
-  generationVersion: 2.629.1
-  releaseVersion: 0.3.4
-  configChecksum: f2fa6f965b6ff88d6511ac75c055940e
+  speakeasyVersion: 1.563.4
+  generationVersion: 2.630.6
+  releaseVersion: 0.3.5
+  configChecksum: 9768b607a97e574a68fe192c9af8fb6a
   repoURL: https://github.com/cloudinary/environment-config-js.git
   installationURL: https://github.com/cloudinary/environment-config-js
   published: true
@@ -32,7 +32,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.9
+    unions: 2.85.10
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

@@ -53,8 +53,8 @@ export type ResponseBody = {
  * Upload mappings retrieved successfully
  */
 export type ListUploadMappingsResponse =
-  | ResponseBody
-  | components.UploadMapping;
+  | components.UploadMapping
+  | ResponseBody;
 
 /** @internal */
 export const ListUploadMappingsGlobals$inboundSchema: z.ZodType<
@@ -260,14 +260,14 @@ export const ListUploadMappingsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => ResponseBody$inboundSchema),
   components.UploadMapping$inboundSchema,
+  z.lazy(() => ResponseBody$inboundSchema),
 ]);
 
 /** @internal */
 export type ListUploadMappingsResponse$Outbound =
-  | ResponseBody$Outbound
-  | components.UploadMapping$Outbound;
+  | components.UploadMapping$Outbound
+  | ResponseBody$Outbound;
 
 /** @internal */
 export const ListUploadMappingsResponse$outboundSchema: z.ZodType<
@@ -275,8 +275,8 @@ export const ListUploadMappingsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListUploadMappingsResponse
 > = z.union([
-  z.lazy(() => ResponseBody$outboundSchema),
   components.UploadMapping$outboundSchema,
+  z.lazy(() => ResponseBody$outboundSchema),
 ]);
 
 /**
