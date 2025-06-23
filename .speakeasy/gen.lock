@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: b863a9b5-6231-49a5-af17-282115e1a208
 management:
-  docChecksum: 6ae23d08576a5c4f2da96f72bbcb8ec1
-  docVersion: 0.2.5
-  speakeasyVersion: 1.563.4
-  generationVersion: 2.630.6
-  releaseVersion: 0.3.5
-  configChecksum: 9768b607a97e574a68fe192c9af8fb6a
+  docChecksum: bef4eb0215b50123d64262e12b528d05
+  docVersion: 0.3.0
+  speakeasyVersion: 1.568.0
+  generationVersion: 2.632.2
+  releaseVersion: 0.4.0
+  configChecksum: 9c4ce8e35ba4cdb0bf985018fa58e99d
   repoURL: https://github.com/cloudinary/environment-config-js.git
   installationURL: https://github.com/cloudinary/environment-config-js
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.11
+    constsAndDefaults: 0.1.12
     core: 3.21.11
     customSecuritySchemes: 0.1.1
     defaultEnabledRetries: 0.1.0
@@ -32,7 +32,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.10
+    unions: 2.85.11
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -55,6 +55,7 @@ generatedFiles:
   - docs/models/components/ocr.md
   - docs/models/components/representation.md
   - docs/models/components/responsivebreakpoint.md
+  - docs/models/components/schemecloudinaryauth.md
   - docs/models/components/security.md
   - docs/models/components/streamingprofile.md
   - docs/models/components/streamingprofilecreate.md
@@ -233,6 +234,7 @@ generatedFiles:
   - src/models/components/createrequest.ts
   - src/models/components/index.ts
   - src/models/components/listresponse.ts
+  - src/models/components/schemecloudinaryauth.ts
   - src/models/components/security.ts
   - src/models/components/streamingprofile.ts
   - src/models/components/streamingprofilecreate.ts

@@ -79,3 +79,13 @@ Based on:
 - [typescript v0.3.5] .
 ### Releases
 - [NPM v0.3.5] https://www.npmjs.com/package/@cloudinary/environment-config/v/0.3.5 - .
+
+## 2025-06-23 12:21:01
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.568.0 (2.632.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.4.0] .
+### Releases
+- [NPM v0.4.0] https://www.npmjs.com/package/@cloudinary/environment-config/v/0.4.0 - .
