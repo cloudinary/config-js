@@ -5,8 +5,8 @@ management:
   docVersion: 0.3.0
   speakeasyVersion: 1.568.0
   generationVersion: 2.632.2
-  releaseVersion: 0.4.0
-  configChecksum: 9c4ce8e35ba4cdb0bf985018fa58e99d
+  releaseVersion: 0.4.1
+  configChecksum: 7a6020d6f014093d43a6099c1a8661ac
   repoURL: https://github.com/cloudinary/environment-config-js.git
   installationURL: https://github.com/cloudinary/environment-config-js
   published: true
