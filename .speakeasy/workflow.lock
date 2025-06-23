@@ -10,11 +10,11 @@ sources:
             - 0.2.2
     Environment Config API:
         sourceNamespace: environment-config-api
-        sourceRevisionDigest: sha256:11e4817cc03c8b8f46f9cb0db10cfc84bb6db99f06ecbeb97940f5b535b4dab8
+        sourceRevisionDigest: sha256:171d29ba5879fab3a43b9ed9f800dcf78d71aaf8709cf7da9fa62171a2435a31
         sourceBlobDigest: sha256:3c4f5398c2868cc0554e7dfa8d9980b07863b831e683db4b6db8edd47721234e
         tags:
             - latest
-            - speakeasy-sdk-regen-1750681278
+            - speakeasy-sdk-regen-1750693079
             - 0.3.0
 targets:
     config-js:
@@ -27,10 +27,10 @@ targets:
     environment-config-js:
         source: Environment Config API
         sourceNamespace: environment-config-api
-        sourceRevisionDigest: sha256:11e4817cc03c8b8f46f9cb0db10cfc84bb6db99f06ecbeb97940f5b535b4dab8
+        sourceRevisionDigest: sha256:171d29ba5879fab3a43b9ed9f800dcf78d71aaf8709cf7da9fa62171a2435a31
         sourceBlobDigest: sha256:3c4f5398c2868cc0554e7dfa8d9980b07863b831e683db4b6db8edd47721234e
         codeSamplesNamespace: environment-config-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:0e0c3c0af632442008843bf2eb8eb08cebe17714254f0dee723f9618532485ab
+        codeSamplesRevisionDigest: sha256:640f6b74b212ae12e48dbeeb086adfae21485eafa5466d519874b773c985e036
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
