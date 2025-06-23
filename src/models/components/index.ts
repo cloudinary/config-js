@@ -5,6 +5,7 @@
 export * from "./apierror.js";
 export * from "./createrequest.js";
 export * from "./listresponse.js";
+export * from "./schemecloudinaryauth.js";
 export * from "./security.js";
 export * from "./streamingprofile.js";
 export * from "./streamingprofilecreate.js";
